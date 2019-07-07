@@ -1,0 +1,7 @@
+package org.wang.mapper;
+
+public interface MonkeyMapper {
+	
+	void queryMonkeyByOO(int stuNo);
+
+}

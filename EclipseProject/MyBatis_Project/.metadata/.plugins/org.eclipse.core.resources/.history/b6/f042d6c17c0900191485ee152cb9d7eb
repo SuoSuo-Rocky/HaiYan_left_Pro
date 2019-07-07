@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.wang.mapper.AnimalMapper">
+    
+    
+    <!-- 使用 resultMap -->
+    <select id="queryAllAnimalWithResMap" resultMap="wang">
+        select stuid,stuname,stukind from animal
+    </select>
+  
+    <resultMap type="animal" id="wang">
+        <id property="id" column="stuid"/>
+    </resultMap> 
+    
+    
+    
+    <!-- 使用 HashMap  
+                        当无法 匹配时 ， 程序 不报错 ， 为 默认值,但是 表中的字段名 不可以 写错， 必须和 实际数据库中的表对应  -->
+    <select id="queryAnimalByIdWithHashMap" resultType="Animal" parameterType="int">
+        select stuid "ixxxd",stuname "name",stukind "kind" from animal where stuid = #{id} 
+    </select>
+    
+    
+
+</mapper>

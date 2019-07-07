@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.wang.mapper.MonkeyMapper">
+    
+    
+    <!--利用 业务扩展类 来实现  根据 ID  联合  1 对  1  查询 -->
+    <select id="queryMonkeyByOO" parameterType="int" resultType="MonkeyBusiness">
+        select s.*,c.* from monkey s inner join monkeycard c
+        on s.cardid=c.cardid
+        where s.stuno=#{stuNo}
+    </select>
+    
+    <!-- 利用  resultMap 来实现  一 对  一  查询  -->
+    <select id="queryMonkeyByNo_resultMap_OO" parameterType="int" resultMap="findMonkey">
+          select s.*,c.* from monkey s inner join monkeycard c
+          on s.cardid=c.cardid
+          where s.stuno=#{stuNo}  
+    </select>
+    
+    <resultMap type="monkey" id="findMonkey">
+        <id property=""  column=""/>
+        <result property=""  column=""/>
+        <result property=""  column=""/>
+    </resultMap>
+    
+    
+    
+    
+    
+
+</mapper>

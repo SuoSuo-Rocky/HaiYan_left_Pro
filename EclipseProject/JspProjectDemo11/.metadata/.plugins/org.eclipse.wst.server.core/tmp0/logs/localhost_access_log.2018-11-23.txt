@@ -1,0 +1,15 @@
+127.0.0.1 - - [23/Nov/2018:16:46:19 +0800] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:46:21 +0800] "GET /javaBean_InternetZong/ex7-01.jsp HTTP/1.1" 200 118
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:46:35 +0800] "GET /javaBean_InternetZong/ex7-02.jsp HTTP/1.1" 200 112
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:50:41 +0800] "GET /javaBean_InternetZong/ex7-04.jsp HTTP/1.1" 200 890
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:51:00 +0800] "POST /javaBean_InternetZong/ex7-04a.jsp HTTP/1.1" 200 35
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:51:07 +0800] "POST /javaBean_InternetZong/ex7-04a.jsp HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:51:07 +0800] "GET /javaBean_InternetZong/ex7-04.jsp HTTP/1.1" 200 890
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:51:23 +0800] "POST /javaBean_InternetZong/ex7-04a.jsp HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:51:23 +0800] "GET /javaBean_InternetZong/ex7-04.jsp HTTP/1.1" 200 890
+127.0.0.1 - - [23/Nov/2018:16:55:14 +0800] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:55:15 +0800] "GET /javaBean_InternetZong/ex7-05.jsp HTTP/1.1" 200 888
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:55:25 +0800] "POST /javaBean_InternetZong/ex7-05a.jsp HTTP/1.1" 200 29
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:55:30 +0800] "POST /javaBean_InternetZong/ex7-05a.jsp HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:55:30 +0800] "GET /javaBean_InternetZong/ex7-05.jsp HTTP/1.1" 200 888
+0:0:0:0:0:0:0:1 - - [23/Nov/2018:16:55:42 +0800] "POST /javaBean_InternetZong/ex7-05a.jsp HTTP/1.1" 200 32

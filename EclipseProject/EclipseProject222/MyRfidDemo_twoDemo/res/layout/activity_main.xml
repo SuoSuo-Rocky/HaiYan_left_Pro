@@ -1,0 +1,155 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.example.myrfiddemo_twodemo.MainActivity" >
+
+    <!-- 左边 -->
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#124555"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="我的打卡实验"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="IP:"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/ip_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Port:"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/port_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp" />
+
+        <ToggleButton
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOff="连接"
+            android:textOn="断开"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/info_tv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="状态信息"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <!-- 右边 -->
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#788989"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/findCarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/findCarBtn" />
+
+        <TextView
+            android:id="@+id/findCartv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="25dp"
+            android:text="---"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/readCarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="读卡" />
+
+        <TextView
+            android:id="@+id/readCartv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="25dp"
+            android:text="---"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/chooseCarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="选卡" />
+
+        <TextView
+            android:id="@+id/chooseCartv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="25dp"
+            android:text="---"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/chooseAreaBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="选块" />
+
+        <TextView
+            android:id="@+id/chooseAreatv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="25dp"
+            android:text="---"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/readAreaBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="读块" />
+
+        <TextView
+            android:id="@+id/readAreatv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="25dp"
+            android:text="---"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+</LinearLayout>

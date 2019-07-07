@@ -1,0 +1,40 @@
+package org.wang.test;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.wang.entity.MonkeyBusiness;
+import org.wang.mapper.MonkeyMapper;
+
+public class MonkeyTest {
+	
+	public static void queryMonkeyByOO() throws IOException{
+		InputStream inputStream = Resources.getResourceAsStream("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = factory.openSession();
+		MonkeyMapper mapper = session.getMapper(MonkeyMapper.class);
+		
+		MonkeyBusiness monkeyBusiness = mapper.queryMonkeyByOO(100);
+		
+		System.out.println(monkeyBusiness);
+		
+		
+	}
+	
+	
+	public static void queryMonkeyByNo_resultMap_OO(){
+		
+	}
+	
+	
+	public static void main(String[] args) throws IOException {
+		queryMonkeyByOO();
+	}
+	
+	
+
+}

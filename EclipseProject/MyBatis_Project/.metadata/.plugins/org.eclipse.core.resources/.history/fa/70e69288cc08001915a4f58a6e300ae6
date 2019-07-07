@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.wang.mapper.StudentMapper">
+
+
+	<!-- 注意后面没有 分号 resultType： 查询 返回结果 值的类型 parameterType ： 输入参数的类型 -->
+	<select id="queryStudentByStuno" resultType="Student"
+		parameterType="int">
+		select * from student where stuno = ${value}
+	</select>
+	
+	<!--根据姓名查询学生  -->
+	<select id="queryStudentByStuname" resultType="Student"
+		parameterType="string">  <!-- string 的 s 大小写都可以  -->
+		select stuno,stuname,stuage from student where stuname = '${value}'
+	</select>
+	
+	<!--  根据姓名  动态排序 -->
+	<select id="queryStudentOrderByColumn" resultType="Student" parameterType="string"> 
+		select stuno,stuname,stuage from student order by  ${value}  desc
+	</select>
+	
+	<!--  根据学生 的姓名  或者 是  年龄  查询学生  -->
+	<select id="queryStudentByStuageOrStuname" resultType="Student" parameterType="Student"> 
+		select stuno,stuname,stuage from student where stuage=#{stuAge} or stuname like '${stuName}'
+	</select>
+	
+	<!-- 使用 HashMap   -->
+	<select id="queryStudentByStuageOrStunameWithHashMap" resultType="Student" parameterType="HashMap"> 
+		select stuno,stuname,stuage from student where stuage=#{stuAge} or stuname like '%${stuName}%'
+	</select>
+	
+	
+	<!-- 通过调用 [存储过程] 实现 查询  
+	存储过程 函数 已经 在 数据库 中  创建好了， 在这里只是 调用 好了， 
+	  参数 statementType 使用 CALLABLE , 而其他的 简单的 查询 语句， 默认 使用的是 preparedStatement 
+	  存储过程的输入参数， 在MyBatis 一般 中用 Map(HashMap) 来传递值
+	  注意：  存储语句 把他放到一行里面，删除不必要的空格 
+	-->
+    <select id="queryCountByGradeWithProcedure" statementType="CALLABLE" 
+	          parameterType="HashMap"  resultType="int">
+	    {CALL queryCountByGradeWithProcedure(#{gName,jdbcType=VARCHAR,mode=IN},#{sCount,jdbcType=INTEGER,mode=OUT})}    
+	</select>
+	
+	
+	<!-- 通过 存储过程 实现  删除  -->
+	<!-- <delete id="deleteStuBynoWithPtocedure" statementType="CALLABLE" parameterType="HashMap">
+	    {
+	    CALL deleteStuBynoWithProcedure(
+	          #{sno,jdbcType=INTEGET,mode=IN}
+	       )
+	    }
+	</delete>
+	 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 根据家庭地址 和 学校 地址 查询  学生 -->
+<!-- 	<select id="queryStudentByaddress" resultType="Student" parameterType="address"> 
+		select stuno,stuname,stuage from student_new   where homeaddress=#{homeAddress} or schooladdress like '%${schoolAddress}%'
+	</select>
+	 -->
+	
+		<!-- 根据家庭地址 和 学校 地址 查询  学生 --><!-- 输入参数  使用级联属性      -->
+  	<select id="queryStudentByaddress" resultType="Student" parameterType="Student"> 
+		select stuno,stuname,stuage from student_new   where homeaddress=#{address.homeAddress} or schooladdress like '%${address.schoolAddress}%'
+	</select>
+	
+	
+	
+
+	<insert id="addStudent" parameterType="student" >
+		insert into
+		student(stuno,stuname,stuage,graname)
+		values(#{stuNo},#{stuName},#{stuAge},#{graName})
+	</insert>
+
+	<delete id="deleteStudentByStuno" parameterType="int">
+		delete from
+		student where stuno = #{id}
+	</delete>
+
+	<update id="updateStudentByStuno" parameterType="student">
+		update student
+		set stuname=#{stuName},stuage=#{stuAge},graname=#{graName}
+		where
+		stuno=#{stuNo}
+	</update>
+
+	<select id="queryAllStudents" resultType="student">
+		select * from student
+	</select>
+
+	<!-- 如果 类中的属性 和 表中的 字段名不能够 一一 对应 的 处理 方法 <select id="queryStudentByStuno" 
+		resultMap="StudentMapping" parameterType="int"> select * from student where 
+		stuno = #{stuno} </select> <resultMap type="student" id="StudentMapping"> 
+		<id property="id" column="stuno" /> <result property="stuName" column="stuname" 
+		/> <result property="stuAge" column="stuage" /> <result property="graName" 
+		column="graname" /> <result property="stuSex" column="stusex" javaType="boolean" 
+		jdbcType="INTEGER"/> </resultMap> -->
+
+
+
+	<!--查询： 使用了 类型转换器 查询 1.如果类中属性 类型 和 表中 的字段类型能够合理 识别，(String-varchar2),则可以使用resultType; 
+		否 则(boolean -integer) 使用resultMap 2.如果类中属性名 和 表中 的字段名能够合理 识别(stuNo-stuno),则可以使用resultType 
+		否则使用 resultMap -->
+<!-- 
+	<select id="queryStudentByStunoWithConverter" resultMap="studentResult"
+		parameterType="int">
+		select * from student where stuno = #{stuno}
+	</select>
+	<resultMap type="student" id="studentResult">
+		分为 主键 id 和非 主键 result
+		<id property="stuNo" column="stuno" />
+		<result property="stuName" column="stuname" />
+		<result property="stuAge" column="stuage" />
+		<result property="graName" column="graname" />
+		<result property="stuSex" column="stusex" javaType="boolean"
+			jdbcType="INTEGER" />
+	</resultMap>
+ -->
+
+	<!-- 增加 ： 使用类型 转换器 -->
+	<!-- <insert id="addStudentWithConverter" parameterType="student">
+		insert into
+		student(stuno,stuname,stuage,graname,stusex)
+		values(#{stuNo},#{stuName},#{stuAge},#{graName},
+		#{stuSex,javaType=boolean , jdbcType=INTEGER})
+	</insert> -->
+
+	<!--注意: -->
+
+
+    <select id="queryStudentCount" resultType="int">
+        select count(*) from student
+    </select>
+
+
+
+
+
+</mapper>

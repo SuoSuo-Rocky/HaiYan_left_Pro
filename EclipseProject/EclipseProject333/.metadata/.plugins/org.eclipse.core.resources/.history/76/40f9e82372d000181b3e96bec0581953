@@ -1,0 +1,248 @@
+package com.example.mybledemo_morning;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.UUID;
+
+import com.example.mybledemo_morning.BluetoothLeClass.onDataAvaliableListener;
+import com.example.mybledemo_morning.BluetoothLeClass.onServerDiscoverListener;
+import com.fro.util.FROSun;
+import com.fro.util.HexStrConvertUtil;
+
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+public class MainActivity extends Activity {
+
+	private ToggleButton connect_tb;
+	private TextView info_tv;
+	private TextView sun_tv;
+	private ListView list_lv;
+	private Context context;
+
+	private BluetoothLeClass mBle;
+	private MyDateAdapter Adapter;
+	private BluetoothGattService mServices;
+	private BluetoothGattCharacteristic mCharacteristic;
+	
+	private static final String UUID_SERVICE = "0000fff0-0000-1000-8000-00805f9b34fb";
+	private static final String UUID_CHAR6 = "0000fff6-0000-1000-8000-00805f9b34fb";
+	private static final String UUID_DESC = "00002902-0000-1000-8000-00805f9b34fb";
+
+	private Timer mtime;
+	private TimerTask mtimeTsak;
+	private Handler handler;
+	private BluetoothGattCallback mcallback;
+
+	private boolean isReader;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		bindView();
+		initDate();
+		initEvent();
+
+	}
+
+	private void bindView() {
+		connect_tb = (ToggleButton) findViewById(R.id.connect_tb);
+		info_tv = (TextView) findViewById(R.id.info_tv);
+		sun_tv = (TextView) findViewById(R.id.sun_tv);
+		list_lv=(ListView) findViewById(R.id.list);
+	}
+
+	private void initDate() {
+		mtime=new Timer();
+		context=this;
+		mBle = new BluetoothLeClass(context, info_tv);
+		Adapter = new MyDateAdapter(context);
+		if (mBle.initData()) {
+			info_tv.setText("初始化 成功.....");
+		} else {
+			info_tv.setText("初始化失败.....");
+		}
+		mBle.setOnServer(onServer);
+		mBle.setOnData(onData);
+		list_lv.setAdapter(Adapter);
+
+	}
+	
+	
+	private void initEvent() {
+
+		handler = new Handler(){
+			@Override
+			public void handleMessage(Message msg) {
+				if (msg.what == 1) {
+					if (isReader) {
+						ReaderData();
+					}
+				}
+
+			}
+		};
+
+		mtimeTsak = new TimerTask() {
+
+			@Override
+			public void run() {
+				Message message = new Message();
+				message.what = 1;
+				handler.sendMessage(message);
+			}
+		};
+
+		mtime.schedule(mtimeTsak, 100, 1000);
+		
+       //按钮点击连接
+		connect_tb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					if (mBle.adapter != null) {
+						Adapter.clear();
+						mBle.adapter.startLeScan(callback);
+						info_tv.setText("正在扫描 Ble 设备......");
+					}
+				} else {
+					mBle.adapter.stopLeScan(callback);
+					info_tv.setText("已停止扫描 Ble 设备......");
+
+				}
+
+			}
+		});
+		
+		//XML 文件列表选项单击事件
+		list_lv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				connect_tb.setChecked(false);
+				mBle.adapter.stopLeScan(callback);
+				
+				BluetoothDevice device=Adapter.getDevice(position);
+				if(device==null){
+					return;
+				}
+				isReader=!isReader;
+				if(isReader){
+					info_tv.setText("正在连接 Ble 终端......");
+					if(!mBle.connect(device.getAddress())){
+						info_tv.setText("连接失败......");
+					}
+				}else{
+					mBle.disconnect();
+					info_tv.setText("已断开连接......");
+				}
+			}
+		});
+	}
+
+	/*
+	 * 扫描设备的回调方法
+	 */
+	private BluetoothAdapter.LeScanCallback callback = new BluetoothAdapter.LeScanCallback() {
+
+		@Override
+		public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
+			runOnUiThread(new  Runnable() {
+				public void run() {
+					Adapter.addDevice(device);
+					Adapter.notifyDataSetChanged();
+				}
+			});
+		}
+	};
+
+	//获取服务的调用
+	private BluetoothLeClass.onServerDiscoverListener  onServer=new onServerDiscoverListener() {
+		
+		@Override
+		public void onServerDiscover(BluetoothGatt gatt) {
+			mServices=gatt.getService(UUID.fromString(UUID_SERVICE));
+			if(mServices!=null){
+				mCharacteristic=mServices.getCharacteristic(UUID.fromString(UUID_CHAR6));
+				if(mCharacteristic!=null){
+					mBle.setCharacteristicNotification(mCharacteristic,true);
+					runOnUiThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							info_tv.setText("连接成功！");
+						}
+					});
+				}
+			}else{
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						info_tv.setText("设置失败！");
+					}
+				});
+			}
+		}
+	};
+	
+	
+	private BluetoothLeClass.onDataAvaliableListener onData=new onDataAvaliableListener() {
+		
+		@Override
+		public void onCharacteristicWriter(BluetoothGatt gatt, BluetoothGattCharacteristic character) {
+			HexStrConvertUtil.bytesToHexString(character.getValue());
+		}
+		
+		@Override
+		public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic character, int states) {
+			if(character.getUuid().toString().equals(UUID_CHAR6)){
+				Float float1=FROSun.getData(Const.SUN_LEN,Const.NODE_NUM,character.getValue());
+				final String data=String.valueOf(float1)+"Lux";
+				runOnUiThread(new Runnable() {
+					public void run() {
+                      info_tv.setText(data);      
+					}
+				});
+			}
+		}
+	};
+	
+	
+	public void writeData(){
+		
+	}
+
+	private void ReaderData() {
+		if(mBle.mgatt!=null&&mCharacteristic!=null){
+			mCharacteristic.setValue(HexStrConvertUtil.hexStringToByte(Const.SUN_CMD));
+			mBle.mgatt.writeCharacteristic(mCharacteristic);
+		}
+		
+
+	}
+	
+	
+	
+	
+	
+	
+
+}

@@ -1,0 +1,11 @@
+package com.mymodel.course;
+
+public class CodeConvert {
+	public String toISO8859(String str){
+		if(str == null){
+			str = "";
+		}
+		str = new String(str.getBytes("ISO-8859-1"));
+	}
+
+}

@@ -1,0 +1,17 @@
+package com.DBUtil;
+
+import java.sql.Connection;
+
+public class getconn {
+	
+public getconn() {
+	
+}
+public Connection getconn(){
+	
+	
+}
+
+
+
+}

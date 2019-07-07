@@ -1,0 +1,13 @@
+package aloneExampleDemo;
+
+public class text {
+	public static void main(String[] args) {
+		
+		
+	}
+	
+  public  Login findByid(Dao dao,String userid){
+	    return dao.findByid(userid);
+  }
+	
+}

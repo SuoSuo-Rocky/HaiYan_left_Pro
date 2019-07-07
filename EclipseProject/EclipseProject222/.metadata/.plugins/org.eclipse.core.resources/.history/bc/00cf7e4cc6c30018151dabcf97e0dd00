@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.example.selfmysundemo1.MainActivity" >
+    
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="我的蓝牙"
+            android:textSize="40dp"
+            android:textColor="#aa0000"
+            android:gravity="center"
+            />
+        
+        <ToggleButton
+            android:id="@+id/button"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textOn="断开"
+            android:textOff="连接"
+            android:textSize="40dp"
+            android:textColor="#aa0000"
+            android:gravity="center"
+            />
+        
+        <TextView
+            android:id="@+id/info_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="状态信息"
+            android:textSize="40dp"
+            android:textColor="#aa0000"
+            android:gravity="center"
+            />
+        
+        
+        
+    </LinearLayout>
+    
+       <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+        
+    </LinearLayout>
+    
+
+</LinearLayout>

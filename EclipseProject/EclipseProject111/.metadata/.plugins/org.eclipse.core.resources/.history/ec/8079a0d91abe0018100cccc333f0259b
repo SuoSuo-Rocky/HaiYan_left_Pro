@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="course">
+        <item>嵌入式课程</item>
+        <item>C语言课程</item>
+        <item>Java 课程</item>
+        <item>Android课程</item>
+        </string-array>
+</resources>

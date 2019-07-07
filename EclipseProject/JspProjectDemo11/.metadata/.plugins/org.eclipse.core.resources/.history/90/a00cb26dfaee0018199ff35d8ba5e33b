@@ -1,0 +1,90 @@
+package com.mymodel.course;
+import java.sql.*; 
+import java.util.*;
+import com.db.DBConn;
+import com.mymodel.course.Course;
+import com.tools.CodeConvert;
+public class CourseOper {
+	 public boolean addCourse(Course course) throws Exception{ 
+		 DBConn db=new DBConn();
+		 Connection conn=db.getConnection();
+		 CodeConvert code=new CodeConvert();
+		 String sql="INSERT INTO course(cno,cname,cterm,cmajor,chour,ccredit,tno) VALUES(?,?,?,?,?,?,?)";
+		 try{ 
+	        PreparedStatement pstmt = conn.prepareStatement(sql);  
+	        pstmt.setString(1,course.getCno());
+	        pstmt.setString(2,code.toISO8859(course.getCname()));
+	        pstmt.setInt(3,course.getCterm());
+	        pstmt.setString(4,code.toISO8859(course.getCmajor()));
+	        pstmt.setInt(5,course.getChour());
+	        pstmt.setInt(6,course.getCredit());
+	        pstmt.setString(7,course.getTno());
+	        int i=pstmt.executeUpdate(); 
+	        if(i==1){
+	           return true;
+	        }else{
+	           return false;   
+	        }
+	     }catch(Exception ex){ 
+	        return false;  
+	     }finally{
+	    	  conn.close();
+	     }      
+	  }
+	 
+	 public List findAllCourse() throws Exception{
+		 DBConn db=new DBConn();
+		 Connection conn=db.getConnection();
+	     String sql="SELECT * FROM course";
+	     List list=new ArrayList();
+	     try{
+	         PreparedStatement pstmt=conn.prepareStatement(sql);
+	         ResultSet rs=pstmt.executeQuery();
+	         while(rs.next()){
+	           Course course=new Course(); 
+	           course.setCno(rs.getString(1)); 
+	           course.setCname(rs.getString(2));
+	           course.setCterm(rs.getInt(3)); 
+	           course.setCmajor(rs.getString(4));
+	           course.setChour(rs.getInt(5));
+	           course.setCredit(rs.getInt(6));
+	           course.setTno(rs.getString(7));
+	           list.add(course);
+	        } 
+	        return list;
+	      }catch(Exception ex){ 
+	        return null;
+	      }finally{
+	    	  conn.close();
+	      }     
+	 }  
+
+	 	  
+	  public List findByCName(String cname) throws Exception{
+		  DBConn db=new DBConn();
+		  Connection conn=db.getConnection();
+		  String sql="SELECT * FROM course WHERE cname=?";
+		  List list=new ArrayList();
+		  try{
+		      PreparedStatement pstmt=conn.prepareStatement(sql);
+		      pstmt.setString(1,cname);
+		      ResultSet rs=pstmt.executeQuery();
+		      while(rs.next()){
+		           Course course=new Course(); 
+		           course.setCno(rs.getString(1)); 
+		           course.setCname(rs.getString(2));
+		           course.setCterm(rs.getInt(3)); 
+		           course.setCmajor(rs.getString(4));
+		           course.setChour(rs.getInt(5));
+		           course.setCredit(rs.getInt(6));
+		           course.setTno(rs.getString(7));
+		           list.add(course);
+		       } 
+		       return list;
+		    }catch(Exception ex){ 
+		        return null;
+		    }finally{
+		        conn.close();
+		    }     
+	  }
+}

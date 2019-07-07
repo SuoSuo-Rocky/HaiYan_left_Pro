@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration  
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<environments default="development">
+		<environment id="development">
+			<!-- 处理事务的方式 -->
+			<transactionManager type="JDBC" />
+			<!-- 连接池的方式 -->
+			<dataSource type="POOLED">
+				<!--配置 数据库 信息 -->
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					 value="jdbc:mysql://localhost:3306/myperson"/>
+				<property name="username" value="root" />
+				<property name="password" value="666666" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 类 的路径 为 "." ， 而 一个 文件的 路径 为 "/" -->
+	<mappers>
+		<!-- 加载 映 射 文件 -->
+		<mapper resource="org/wei/entity/personMapper.xml" />
+	</mappers>
+</configuration>
+

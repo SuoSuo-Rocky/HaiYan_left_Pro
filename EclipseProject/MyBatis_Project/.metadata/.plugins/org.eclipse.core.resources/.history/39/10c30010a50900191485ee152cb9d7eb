@@ -1,0 +1,85 @@
+package org.wang.test;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.wang.entity.Grade;
+import org.wang.entity.Panda;
+import org.wang.mapper.PandaMapper;
+
+public class PandaTest {
+	
+//	<!-- 使用 动态 sql 语句 ， 根据姓名和 年龄 查询 熊猫 -->
+	public static void queryPandaByStuIdWithSQLTag() throws IOException{
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		PandaMapper pan = session.getMapper(PandaMapper.class);
+		
+		Panda panda = new Panda();
+		panda.setStuAge(300);
+		panda.setStuName("wz");
+		
+		Panda panda2 = pan.queryPandaByStuIdWithSQLTag(panda);
+		System.out.println(panda2);
+		
+	
+		
+	}
+	
+	public static void queryPandasWithNosInGrade() throws IOException{
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		PandaMapper pan = session.getMapper(PandaMapper.class);	
+	     
+		Grade grade = new Grade();
+		List<Integer> stuNos = new ArrayList<>();
+		  stuNos.add(100);
+		  stuNos.add(200);
+		  stuNos.add(300);
+		grade.setStuNos(stuNos);
+		
+		List<Panda> list = pan.queryPandasWithNosInGrade(grade);
+		
+		System.out.println(list);
+		
+	
+		
+	}
+	
+	public static void queryPandasWithArray() throws IOException{
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		PandaMapper pan = session.getMapper(PandaMapper.class);	
+	    
+		int[] stuNos = new 	int[];
+		
+		List<Panda> list = pan.queryPandasWithNosInGrade(grade);
+		
+		System.out.println(list);
+		
+	
+		
+	}
+	
+	
+	
+
+	public static void main(String[] args) throws IOException {
+		
+		queryPandasWithNosInGrade();
+	}
+	
+	
+}

@@ -1,0 +1,13 @@
+package org.wang.mapper;
+
+import org.wang.entity.Monkey;
+import org.wang.entity.MonkeyBusiness;
+
+public interface MonkeyMapper {
+	
+	MonkeyBusiness queryMonkeyByOO(int stuNo);
+	
+	Monkey queryMonkeyByNo_resultMap_OO(int stuNo);
+	
+
+}

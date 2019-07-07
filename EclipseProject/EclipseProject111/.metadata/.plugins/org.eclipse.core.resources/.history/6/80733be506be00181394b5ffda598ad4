@@ -1,0 +1,19 @@
+package com.example.activitylaunchmode;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class ActivityTwo extends Activity {
+	/*
+	 * 演示 Activity 的启动过程
+	 */
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		
+		
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.two);
+	}
+
+}

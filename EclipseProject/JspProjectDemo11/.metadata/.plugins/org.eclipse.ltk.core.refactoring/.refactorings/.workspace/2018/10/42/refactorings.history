@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;JSP内置对象综合应用&apos; to &apos;JSPneizhiGirlFriends&apos;" description="Rename resource &apos;JSP内置对象综合应用&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/JSP内置对象综合应用" name="JSPneizhiGirlFriends" stamp="1539522774351" updateReferences="true"/>
+</session>

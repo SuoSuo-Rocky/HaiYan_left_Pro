@@ -1,0 +1,33 @@
+package aloneExampleDemo;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Properties;
+
+public class text {
+	public static void main(String[] args) {
+		DBImple shi = new DBImple();
+		Properties properties = new Properties();
+		URL url = text.class.getResource("properties");
+		try {
+			properties.load(new FileInputStream(url.getFile()));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 String userid = properties.getProperty("userid");
+		 Login login = new text().findByid(shi, userid);
+		 System.out.println("根据姓名 所获取的密码为 ：" + login.getPassword());
+		
+	}
+	
+  public  Login findByid(Dao dao,String userid){
+	    return dao.findByid(userid);
+  }
+	
+}

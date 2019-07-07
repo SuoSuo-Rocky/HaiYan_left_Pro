@@ -1,0 +1,7 @@
+package com.example.modledigtubdemo3;
+
+import android.os.AsyncTask;
+
+public class socketTask extends AsyncTask<Void,Void,Void> {
+
+}

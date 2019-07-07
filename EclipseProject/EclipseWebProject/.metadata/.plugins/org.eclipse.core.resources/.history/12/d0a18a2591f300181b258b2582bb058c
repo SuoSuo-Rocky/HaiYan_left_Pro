@@ -1,0 +1,19 @@
+package aloneExampleDemo;
+
+import java.net.URL;
+import java.util.Properties;
+
+public class text {
+	public static void main(String[] args) {
+		DBImple shi = new DBImple();
+		Properties properties = new Properties();
+		URL url = text.class.getResource("properties");
+		
+		
+	}
+	
+  public  Login findByid(Dao dao,String userid){
+	    return dao.findByid(userid);
+  }
+	
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>WebDemo1</display-name>
+  <welcome-file-list>
+    <welcome-file>Login2.jsp</welcome-file>
+
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Login2</display-name>
+    <servlet-name>Login2</servlet-name>
+    <servlet-class>com.Login2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login2</servlet-name>
+    <url-pattern>/Login2</url-pattern>
+  </servlet-mapping>
+
+
+
+  <servlet>
+    <description></description>
+    <display-name>Update</display-name>
+    <servlet-name>Update</servlet-name>
+    <servlet-class>com.Update</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Update</servlet-name>
+    <url-pattern>/Update  </url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>allupdate</display-name>
+    <servlet-name>allupdate</servlet-name>
+    <servlet-class>com.allupdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>allupdate</servlet-name>
+    <url-pattern>/allupdate</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>Query</display-name>
+    <servlet-name>Query</servlet-name>
+    <servlet-class>com.Query</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Query</servlet-name>
+    <url-pattern>/Query</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+    <servlet>
+    <description></description>
+    <display-name>Insert</display-name>
+    <servlet-name>Insert</servlet-name>
+    <servlet-class>com.Insert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Insert</servlet-name>
+    <url-pattern>Insert</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

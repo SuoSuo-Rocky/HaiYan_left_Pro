@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;jsExample/WebContent/shi.js&apos; to &apos;jquery-1.10.2.min.js&apos;" description="Rename resource &apos;shi.js&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/shi.js" name="jquery-1.10.2.min.js" stamp="1540517909760" updateReferences="true"/>
+</session>

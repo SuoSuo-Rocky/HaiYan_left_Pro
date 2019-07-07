@@ -1,0 +1,153 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IP:" />
+
+        <EditText
+            android:id="@+id/ip_et"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Port:" />
+
+        <EditText
+            android:id="@+id/port_et"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ToggleButton
+            android:id="@+id/connect_tb"
+            android:layout_width="100dp"
+            android:layout_height="66dp"
+            android:textOff="连接"
+            android:textOn="断开" />
+
+        <TextView
+            android:id="@+id/info_tv"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:text="                   _ _ _ _ _ _    " />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/one"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/two"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/three"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/four"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="4" />
+
+        <Button
+            android:id="@+id/five"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/six"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="6" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/seven"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="7" />
+
+        <Button
+            android:id="@+id/eight"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/nine"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="9" />
+
+        <Button
+            android:id="@+id/zero"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/point"
+            android:layout_width="66dp"
+            android:layout_height="45dp"
+            android:onClick="shiwei"
+            android:text="." />
+    </LinearLayout>
+
+</LinearLayout>

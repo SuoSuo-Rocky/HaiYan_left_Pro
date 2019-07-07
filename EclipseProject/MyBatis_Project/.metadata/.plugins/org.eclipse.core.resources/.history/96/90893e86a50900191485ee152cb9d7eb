@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.wang.mapper.PandaMapper">
+    
+    
+      <!-- 使用 动态 sql 语句 ， 根据姓名和 年龄 查询 熊猫
+                            存在一个问题， 如果 name 为空， 只拼接 第二个 if 标签中的SQl 语句， 
+                            会发现拼接后的 SQL 语句 where 后 多一个  and  ,程序会 报错 ，下方有两种解决方案 -->
+  <!--    <select id="queryPandaByStuIdWithSQLTag" parameterType="Panda" resultType="Panda">
+         select stuid,stuname,stuage from panda where 
+         <if test="stuName != null and stuName !='' ">
+             stuname=#{stuName}
+         </if>         
+         <if test="stuAge !=null and stuAge !=0">
+             and stuage=#{stuAge}
+         </if>
+     </select> -->
+    
+     
+     <!-- 第一种解决 方案： -->
+<!--          <select id="queryPandaByStuIdWithSQLTag" parameterType="Panda" resultType="Panda">
+         select stuid,stuname,stuage from panda where 1=1
+         <if test="stuName != null and stuName !='' ">
+             and stuname=#{stuName}
+         </if>         
+         <if test="stuAge !=null and stuAge !=0">
+             and stuage=#{stuAge}
+         </if>
+     </select> -->
+     
+         
+     <!-- 第二种解决方案   (推荐的 ，正式的 ) 
+          where 标签   只会   自动 智能 处理  有效的 第一个  if 标签中的 SQL 语句中的  and 
+                                      对第二个  及 后续的  标签 不会做 任何处理  -->
+         <select id="queryPandaByStuIdWithSQLTag" parameterType="Panda" resultType="Panda">
+         select stuid,stuname,stuage from panda 
+           <where>
+		         <if test="stuName != null and stuName !='' ">
+		            and stuname=#{stuName}
+		         </if>         
+		         <if test="stuAge !=null and stuAge !=0">
+		             and stuage=#{stuAge}
+		         </if>
+         </where>
+     </select>
+    
+         
+         
+         <!--foreach 标签的使用  ------迭代的对象为 属性  -->
+         <select id="queryPandasWithNosInGrade" parameterType="org.wang.entity.Grade" resultType="panda">
+             select * from panda
+             <where>
+                 <if test="stuNos !=null and  stuNos.size>0">
+                      <foreach collection="stuNos" open=" and stuid in("  close=")" item="stuNo" separator=",">
+                           #{stuNos}
+                      </foreach>
+                 </if>
+             </where>
+         </select>
+         
+      <!--    
+         foreach 标签的使用  ------迭代的对象为   数组
+          <select id="queryPandasWithArray" parameterType="int[]" resultType="panda">
+             select * from panda
+             <where>
+                 <if test="stuNos !=null and  stuNos.size>0">
+                      <foreach collection="stuNos" open=" and stuid in("  close=")" item="stuNo" separator=",">
+                           #{stuNos}
+                      </foreach>
+                 </if>
+             </where>
+         </select>
+          -->
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+
+</mapper>

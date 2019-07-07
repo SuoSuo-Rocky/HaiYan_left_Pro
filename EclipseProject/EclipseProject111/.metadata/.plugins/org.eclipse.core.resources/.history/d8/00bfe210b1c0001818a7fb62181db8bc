@@ -1,0 +1,118 @@
+package com.example.demo3333;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter.LeScanCallback;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+public class MainActivity extends Activity {
+	
+	private final Timer timer=new Timer();
+	private TimerTask task;
+	private  Handler handler;
+	
+	private ToggleButton button;
+	private ListView listDevice;
+	private TextView  error_tv;
+	private TextView  sun_tv; 
+
+	
+	//BLE 设备
+	private BluetoothLeClass mBLE;
+	//接收的字段
+	private StringBuffer str_sb;
+	//蓝牙列表适配器
+	private mBleDevicelistAdapter  mbledevicelistAdapter;
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.);
+	
+		bindView();
+	    initData();	
+		initEvent();
+	
+		
+	}
+
+
+	private void bindView() {
+		button=(ToggleButton) findViewById(R.id.);
+		listDevice=(ListView) findViewById(R.id.list);
+		error_tv=(TextView) findViewById(R.id.error_tv);
+		sun_tv=(TextView) findViewById(R.id.sun_tv);
+		
+	}
+	
+	private void initData() {
+		str_sb=new StringBuffer("");
+		mbledevicelistAdapter=new  mBleDevicelistAdapter();
+		listDevice.setAdapter(mbledevicelistAdapter);
+		
+	}
+	
+	
+
+	private void initEvent() {
+		handler=new Handler(){
+			
+			@Override
+			public void handleMessage(Message msg) {
+				
+				
+			}
+		};
+		
+		task=new TimerTask() {
+			
+			@Override
+			public void run() {
+				
+				
+				
+			}
+		};
+		//开始定时器
+		timer.schedule(task, 100,1000);
+		
+		button.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(isChecked){
+					mbledevicelistAdapter.clear();
+					//开始扫描
+					LeScanCallback mLeScanCallback;
+					mBLE.getmBluetoothAdapter().startLeScan(mLeScanCallback);
+				}
+				
+				
+			}
+		});
+		
+		
+		
+		
+		
+		
+	}
+	
+	/*
+	 * 扫描到设备时的回调事件
+	 */
+	
+	private  BluetoothAdapter.LeScanCallback   
+
+
+}

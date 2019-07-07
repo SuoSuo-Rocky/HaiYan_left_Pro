@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration  
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    
+    <!--加载属性文件  -->
+     <properties resource="db.properties" ></properties>
+     
+  <!--   <setting name="LogImpl" value="LOG4j"/> -->
+     
+     <!-- 开启日志功能 ,并且指定 具体的 日志，-->
+ <!--   <settings>
+   </settings>  -->
+      
+     
+     
+     <!-- 全局参数的配置 -->
+ <!--     <settings>
+         <setting name="cacheEnabled" value="false"/>
+     </settings> -->
+     
+     <!-- 定义单个/多个别名 -->
+      <typeAliases>
+        <!--  单个   : 别名 大小写 任意 -->
+         <typeAlias type="org.wang.entity.Student" alias="student"/>
+         
+      <!--    批量定义别名 ,
+               以下会自动将该包中的所有类批量定义别名: 别名 就是  类名(不带包名的类名， 忽略大小写 ) -->
+         <package name="org.wang.entity" />
+     </typeAliases>
+     
+     
+  <!--    
+     <typeHandlers>
+         <typeHandler handler="org.wang.converter.BoolearnAndIntConverter" javaType="Boolean"  jdbcType="INTEGER"/>
+     </typeHandlers>
+      -->
+     
+     
+     
+     
+     <!--通过 environments 的 default 值和 environment 的 id 值 来指定 MyBatis 运行时的数据库环境 -->
+	<environments default="development">
+
+		<!-- 一个 数据库环境 ,而这个是 开发环境， 在 自己的计算机 上跑 -->
+		<environment id="development">
+			<!-- 处理事务的方式 -->
+			<transactionManager type="JDBC" />
+
+			<!-- 连接池的方式 -->
+			<dataSource type="POOLED">
+				<!--配置 数据库 信息 -->
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+
+
+		<!-- 真正的项目 应该在 发布的 那台计算机 上运行 -->
+		<environment id="test">
+			<!-- 处理事务的方式 JDBC:
+			 利用 JDBC 方式 处理事务 (commit, rollback,close ),需要手动的方式 打开， 提交， 关闭，
+			MANAGED: 将事务交由 其他组件 去 托管(Spring , jobss)。默认 使用完之后会关闭 连接。 
+			要是不关闭， 无非 再 多配 一个参数。
+			 <property name="closeConnection" value="false" /> -->
+			<transactionManager type="JDBC" />
+			<!-- 连接池的方式 UNPOOLED:传统的JDBC 模式，(每次访问数据库， 均需要打开， 关闭等数据库的操作， 但是打开,关闭数据库， 
+				是比较 消耗性能的) POOLED: 数据库连接池 JNDI: 从 Tomcat 中获取一个 内置的数据库连接池 (数据库连接池 —— 数据源) -->
+			<dataSource type="POOLED">
+				<!--配置 数据库 信息 -->
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+
+
+	</environments>
+	<!-- 类 的路径 为 "." ， 而 一个 文件的 路径 为 "/" -->
+	<mappers>
+		<!-- 加载 映 射 文件 -->
+	   <mapper resource="org/wang/mapper/MonkeyMapper.xml" /> 
+	   <mapper resource="org/wang/mapper/MouseMapper.xml" /> 
+	 <!-- 	<mapper resource="org/wang/mapper/AnimalMapper.xml" /> -->
+	<!-- 	<package name="org.wang.mapper"/> -->
+	</mappers>
+</configuration>
+

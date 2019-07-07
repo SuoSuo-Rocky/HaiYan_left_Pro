@@ -1,0 +1,20 @@
+package com.example.listdemo1;
+
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.widget.ListView;
+
+public class TestActivity extends ListActivity {
+	private ListView listview;
+	 String[] str={"上海","北京","广州"};
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		
+	}
+	
+	
+
+}

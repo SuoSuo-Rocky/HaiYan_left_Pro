@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.filedemo22.MainActivity" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img02"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/d1"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:shadowColor="@android:color/black"
+        android:shadowRadius="10"
+        android:text="按钮"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="400dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/d1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="74dp"
+        android:text="施伟很高兴认识你"
+        android:textColor="#ff000000"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        android:typeface="serif"
+        tools:ignore="HardcodedText,SpUsage" />
+
+</RelativeLayout>

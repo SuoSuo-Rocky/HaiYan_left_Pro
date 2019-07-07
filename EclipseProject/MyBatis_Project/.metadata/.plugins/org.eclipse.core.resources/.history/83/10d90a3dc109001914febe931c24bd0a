@@ -1,0 +1,8 @@
+package org.wang.entity;
+
+public class MonkeyCard {
+	private int cardId;
+	private String cardInfo;
+	
+
+}

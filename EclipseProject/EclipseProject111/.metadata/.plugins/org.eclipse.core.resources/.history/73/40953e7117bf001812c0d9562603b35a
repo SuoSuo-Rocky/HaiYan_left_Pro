@@ -1,0 +1,37 @@
+package com.example.listsimpleadapter;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ListView;
+
+public class MainActivity extends Activity {
+	/*
+	 * 演示SimpleAdapter 的使用
+	 */
+	private ListView lv;
+	private List<Map<String,Object>> list;
+	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		lv=(ListView) findViewById(R.id.lv);
+		//1.准备数据源
+		list=new ArrayList<Map<String,Object>>();
+		for(int ){
+			
+			
+		}
+		
+	}
+
+	
+
+}

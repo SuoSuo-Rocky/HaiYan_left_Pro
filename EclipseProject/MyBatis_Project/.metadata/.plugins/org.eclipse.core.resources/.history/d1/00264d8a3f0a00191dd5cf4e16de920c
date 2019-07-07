@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.wang.mapper.MouseMapper">
+    
+    <select id="queryClassAndMouses" resultMap="MouseAndClass" parameterType="int">
+      <!-- 查询一个班级当中的 所有 老鼠 和 老鼠信息-->
+      select c.*,s.* from mouse s
+      inner join mouseclass c 
+      on c.classid=s.classid
+      where  c.classid=#{classId}
+    </select>
+    
+    <!-- 类和 表的 对应关系 -->
+    <resultMap type="MouseClass" id="MouseAndClass">
+        <!-- 因为 Type 的主类 是 班级 ， 因此先配置 班级的 信息  -->
+             <id property="classId" column="classid"/>
+            <result property="className" column="classname"/>
+        <!-- 再  配置  成员的 信息 ，一对一： javaType ;
+                                                                            一对多：ofType   -->
+        <collection property="mouses" ofType="Mouse">
+             <id property="stuNo" column="stuNo"/>
+        	<result property="stuName" column="stuName"/>
+        	<!-- 可以 级联 去配置 ， 就是 继续 一对一的  配置。 -->
+        </collection>
+    </resultMap>
+    
+
+
+</mapper>

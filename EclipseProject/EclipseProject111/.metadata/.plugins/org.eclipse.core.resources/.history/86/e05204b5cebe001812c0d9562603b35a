@@ -1,0 +1,53 @@
+package com.example.asyncTaskalone;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
+
+public class MyAsyncTaskDemo extends AsyncTask<String ,Integer,byte[]> {
+	private  ProgressDialog pd;
+	private Context context;
+  public MyAsyncTaskDemo(Context context) {
+	  this.context=context;
+}
+	@Override
+	protected void onPreExecute() {
+		pd=new ProgressDialog(context);
+		pd.setTitle("ÏÔÊ¾½ø¶È£¡");
+		pd.setMessage("Lod......");
+		pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		pd.show();
+		
+		
+	}
+	@Override
+	protected byte[] doInBackground(String... params) {
+		
+		
+		
+		
+		return null;
+	}
+
+	@Override
+	protected void onProgressUpdate(Integer... values) {
+		
+		
+		
+		
+	}
+
+	
+	
+	@Override
+	protected void onPostExecute(byte[] result) {
+		
+		
+		
+		
+	}
+
+
+	
+
+}

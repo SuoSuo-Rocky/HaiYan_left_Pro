@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.wang.mapper.AnimalMapper">
+    
+    <select id="queryAllAnimalWithResMap" resultMap="wang">
+        select stuid,stuname,stukind from animal
+    </select>
+  
+    <resultMap type="animal" id="wang">
+        <id property="id" column="stuid"/>
+        <result property="name" column="stname"/>
+        <result property="kind" column="wang"/>
+    </resultMap> 
+    
+    
+    
+    
+
+</mapper>

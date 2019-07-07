@@ -1,0 +1,40 @@
+package com.example.listviewheaderandfooter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+public class other extends Activity {
+	private List<String> list;
+	private ListView view;
+	private ArrayAdapter<String> adapter;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		view=(ListView) findViewById(R.id.view);
+		list=new ArrayList<String>();
+		for(int i=0;i<20;i++){
+			list.add("item"+i);
+			
+		}
+		
+		adapter=new ArrayAdapter<String>(other.this,android.R.layout.simple_list_item_1,list);
+		//将 otheriten.xml 布局文件 转换成view 视图 
+		View herderView=LayoutInflater.from(other.this).inflate(R.layout.otheritem,null);
+		ImageView view=(ImageView) herderView.findViewById(R.id.otherview);
+		view.setImageResource(R.drawable.shi);
+		view.addHeaderView(herderView);
+		
+		
+		view.setAdapter(adapter);
+	}
+
+}

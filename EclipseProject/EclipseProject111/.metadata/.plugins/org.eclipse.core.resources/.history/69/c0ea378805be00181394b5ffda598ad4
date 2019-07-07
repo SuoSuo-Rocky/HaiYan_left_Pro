@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ActivitylaunchMode</string>
+    <string name="hello_world">启动11111</string>
+    <string name="hello_world2222">启动2222</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

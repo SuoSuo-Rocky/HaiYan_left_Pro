@@ -1,0 +1,9 @@
+package org.wang.test;
+
+public class animalTest {
+	public static void main(String[] args) {
+		
+	}
+	
+
+}

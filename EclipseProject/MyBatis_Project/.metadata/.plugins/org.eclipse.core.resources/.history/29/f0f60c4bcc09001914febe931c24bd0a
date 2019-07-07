@@ -1,0 +1,53 @@
+package org.wang.entity;
+
+public class Monkey {
+	private int stuNo;
+    private String stuName;
+    private int cardId;
+    
+    private MonkeyBusiness business;
+    
+    
+    public Monkey() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public int getStuNo() {
+		return stuNo;
+	}
+
+
+	public void setStuNo(int stuNo) {
+		this.stuNo = stuNo;
+	}
+
+
+	public String getStuName() {
+		return stuName;
+	}
+
+
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
+	}
+
+
+	public int getCardId() {
+		return cardId;
+	}
+
+
+	public void setCardId(int cardId) {
+		this.cardId = cardId;
+	}
+    
+    
+	@Override
+	public String toString() {
+		return  "stuId =" + this.stuNo + "Name=" + this.stuName + "CardId= " + this.cardId;
+	}
+	
+	
+
+}

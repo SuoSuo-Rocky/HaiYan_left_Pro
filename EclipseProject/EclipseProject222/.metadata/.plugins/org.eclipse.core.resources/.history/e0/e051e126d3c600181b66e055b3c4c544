@@ -1,0 +1,149 @@
+package com.example.mytruesundemo1;
+
+import java.util.UUID;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattDescriptor;
+import android.bluetooth.BluetoothProfile;
+import android.content.Context;
+import android.os.Build;
+import android.util.Log;
+
+
+
+public class BluetoothLeClass {
+  
+	public  interface onServerDiscoveredListener{
+		public void onServerDisvered(BluetoothGatt gatt);
+	}
+	
+	public interface onDataAvaliableListener{
+		public void onCharacteristicRead(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic,int status);
+		public void onCharacteristicWrite(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic);
+	}
+	
+	private onServerDiscoveredListener mServerListener;
+	private onDataAvaliableListener mDataListener;
+	
+	public void setmServerListener(onServerDiscoveredListener mServerListener22) {
+		mServerListener = mServerListener22;
+	}
+	
+	public void setmDataListener(onDataAvaliableListener mDataListener22) {
+		mDataListener = mDataListener22;
+	}
+	
+	private Context context;
+	private MainActivity activity;
+	public  BluetoothGatt mgatt;
+	
+	public static final UUID CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR_UUID = UUID
+			.fromString("00002902-0000-1000-8000-00805f9b34fb");
+	
+	
+	public BluetoothLeClass(Context c) {
+		context=c; 
+		activity=new MainActivity();
+	}
+
+	
+	public boolean connect(final String address) {
+		
+		Log.i("shi22","activity.getBluetoothAdapter()="+activity.getBluetoothAdapter());
+		Log.i("shi22","address="+address);
+			if(activity.getBluetoothAdapter()==null||address==null){
+			return false;
+		}
+		Log.i("shi","----------------3------------------");
+		if(mgatt!=null){
+			if(mgatt.connect()){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		final BluetoothDevice device=activity.getBluetoothAdapter().getRemoteDevice(address);
+		mgatt=device.connectGatt(context, false, mcallback);
+	      return  true;
+	}
+
+	
+	
+	public void disconnect() {
+		if(activity.getBluetoothAdapter()==null||mgatt==null){
+			return;
+		}
+		mgatt.disconnect();
+		
+	}
+	
+	private final BluetoothGattCallback mcallback=new BluetoothGattCallback() {
+		public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+			Log.i("shi","---------------4-------------------");
+			if (newState == BluetoothProfile.STATE_CONNECTED) {
+				Log.i("shi","----------------5------------------");
+				mgatt.discoverServices();
+			}
+		};
+		
+		public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+			Log.i("shi","-----------------6-----------------");
+			if(status==BluetoothGatt.GATT_SUCCESS&&mServerListener!=null){
+				Log.i("shi","---------------7-------------------");
+				mServerListener.onServerDisvered(gatt);
+			}
+			
+		};
+		public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+			if(mDataListener!=null){
+				mDataListener.onCharacteristicRead(gatt, characteristic, status);
+			}
+		};
+		
+		public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+			if(mDataListener!=null){
+				mDataListener.onCharacteristicWrite(gatt, characteristic);
+			}
+			
+			
+		};
+	};
+	
+	public void close() {
+		if (mgatt== null) {
+			return;
+		}
+		mgatt.close();
+		mgatt = null;
+	}
+	
+	
+
+	public void setCharacteristicNotification(BluetoothGattCharacteristic mChar6, boolean b) {
+		Log.i("shi","----------setCharacteristicNotification-----------");
+		if(mgatt==null||activity.adapter==null){
+			return;
+		}
+		if(b==true){
+			Log.i("shi","--------setCharacteristicNotification------------");
+			mgatt.setCharacteristicNotification(mChar6, true);
+			BluetoothGattDescriptor descriptor=mChar6.getDescriptor(CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR_UUID);
+			descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+			mgatt.writeDescriptor(descriptor);
+		}else{
+			mgatt.setCharacteristicNotification(mChar6, false);
+			BluetoothGattDescriptor descriptor=mChar6.getDescriptor(CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR_UUID);
+			descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+			mgatt.writeDescriptor(descriptor);
+			
+		}
+		
+		
+	}
+
+
+}

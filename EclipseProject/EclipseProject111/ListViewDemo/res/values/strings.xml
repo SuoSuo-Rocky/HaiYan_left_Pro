@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ListViewDemo</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="city">
+        <item >北京</item>
+        <item >天津</item>
+         <item >新疆</item>
+          <item >库车</item>
+           <item >阿克苏</item>
+    </string-array>
+
+</resources>

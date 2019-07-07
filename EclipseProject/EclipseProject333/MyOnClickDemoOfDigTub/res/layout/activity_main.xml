@@ -1,0 +1,173 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.myonclickdemoofdigtub.MainActivity" >
+    
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IP:"/>
+            <EditText 
+                android:id="@+id/ip_et"
+                android:layout_width="266dp"
+                android:layout_height="wrap_content"/>
+            
+        
+        
+            </LinearLayout>
+            
+                <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PORT:"/>
+            <EditText 
+                android:id="@+id/port_et"
+                android:layout_width="266dp"
+                android:layout_height="wrap_content"/>
+            
+        
+        
+            </LinearLayout>
+            
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+        <ToggleButton
+            android:textOn="断开"
+            android:textOff="连接"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:id="@+id/connect_tb"/>
+        <TextView
+            android:text="_ _ _ _ _ _"
+            android:id="@+id/info_tv"
+            android:gravity="center"
+            android:layout_width="166dp"
+            android:layout_height="wrap_content"/>
+        
+        
+        </LinearLayout>
+        
+    
+    
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+        <Button
+            android:text="1"
+            android:id="@+id/one"
+            android:onClick="shiwei"
+            android:layout_width="100dp"
+            android:layout_height="80dp"/>
+        <Button
+            android:text="2"
+            android:onClick="shiwei"
+       android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:id="@+id/two"/>
+        <Button
+            android:text="3"
+            android:onClick="shiwei"
+          android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:id="@+id/three"/>
+        <Button
+            android:onClick="shiwei"
+           android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:id="@+id/four"
+            android:text="4"/>
+        
+        </LinearLayout>
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+        <Button
+            android:text="5"
+            android:id="@+id/five"
+            android:onClick="shiwei"
+           android:layout_width="100dp"
+            android:layout_height="80dp"/>
+        <Button
+            android:text="6"
+            android:onClick="shiwei"
+         android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:id="@+id/six"/>
+        <Button
+            android:text="7"
+            android:onClick="shiwei"
+          android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:id="@+id/seven"/>
+        <Button
+            android:onClick="shiwei"
+         android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:id="@+id/eight"
+            android:text="8"/>
+        
+        </LinearLayout>
+        
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        
+        <Button
+            android:text="9"
+            android:onClick="shiwei"
+            android:id="@+id/nine"
+           android:layout_width="100dp"
+            android:layout_height="80dp"/>
+        <Button
+            android:onClick="shiwei"
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/zero"/>
+        <Button
+            android:text="."
+            android:onClick="shiwei"
+         android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:id="@+id/point"/>
+
+        
+        </LinearLayout>
+        
+        
+    
+    
+
+</LinearLayout>

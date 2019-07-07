@@ -1,0 +1,68 @@
+package com.example.nextblecomeon;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+
+import android.content.Context;
+import android.os.AsyncTask;
+import android.widget.TextView;
+
+public class socketTask extends AsyncTask<Void, Void, Void> {
+	public  TextView info_tv;
+	private Context context;
+	
+	
+	private Socket socket;
+	private InetSocketAddress address;
+	
+	public socketTask(Context con,TextView view, TextView info_tv) {
+		this.context=con;
+		this.info_tv=info_tv;
+	}
+	
+	
+	@Override
+	protected void onPreExecute() {
+		info_tv.setText("zhengzai lianjie ....");
+ 	}
+	
+	
+	@Override
+	protected void onProgressUpdate(Void... values) {
+		if(Constant.sunsocket!=null) {
+			info_tv.setText("SuccessFul");
+		}else {
+			info_tv.setText("fuailer");
+		}
+		
+	}
+	
+	 @Override
+	protected Void doInBackground(Void... params) {
+		 socket=new Socket();
+			address=new InetSocketAddress(Constant.IP,Constant.port);
+			try {
+				socket.connect(address,3000);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+			if(socket.isConnected()) {
+				Constant.sunsocket=socket;
+				publishProgress();
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return null;
+		 
+		 
+
+	}
+	
+}

@@ -1,0 +1,11 @@
+package org.wang.entity;
+
+import java.util.List;
+
+public class Grade {
+	
+	// Ñ§ºÅ
+	private List<Integer> stuNos;
+	
+
+}

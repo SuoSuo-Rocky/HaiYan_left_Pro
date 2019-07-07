@@ -1,0 +1,53 @@
+package com.example.wifi_suncase;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+public class MainActivity extends Activity {
+	private String IP="192.168.0.3";
+	private int port=8080;
+	TextView sun_tv;
+	ToggleButton connect_tb;
+	
+	Socket socket;
+	InetSocketAddress saddr;
+	InputStream mis;
+	OutputStream mos;
+	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		sun_tv = (TextView)findViewById(R.id.sun_tv);
+		connect_tb = (ToggleButton)findViewById(R.id.connect_tb);
+		connect_tb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if(isChecked){
+					socket = new Socket();
+					saddr = new InetSocketAddress(IP,port);
+					socket.connect(saddr);
+					
+				}else {
+					
+				}
+			}
+		});
+	}
+
+	
+}

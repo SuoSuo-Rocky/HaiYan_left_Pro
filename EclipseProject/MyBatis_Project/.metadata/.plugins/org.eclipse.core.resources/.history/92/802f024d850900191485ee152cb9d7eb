@@ -1,0 +1,10 @@
+package org.wang.entity;
+
+public class Panda {
+	
+	private int stuid;
+	private String stuname;
+	private int stuage;
+	
+
+}

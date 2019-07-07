@@ -1,0 +1,7 @@
+package com.example.listdemo1;
+
+import android.app.ListActivity;
+
+public class TestActivity extends ListActivity {
+
+}

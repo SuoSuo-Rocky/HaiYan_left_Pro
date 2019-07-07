@@ -1,0 +1,35 @@
+package com.example.modledigtubdemo3;
+
+import android.os.AsyncTask;
+import android.widget.TextView;
+
+public class socketTask extends AsyncTask<Void,Void,Void> {
+	private TextView info_tv;
+	
+	
+	public socketTask(TextView info_tv) {
+		this.info_tv=info_tv;
+	}
+	
+	@Override
+	protected void onPreExecute() {
+		
+		
+		
+	}
+	
+	@Override
+	protected Void doInBackground(Void... params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	@Override
+	protected void onProgressUpdate(Void... values) {
+		super.onProgressUpdate(values);
+	}
+	
+	
+
+}

@@ -1,0 +1,50 @@
+package org.wang.entity;
+
+public class Animal {
+	
+	private int stuid;
+	private String stuname;
+	private int stukind;
+	
+	public Animal() {
+		
+	}
+
+
+	
+	public int getStuid() {
+		return stuid;
+	}
+
+	public void setStuid(int stuid) {
+		this.stuid = stuid;
+	}
+
+	public String getStuname() {
+		return stuname;
+	}
+
+	public void setStuname(String stuname) {
+		this.stuname = stuname;
+	}
+
+
+	public int getStukind() {
+		return stukind;
+	}
+
+
+	public void setStukind(int stukind) {
+		this.stukind = stukind;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "ID=" + this.stuid + "NAME=" + this.stuname + "KIND=" + this.stukind;
+	}
+	
+	
+
+}

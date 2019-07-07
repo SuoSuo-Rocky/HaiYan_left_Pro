@@ -1,0 +1,52 @@
+@charset "UTF-8";
+*{
+	padding:0;
+	margin:0;
+}
+h2{
+	margin-top:30px;
+	text-align:center;
+}
+#box{
+	width:900px;
+	height:700px;
+	border: 1px solid red;
+	margin: 50px auto;
+	position:relative;
+	
+}
+table{
+	width:100%;
+	height:100%;
+	position:absolute;
+	
+}
+tr{
+	position:relative;
+	width:100%;
+	height:50px;
+}
+th{
+	float:left;
+	width:98px;
+	height:49px;
+	border-right:1px solid  red;
+	border-bottom:1px solid  red;
+	line-height:49px;
+	font-size:20px;
+	text-align:center;
+	
+	
+}
+td{
+	float:left;
+	width:98px;
+	height:49px;
+	border-right:1px solid  red;
+	border-bottom:1px solid  red;
+	line-height:49px;
+	font-size:25px;
+	text-align:center;
+	
+	
+}

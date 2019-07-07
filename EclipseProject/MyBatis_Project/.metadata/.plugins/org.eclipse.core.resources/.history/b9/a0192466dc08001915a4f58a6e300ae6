@@ -1,0 +1,347 @@
+package org.wang.test;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.wang.entity.Address;
+import org.wang.entity.Student;
+import org.wang.mapper.StudentMapper;
+
+public class test {
+
+	// 查询所有学生
+	public static void queryAllStudents() throws IOException {
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper student = session.getMapper(StudentMapper.class);
+
+		List<Student> allStudent = student.queryAllStudents();
+
+		System.out.println(allStudent);
+
+	}
+
+	// 增加学生
+	public static void addStudent() throws IOException {
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		Student student = new Student(150, "wu", 8888, "an");
+		StudentMapper mapper = session.getMapper(StudentMapper.class);
+		mapper.addStudent(student);
+
+		// 没有提交 就不会 更新 数据
+		session.commit();
+		session.close();
+
+	}
+
+	// 修改学生信息
+	public static void updateStudentByStuno() throws IOException {
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		Student student = new Student(10, "7777", 7777, "7777");
+
+		StudentMapper mapper = session.getMapper(StudentMapper.class);
+		mapper.updateStudentByStuno(student);
+
+		// 没有提交 就不会 更新 数据
+		session.commit();
+		session.close();
+	}
+
+	// 删除学生
+	public static void deleteStudentByStuno() throws IOException {
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper mapper = session.getMapper(StudentMapper.class);
+		mapper.deleteStudentByStuno(10);
+
+		// 没有提交 就不会 更新 数据
+		session.commit();
+		session.close();
+	}
+
+	// 根据学号， 查询学生
+	public static void queryStudentByStuno(int id) throws Exception {
+		// Connection --------SqlSession,需要前置对象来获得
+		// 将 conf.xml 配置文件 读入到内存中去
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		// reader -----> SqlSession
+		// 可以通过 build 的第二个参数 来强制 指定 数据库的 环境
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		//
+		Student student = studentMapper.queryStudentByStuno(id);
+		System.out.println(student);
+		session.close();
+
+	}
+
+	// 根据姓名， 查询学生
+	public static void queryStudentByStuname(String name) throws Exception {
+		// Connection --------SqlSession,需要前置对象来获得
+		// 将 conf.xml 配置文件 读入到内存中去
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		// reader -----> SqlSession
+		// 可以通过 build 的第二个参数 来强制 指定 数据库的 环境
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		//
+		Student student = studentMapper.queryStudentByStuname(name);
+		System.out.println(student);
+		session.close();
+
+	}
+
+	// 根据字段名 进行 动态排序
+	public static void queryStudentOrderByColumn(String column) throws Exception {
+		// Connection --------SqlSession,需要前置对象来获得
+		// 将 conf.xml 配置文件 读入到内存中去
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		// reader -----> SqlSession
+		// 可以通过 build 的第二个参数 来强制 指定 数据库的 环境
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		//
+		List<Student> student = studentMapper.queryStudentOrderByColumn(column);
+		System.out.println(student);
+		session.close();
+
+	}
+
+	// 根据年龄 或者 是 姓名 查询 学生
+	public static void queryStudentByStuageOrStuname() throws Exception {
+		// Connection --------SqlSession,需要前置对象来获得
+		// 将 conf.xml 配置文件 读入到内存中去
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		// reader -----> SqlSession
+		// 可以通过 build 的第二个参数 来强制 指定 数据库的 环境
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		Student student = new Student();
+		student.setStuName("w");
+		student.setStuAge(100);
+/*		student.setStuNo(200);
+		student.setStuSex(false);
+		student.setGraName("wang");*/
+		List<Student> stu = studentMapper.queryStudentByStuageOrStuname(student);
+		System.out.println(stu);
+		session.close();
+
+	}
+	
+	// (输入参数  使用hashMap)  根据年龄 或者 是 姓名 查询 学生
+	public static void queryStudentByStuageOrStunameWithHashMap() throws Exception {
+		// Connection --------SqlSession,需要前置对象来获得
+		// 将 conf.xml 配置文件 读入到内存中去
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		// reader -----> SqlSession
+		// 可以通过 build 的第二个参数 来强制 指定 数据库的 环境
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		Map<String, Object> studentMap = new HashMap<>();
+		studentMap.put("stuAge",7777);
+		studentMap.put("stuName", "w");
+
+		
+		List<Student> stu = studentMapper.queryStudentByStuageOrStunameWithHashMap(studentMap);
+		System.out.println(stu);
+		session.close();
+
+	}
+	
+	
+	//根据 存储过程 查询某个年级 的  学生  总数
+	public static void queryCountByGradeWithProcedure() throws Exception {
+		// Connection --------SqlSession,需要前置对象来获得
+		// 将 conf.xml 配置文件 读入到内存中去
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		// reader -----> SqlSession
+		// 可以通过 build 的第二个参数 来强制 指定 数据库的 环境
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		Map<String, Object> studentMap = new HashMap<>();
+		// 给输入参数 指定值 
+		studentMap.put("gName",7777);
+		
+
+		//调用   存储 过程
+		studentMapper.queryCountByGradeWithProcedure(studentMap);
+	    // 获取 输出 参数  
+		Object  params = studentMap.get("sCount");
+		System.out.println(params);
+		session.close();
+
+	}
+	
+	
+	
+	
+	//根据  学号 用 存储过程  删除学生  
+		public static void deleteStuBynoWithPtocedure() throws Exception {
+			// Connection --------SqlSession,需要前置对象来获得
+			// 将 conf.xml 配置文件 读入到内存中去
+			Reader reader = Resources.getResourceAsReader("conf.xml");
+			// reader -----> SqlSession
+			// 可以通过 build 的第二个参数 来强制 指定 数据库的 环境
+			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession session = factory.openSession();
+
+			StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+			//通过 Map 给 存储过程 来  指定输入 参数 。
+			Map<String, Object> studentMap = new HashMap<>();
+			studentMap.put("sno",200); // 给输入参数 指定值 
+			
+
+			//调用   存储 过程
+			studentMapper.deleteStuBynoWithPtocedure(studentMap);
+			session.commit();
+			session.close();
+
+		}
+		
+		
+		
+		
+
+	
+	// 根据家庭地址 和 学校 地址 查询  学生###           使用级联属性
+	public static void queryStudentByaddress() throws Exception {
+		// Connection --------SqlSession,需要前置对象来获得
+		// 将 conf.xml 配置文件 读入到内存中去
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		// reader -----> SqlSession
+		// 可以通过 build 的第二个参数 来强制 指定 数据库的 环境
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		
+		//使用级联属性
+		Student student = new Student();
+		Address add = new Address();
+		add.setHomeAddress("500");
+		add.setSchoolAddress("x");
+		student.setAddress(add);
+		
+		List<Student> student2 = studentMapper.queryStudentByaddress(student);
+		
+		 for (Iterator iterator = student2.iterator(); iterator.hasNext();) {
+			Student student3 = (Student) iterator.next();
+			System.out.println(student3);
+			
+		}	
+
+//      System.out.println(student2);
+		session.close();
+
+	}
+	
+	
+	
+	
+
+	
+
+	// 使用了 转换器 (从数据库中 拿 )
+	// 根据学号， 查询学生
+	public static void queryStudentByStunoWithConverter(int id) throws Exception {
+		// Connection --------SqlSession,需要前置对象来获得
+		// 将 conf.xml 配置文件 读入到内存中去
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		// reader -----> SqlSession
+		// 可以通过 build 的第二个参数 来强制 指定 数据库的 环境
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		//
+		Student student = studentMapper.queryStudentByStunoWithConverter(id);
+		System.out.println(student);
+		session.close();
+
+	}
+
+	// 使用转换器 ， 向 数据库中 放
+	// 增加学生
+	public static void addStudentWithConverter() throws IOException {
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		Student student = new Student(190, "laixi", 106660, "qi");
+		student.setStuSex(true);
+		StudentMapper mapper = session.getMapper(StudentMapper.class);
+		mapper.addStudentWithConverter(student);
+
+		// 没有提交 就不会 更新 数据
+		session.commit();
+		session.close();
+
+	}
+	  //查询 学生  总数
+	public static void queryStudentCount() throws IOException{
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+		
+		 StudentMapper mapper = session.getMapper(StudentMapper.class);
+		 int count = mapper.queryStudentCount();
+		 System.out.println("学生  总数  = " + count);
+	}
+	
+	//输出参数 为  Map 类型， 	通过别名 作为 Map 的 Key
+	public static Map queryStudentOutByHashMap() throws IOException{
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+		
+		 StudentMapper mapper = session.getMapper(StudentMapper.class);
+		 Map<String,Object> hashMap = mapper.queryStudentOutByHashMap();
+		 return hashMap;
+		
+	}
+	
+	
+
+	public static void main(String[] args) throws Exception {
+//		queryAllStudents();
+//		 queryStudentByStuname("7777");
+		// queryAllStudents();
+//		queryStudentByaddress();
+//		queryStudentByStuageOrStunameWithHashMap();
+//		queryStudentCount();
+		Map hashMap = queryStudentOutByHashMap();
+		System.out.println(Map);
+
+	}
+
+}

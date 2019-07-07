@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.fro.util&apos; to &apos;SelfMySunDemo1/src&apos;&#x0D;&#x0A;- Original project: &apos;Ble_SunCase&apos;&#x0D;&#x0A;- Destination element: &apos;SelfMySunDemo1/src&apos;&#x0D;&#x0A;- Original element: &apos;Ble_SunCase/src/com.fro.util&apos;" description="Copy package" destination="=SelfMySunDemo1/src" element1="/src&lt;com.fro.util" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1538296011551" version="1.0"/>
+</session>

@@ -1,0 +1,82 @@
+package com.example.demoloadimageasynctask;
+
+import android.app.Activity;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
+public class MainActivity extends Activity {
+	/*
+	 * 点击下载图片
+	 * 使用异步任务
+	 */
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
+	
+	public  void click(View view ) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				
+			}
+		});
+		
+
+	}
+	
+	/*
+	 * 三个泛型
+	 * Params: 表示当前的异步任务
+	 * Progress: 表示当前异步任务耗时操作时的进度类型
+	 * Result: 表示 当前AsyncTask 耗时操作结果的数据类型
+	 */
+	class MyAsyncTask extends AsyncTask<String,Void,byte[]>{
+		
+		@Override
+		protected void onPreExecute() {//表示在异步任务之前的准备工作，是回调方法。
+        Log.v("shi",Thread.currentThread().getName()+"  ---------onpreExecute--------");			
+		}
+		@Override
+		protected byte[] doInBackground(String... params) {
+			
+			return null;
+			
+		}
+		
+		
+		
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

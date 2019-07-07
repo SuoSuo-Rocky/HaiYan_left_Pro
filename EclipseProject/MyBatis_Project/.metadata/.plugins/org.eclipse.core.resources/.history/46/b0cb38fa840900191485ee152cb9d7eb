@@ -1,0 +1,23 @@
+package org.wang.entity;
+
+public class Animal {
+	
+	private int stuid;
+	private String stuname;
+	private int stukind;
+	
+	public Animal() {
+		
+	}
+
+	
+	
+	
+	@Override
+	public String toString() {
+		return "ID=" + this.stuid + "NAME=" + this.stuname + "KIND=" + this.stukind;
+	}
+	
+	
+
+}

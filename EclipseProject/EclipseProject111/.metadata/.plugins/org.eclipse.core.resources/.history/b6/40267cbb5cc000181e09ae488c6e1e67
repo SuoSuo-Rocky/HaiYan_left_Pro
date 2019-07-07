@@ -1,0 +1,64 @@
+package com.example.demo1111;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+public class MainActivity extends Activity {
+	
+	private final Timer timer=new Timer();
+	private TimerTask task;
+	private  Handler hander;
+	
+	private ToggleButton button;
+	private ListView listDevice;
+	private TextView  error_tv;
+	private TextView  sun_tv; 
+
+	
+	//BLE 设备
+	private BluetoothLeClass mBLE;
+	//接收的字段
+	private StringBuffer str_sb;
+	//蓝牙列表适配器
+	private mBleDevicelistAdapter  mbledevicelistAdapter;
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	
+		bindView();
+	    initData();	
+		
+	
+		
+	}
+
+	private void bindView() {
+		button=(ToggleButton) findViewById(R.id.button);
+		listDevice=(ListView) findViewById(R.id.list);
+		error_tv=(TextView) findViewById(R.id.error_tv);
+		sun_tv=(TextView) findViewById(R.id.sun_tv);
+		
+	}
+	
+	private void initData() {
+		str_sb=new StringBuffer("");
+		mbledevicelistAdapter=new  mBleDevicelistAdapter();
+		listDevice.setAdapter(mbledevicelistAdapter);
+		
+		
+	}
+
+
+}

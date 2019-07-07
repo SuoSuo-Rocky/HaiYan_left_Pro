@@ -1,0 +1,19 @@
+package org.shiwei.test;
+
+import org.mybatis.generator.api.MyBatisGenerator;
+
+public class Test {
+	public static void main(String[] args) {
+		
+		//逆向工程的核心类 
+		MyBatisGenerator generator = new MyBatisGenerator();
+
+		generator.generate(null);
+		
+		
+		
+	}
+	
+	
+
+}

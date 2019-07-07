@@ -1,0 +1,7 @@
+package com.example.asyncTaskalone;
+
+import android.os.AsyncTask;
+
+public class MyAsyncTaskDemo extends AsyncTask<Params, Progress, Result> {
+
+}

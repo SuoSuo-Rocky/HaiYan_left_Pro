@@ -1,0 +1,143 @@
+package aloneExampleDemo;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
+
+public class DBImple implements Dao {
+	Connection conn = null;
+
+	public DBImple() {
+		conn = new DBUtil().getconn();
+	}
+
+	@Override
+	public boolean add_Login(Login login) {
+		Statement stmt = null;
+		int re = 0;
+		String sql = "insert into from Login (userid, password )" + " values ('" + login.getUserid() + "','"
+				+ login.getPassword() + "')";
+		try {
+			stmt = conn.createStatement();
+			if (stmt != null) {
+				re = stmt.executeUpdate(sql);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (re != 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	@Override
+	public boolean delete_Login(String userid) {
+		Statement stmt = null;
+		int re = 0;
+		String sql = "delete from login  where (userid = '" + userid + "')";
+		try {
+			stmt = conn.createStatement();
+			if (stmt != null) {
+				re = stmt.executeUpdate(sql);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (re != 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	@Override
+	public boolean gai_login(String userid, Login login) {
+		Statement stmt = null;
+		int re = 0;
+		String sql = "delete from login  where (userid = '" + userid + "')" + "set ( userid = '" + login.getUserid()
+				+ "',password = '" + login.getPassword() + "')";
+		try {
+			stmt = conn.createStatement();
+			if (stmt != null) {
+				re = stmt.executeUpdate(sql);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (re != 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	@Override
+	public List findByall() {
+		java.util.List<Login> list = new LinkedList<Login>();
+		Statement stmt = null;
+		ResultSet re = null;
+		String sql = "select * form login";
+		try {
+			stmt = conn.createStatement();
+			if (stmt != null) {
+				re = stmt.executeQuery(sql);
+				while (re.next()) {
+					Login shi = new Login();
+					shi.setUserid(re.getString(1));
+					shi.setPassword(re.getString(2));
+					list.add(shi);
+
+				}
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+
+	@Override
+	public Login findByid(String userid) {
+		Login login = null;
+		Statement stmt = null;
+		ResultSet re = null;
+		String sql = "select * from login where  userid ='" + userid + "'";
+
+		try {
+			stmt = conn.createStatement();
+			if (stmt != null) {
+				re = stmt.executeQuery(sql);
+				if (re != null) {
+					re.next();
+					login.setUserid(re.getString(1));
+					login.setPassword(re.getString(2));
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return login;
+	}
+
+}

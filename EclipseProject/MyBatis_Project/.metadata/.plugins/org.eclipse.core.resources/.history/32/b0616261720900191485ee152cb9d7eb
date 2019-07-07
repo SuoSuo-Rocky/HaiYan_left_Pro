@@ -1,0 +1,25 @@
+package org.wang.test;
+
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+
+public class animalTest {
+	
+	public static void queryAllAnimalWithResMap(){
+		InputStream inputStream = Resources.getResourceAsStream("conf.xml");
+		
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+	
+
+}

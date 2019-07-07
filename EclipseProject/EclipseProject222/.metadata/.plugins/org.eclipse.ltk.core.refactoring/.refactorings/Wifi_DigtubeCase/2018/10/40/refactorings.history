@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.fro.util&apos; to &apos;DigTubeDemo1/src&apos;&#x0D;&#x0A;- Original project: &apos;Wifi_DigtubeCase&apos;&#x0D;&#x0A;- Destination element: &apos;DigTubeDemo1/src&apos;&#x0D;&#x0A;- Original element: &apos;Wifi_DigtubeCase/src/com.fro.util&apos;" description="Copy package" destination="=DigTubeDemo1/src" element1="/src&lt;com.fro.util" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1538698791153" version="1.0"/>
+</session>

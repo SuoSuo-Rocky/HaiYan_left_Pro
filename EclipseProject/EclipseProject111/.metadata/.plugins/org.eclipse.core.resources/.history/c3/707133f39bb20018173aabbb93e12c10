@@ -1,0 +1,104 @@
+package com.example.wifi_suncase;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+
+import com.example.wifi_suncase.util.FROSun;
+import com.example.wifi_suncase.util.StreamUtil;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+public class MainActivity extends Activity {
+	private String IP="192.168.0.3";
+	private int port=8080;
+	private String SUN_CHK="01 03 00 2A 00 01 a5 c2";
+	byte[] read_buff;
+	TextView sun_tv;
+	ToggleButton connect_tb;
+	
+	Socket socket;
+	InetSocketAddress saddr;
+	InputStream mis;
+	OutputStream mos;
+	
+	float sun;
+	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		sun_tv = (TextView)findViewById(R.id.sun_tv);
+		connect_tb = (ToggleButton)findViewById(R.id.connect_tb);
+		connect_tb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if(isChecked){
+					new Thread(new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub			
+					try {
+					    socket = new Socket();
+					    saddr = new InetSocketAddress(IP,port);
+						socket.connect(saddr);
+						if(socket.isConnected()){
+							mis=socket.getInputStream();
+							mos=socket.getOutputStream();
+						}
+						while(true){
+							StreamUtil.writeCommand(mos, SUN_CHK);
+							Thread.sleep(200);
+							read_buff=StreamUtil.readData(mis);
+							sun=FROSun.getData(7, 1, read_buff);
+							runOnUiThread(new Runnable() {
+								
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									if(sun!=null){
+									sun_tv.setText(String.valueOf(sun));
+									}
+								}
+							});
+							}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}).start();
+					
+				}else {
+					if(socket!=null){
+						try {
+							socket.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					
+				}
+			}
+		});
+	}
+
+	
+}

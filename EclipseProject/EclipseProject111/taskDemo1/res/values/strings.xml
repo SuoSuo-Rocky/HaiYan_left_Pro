@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">taskDemo1</string>
+    <string name="hello_world">点击启动其他的Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="other">点击启动发送短信的界面</string>
+
+</resources>

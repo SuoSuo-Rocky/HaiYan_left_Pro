@@ -1,0 +1,9 @@
+package org.wang.entity;
+
+public class MouseClass {
+	
+	private int classId;
+	private String className;
+	
+
+}

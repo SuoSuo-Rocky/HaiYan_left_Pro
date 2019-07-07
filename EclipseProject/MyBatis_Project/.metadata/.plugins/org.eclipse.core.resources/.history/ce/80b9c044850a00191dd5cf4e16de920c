@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.wang.mapper.StudentMapper">
+   <!--  
+    声明 此 namespace 开启 二级缓存 
+        <cache/> -->
+        
+            <!-- 覆盖 掉 Ehcache.xml 中 所设置的  值  -->
+            <!--   <property name="maxElementsInMemory" value="2000"/>  -->
+        <!-- 开启 Ehcache 二级缓存  org.mybatis.caches.ehcache.EhcacheCache-->
+       <cache type="">
+        </cache> org.mybatis.caches.ehcache.LoggingEhcache
+        
+        
+
+      <!-- 将 此 select 的二级缓存关闭 ，只需添加一个  属性  useCache="false" -->
+	<!-- 注意后面没有 分号 resultType： 查询 返回结果 值的类型 parameterType ： 输入参数的类型 -->
+	<select id="queryStudentByStuno" resultType="Student"
+		parameterType="int" >
+		select * from student where stuno = #{stuno}
+	</select>
+
+	<insert id="addStudent" parameterType="student">
+		insert into
+		student(stuno,stuname,stuage,graname)
+		values(#{stuNo},#{stuName},#{stuAge},#{graName})
+	</insert>
+
+	<delete id="deleteStudentByStuno" parameterType="int">
+		delete from
+		student where stuno = #{id}
+	</delete>
+
+	<update id="updateStudentByStuno" parameterType="student">
+		update student
+		set stuname=#{stuName},stuage=#{stuAge},graname=#{graName}
+		where
+		stuno=#{stuNo}
+	</update>
+
+	<select id="queryAllStudents" resultType="student">
+		select * from student
+	</select>
+
+	<!--   如果 类中的属性 和 表中的  字段名不能够 一 对应  的 处理 方法 
+	
+	<select id="queryStudentByStuno" resultMap="StudentMapping"
+		parameterType="int">
+		select * from student where stuno = #{stuno}
+	</select>
+	
+	<resultMap type="student" id="StudentMapping">
+	    <id property="id"  column="stuno" />
+		<result property="stuName" column="stuname" />
+		<result property="stuAge" column="stuage" />
+		<result property="graName" column="graname" />
+		<result property="stuSex" column="stusex" javaType="boolean" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	
+	 -->
+	
+	
+	
+	<!--查询： 使用了 类型转换器      查询   
+	   1.如果类中属性 类型  和 表中 的字段类型能够合理 识别，(String-varchar2),则可以使用resultType;
+	                     否 则(boolean -integer) 使用resultMap 
+	   2.如果类中属性名  和 表中 的字段名能够合理 识别(stuNo-stuno),则可以使用resultType
+	                     否则使用 resultMap
+	-->
+	
+	<select id="queryStudentByStunoWithConverter" resultMap="studentResult"
+		parameterType="int">
+		select * from student where stuno = #{stuno}
+	</select>
+	<resultMap type="student" id="studentResult">
+	    <!--分为 主键 id 和非 主键  result -->
+		<id property="stuNo" column="stuno" />
+		<result property="stuName" column="stuname" />
+		<result property="stuAge" column="stuage" />
+		<result property="graName" column="graname" />
+		<result property="stuSex" column="stusex" javaType="boolean" jdbcType="INTEGER"/>
+	</resultMap>
+
+	
+	<!-- 增加 ： 使用类型 转换器     -->
+	<insert id="addStudentWithConverter" parameterType="student">
+		insert into
+		student(stuno,stuname,stuage,graname,stusex)
+		values(#{stuNo},#{stuName},#{stuAge},#{graName},
+		#{stuSex,javaType=boolean , jdbcType=INTEGER})
+	</insert>
+	
+	<!--注意:   -->
+	
+
+
+
+
+
+</mapper>

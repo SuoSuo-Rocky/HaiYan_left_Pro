@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Change Layout" description="Change Layout" file="/SelfMySunDemo1/res/layout/activity_main.xml" flags="6" flatten="true" id="com.android.ide.eclipse.adt.refactoring.convert" proj="/SelfMySunDemo1" sel-end="535" sel-start="0" stamp="1538210922760" type="android.widget.LinearLayout"/>&#x0A;<refactoring comment="Change Layout" description="Change Layout" file="/SelfMySunDemo1/res/layout/activity_main.xml" flags="6" flatten="true" id="com.android.ide.eclipse.adt.refactoring.convert" proj="/SelfMySunDemo1" sel-end="604" sel-start="0" stamp="1538210929510" type="android.widget.LinearLayout"/>
+</session>

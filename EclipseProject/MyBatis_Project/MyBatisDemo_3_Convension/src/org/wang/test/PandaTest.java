@@ -1,0 +1,137 @@
+package org.wang.test;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.wang.entity.Grade;
+import org.wang.entity.Panda;
+import org.wang.mapper.PandaMapper;
+
+public class PandaTest {
+	
+//	<!-- 使用 动态 sql 语句 ， 根据姓名和 年龄 查询 熊猫 -->
+	public static void queryPandaByStuIdWithSQLTag() throws IOException{
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		PandaMapper pan = session.getMapper(PandaMapper.class);
+		
+		Panda panda = new Panda();
+		panda.setStuAge(300);
+		panda.setStuName("wz");
+		
+		Panda panda2 = pan.queryPandaByStuIdWithSQLTag(panda);
+		System.out.println(panda2);
+		
+	
+		
+	}
+	
+	
+	//<!--foreach 标签的使用  -迭代的对象为 属性  -->
+	public static void queryPandasWithNosInGrade() throws IOException{
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		PandaMapper pan = session.getMapper(PandaMapper.class);	
+	     
+		Grade grade = new Grade();
+		List<Integer> stuNos = new ArrayList<>();
+		  stuNos.add(100);
+		  stuNos.add(200);
+		  stuNos.add(300);
+		grade.setStuNos(stuNos);
+		
+		List<Panda> list = pan.queryPandasWithNosInGrade(grade);
+		
+		System.out.println(list);
+		
+	
+		
+	}
+	
+	
+	
+	//<!--foreach 标签的使用  -迭代的对象为 数组   (简单数组类型)-->
+	public static void queryPandasWithArray() throws IOException{
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		PandaMapper pan = session.getMapper(PandaMapper.class);	
+	    
+		int[] stuNos = {100, 200, 300, 400};
+		
+		
+		List<Panda> list = pan.queryPandasWithArray(stuNos);
+		
+		System.out.println(list);
+		
+	}
+	
+	
+	
+	//<!--foreach 标签的使用  -迭代的对象为 集合 -->
+	public static void queryPandasWithList() throws IOException{
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = factory.openSession();
+
+		PandaMapper pan = session.getMapper(PandaMapper.class);	
+	    
+		List<Integer> stuNos = new ArrayList<>();
+		  stuNos.add(100);
+		  stuNos.add(200);
+		  stuNos.add(300);
+		  stuNos.add(400);
+		
+		
+		List<Panda> list = pan.queryPandasWithList(stuNos);
+		
+		System.out.println(list);
+		
+	}
+	
+	
+	//<!--foreach 标签的使用  -迭代的对象为 对象数组      -->
+		public static void queryPandasWithObject_array() throws IOException{
+			Reader reader = Resources.getResourceAsReader("conf.xml");
+			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession session = factory.openSession();
+
+			PandaMapper pan = session.getMapper(PandaMapper.class);	
+			  Panda  p1 = new Panda();
+			  p1.setStuId(100);
+			  Panda  p2 = new Panda();
+			  p2.setStuId(200);
+			  Panda  p3 = new Panda();
+			  p3.setStuId(300);
+			  Panda  p4 = new Panda();
+			  p4.setStuId(400);
+			Panda[] stuNos = new Panda[]{p1,p2,p3,p4};
+			
+			List<Panda> list = pan.queryPandasWithObject_array(stuNos);
+			
+			System.out.println(list);
+			
+		}
+	
+	
+	
+	
+
+	public static void main(String[] args) throws IOException {
+		
+		queryPandasWithObject_array();
+	}
+	
+	
+}

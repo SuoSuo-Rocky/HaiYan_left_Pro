@@ -1,0 +1,9 @@
+package org.wang.mapper;
+
+import org.wang.entity.Panda;
+
+public interface PandaMapper {
+	
+	Panda queryPandaByStuIdWithSQLTag(Panda panda);
+
+}

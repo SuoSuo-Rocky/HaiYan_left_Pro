@@ -1,0 +1,27 @@
+package org.shiwei.test;
+
+import java.io.File;
+
+import org.mybatis.generator.api.MyBatisGenerator;
+import org.mybatis.generator.config.Configuration;
+import org.mybatis.generator.config.xml.ConfigurationParser;
+
+public class Test {
+	public static void main(String[] args) {
+		
+		
+		File file = new File("src/generator.xml");
+		ConfigurationParser cp = new ConfigurationParser(file);
+		Configuration config = cp.parseConfiguration(inputFile)
+		//逆向工程的核心类 
+		MyBatisGenerator generator = new MyBatisGenerator(config,);
+
+		generator.generate(null);
+		
+		
+		
+	}
+	
+	
+
+}

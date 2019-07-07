@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 -->
+<mapper namespace="org.wei.entity.personMapper">
+
+
+	<!-- 注意后面没有 分号 -->
+	<select id="queryPersonById" resultType="org.wei.entity.Person"
+		parameterType="int">
+		select * from person where id = #{id}
+	</select>
+
+</mapper>
+
+

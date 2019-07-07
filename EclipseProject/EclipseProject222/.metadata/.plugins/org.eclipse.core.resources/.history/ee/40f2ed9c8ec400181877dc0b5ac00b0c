@@ -1,0 +1,285 @@
+package com.example.selfmysundemo1;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
+import com.fro.util.HexStrConvertUtil;
+
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattDescriptor;
+import android.bluetooth.BluetoothGattService;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothProfile;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+public class MainActivity extends Activity {
+	
+	public interface OnServiceDiscoverListener {
+		public void onServiceDiscover(BluetoothGatt gatt);
+	}
+	
+	public interface OnDataAvailableListener {
+		public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status);
+
+		public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic);
+	}
+	
+	private OnServiceDiscoverListener  mOnServiceDiscoverListener;
+	private OnDataAvailableListener mOnDataAvailableListener;
+	
+	public void setmOnServiceDiscoverListener(OnServiceDiscoverListener mOnServiceDiscoverListener) {
+		this.mOnServiceDiscoverListener = mOnServiceDiscoverListener;
+	}
+	
+	public void setmOnDataAvailableListener(OnDataAvailableListener mOnDataAvailableListener) {
+		this.mOnDataAvailableListener = mOnDataAvailableListener;
+	}
+	public static final UUID CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR_UUID = UUID
+			.fromString("00002902-0000-1000-8000-00805f9b34fb");
+
+	private static final String UUID_SERVICE = "0000fff0-0000-1000-8000-00805f9b34fb";
+	private static final String UUID_CHAR6 = "0000fff6-0000-1000-8000-00805f9b34fb";
+	private static final String UUID_DESC = "00002902-0000-1000-8000-00805f9b34fb";
+	
+	
+	private ToggleButton button;
+	private TextView info_tv;
+	private TextView sun_tv;
+	String RemoteDriveName="FR_2CE7_G";
+	List<BluetoothDevice> list;
+	
+	private Context context;
+	private BluetoothAdapter adapter;
+	private BluetoothManager manager;
+	private BluetoothGatt gatt;
+	private BluetoothGattService mService;
+	private BluetoothGattCharacteristic gattCharacteristic_char6;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		bindView();
+		initData();
+		initEvent();
+		setmOnServiceDiscoverListener(discoverService);
+		setmOnDataAvailableListener(dataAvaliable);
+	}
+
+
+
+	private void bindView() {
+		button=(ToggleButton) findViewById(R.id.button);
+		info_tv=(TextView) findViewById(R.id.info_tv);
+		sun_tv=(TextView) findViewById(R.id.sun_tv);
+	}
+
+	private void initData() {
+		context=MainActivity.this;
+		list=new ArrayList<BluetoothDevice>();
+	}
+	
+	
+	private void initEvent() {
+		
+		
+		button.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(isChecked){
+					manager=(BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+					
+					if(manager!=null){
+					adapter=manager.getAdapter();
+					Log.i("shi","我的蓝牙设备的名字为："+adapter.getName());					
+					if(adapter.isEnabled()==false){
+						Intent intent=new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+						startActivity(intent);
+					}
+					
+					if(adapter!=null){
+						adapter.startLeScan(callback);
+						info_tv.setText("正在扫描设备");
+					}else{
+						Toast.makeText(MainActivity.this,"对不起！你的设备不支持蓝牙功能",Toast.LENGTH_SHORT).show();
+					}
+					
+					//获取已经保存过的设备信息
+					Set<BluetoothDevice> devices = adapter.getBondedDevices();
+					if (devices.size()>0) {  
+					    for(Iterator<BluetoothDevice> iterator=devices.iterator();iterator.hasNext();){  
+					          BluetoothDevice bluetoothDevice=(BluetoothDevice)iterator.next();  
+					          System.out.println("设备："+bluetoothDevice.getName() + " " + bluetoothDevice.getAddress());
+					    }  
+					}  
+					}
+				}
+			}
+		});
+	
+	}
+	
+	//扫描设备回调
+	private BluetoothAdapter.LeScanCallback  callback=new BluetoothAdapter.LeScanCallback(){
+		
+		@Override
+		public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
+			list.add(device);
+			Log.i("shi","找到名为："+device.getName()+"的设备");
+			if(device.getName()==RemoteDriveName){
+			Toast.makeText(MainActivity.this, "名为：FR_2CE7_G，找到", Toast.LENGTH_SHORT).show();
+			adapter.stopLeScan(callback);
+			connect(device.getAddress());
+			}
+		}
+
+	};
+	
+	
+	private void connect(String address) {
+		final BluetoothDevice device=adapter.getRemoteDevice(address);
+		gatt=device.connectGatt(context, false,gattCallback);
+		
+		
+		
+		
+	}
+	
+	//获取 Gatt 服务的回调方法
+	private final  BluetoothGattCallback gattCallback=new BluetoothGattCallback() {
+		//连接状态回调
+		@Override
+		public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+			gatt.discoverServices();
+			
+		}
+		
+		public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+			if (status == BluetoothGatt.GATT_SUCCESS && mOnServiceDiscoverListener != null) {
+				mOnServiceDiscoverListener.onServiceDiscover(gatt);
+			}
+		};
+		
+		public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+			if(mOnDataAvailableListener!=null){
+				mOnDataAvailableListener.onCharacteristicRead(gatt, characteristic, status);
+				
+			}
+			
+		};
+		
+		public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+			 if(mOnDataAvailableListener!=null){
+				 mOnDataAvailableListener.onCharacteristicWrite(gatt, characteristic);
+			 }
+			
+			
+		};
+		
+	};
+
+
+	private OnServiceDiscoverListener   discoverService=new OnServiceDiscoverListener(){
+
+		@Override
+		public void onServiceDiscover(BluetoothGatt gatt) {
+			mService=gatt.getService(UUID.fromString(UUID_SERVICE));
+			if(mService!=null){
+				gattCharacteristic_char6=mService.getCharacteristic(UUID.fromString(UUID_CHAR6));
+				if(gattCharacteristic_char6!=null){
+					setCharacteristicNotification(gattCharacteristic_char6, true);
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							info_tv.setText("连接成功！");
+						}
+					});
+				}
+			}else{
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						info_tv.setText("设置失败！");
+					}
+				});
+			}
+			
+			
+			
+		}
+		
+	};
+	
+	
+	private OnDataAvailableListener  dataAvaliable=new OnDataAvailableListener() {
+		
+		@Override
+		public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+			Log.i("shi", "onCharRead " + gatt.getDevice().getName() + " read " + characteristic.getUuid().toString()
+					+ " -> " + HexStrConvertUtil.bytesToHexString(characteristic.getValue()));
+			
+			
+		}
+		
+		@Override
+		public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+			Log.i("shi", "characteristic.getUuid().toString()=" + characteristic.getUuid().toString());
+			
+			
+		}
+		
+	};
+	
+	public void setCharacteristicNotification(BluetoothGattCharacteristic characteristic, boolean enabled) {
+		if(enabled==true){
+			gatt.setCharacteristicNotification(characteristic, true);
+			BluetoothGattDescriptor descriptor = characteristic
+					.getDescriptor(CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR_UUID);
+			descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+			gatt.writeDescriptor(descriptor);
+			
+		}
+	}
+
+	
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

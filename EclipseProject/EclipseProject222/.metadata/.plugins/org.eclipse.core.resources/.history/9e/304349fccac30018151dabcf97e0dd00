@@ -1,0 +1,94 @@
+package com.example.selfmysundemo1;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothAdapter.LeScanCallback;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
+import android.content.Context;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+public class MainActivity extends Activity {
+	private ToggleButton button;
+	private TextView info_tv;
+	private TextView sun_tv;
+	List<BluetoothDevice> list;
+	
+	private BluetoothAdapter adapter;
+	private BluetoothManager manager;
+	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		bindView();
+		initData();
+		getBle();
+	}
+
+
+
+	private void bindView() {
+		button=(ToggleButton) findViewById(R.id.button);
+		info_tv=(TextView) findViewById(R.id.info_tv);
+		sun_tv=(TextView) findViewById(R.id.sun_tv);
+	}
+
+	private void initData() {
+		list=new ArrayList<BluetoothDevice>();
+	}
+	
+	
+	private void getBle() {
+		manager=(BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+		if(manager!=null){
+		adapter=manager.getAdapter();
+		if(adapter!=null){
+			adapter.startLeScan(callback);
+			info_tv.setText("开始扫描设备");
+		}
+		
+		}
+	}
+	
+	//扫描设备回调
+	private BluetoothAdapter.LeScanCallback  callback=new LeScanCallback() {
+		
+		@Override
+		public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
+			list.add(device);
+			if(device.getName()=="FR_2CE7_G"){
+				info_tv.setText("此设备找到！");
+			}
+		}
+	};
+	
+
+	
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

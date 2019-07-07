@@ -1,0 +1,119 @@
+package com.example.nextblecomeon;
+
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import android.R.integer;
+import android.app.Activity;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+public class MainActivity extends Activity {
+	private ToggleButton button;
+	private TextView sun_tv;
+	private TextView info_tv;
+	private Context context;
+	
+	private connectTask connect;
+	private socketTask socket;
+	private boolean state;
+	
+	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		bindView();
+		initData();
+		initEvent();
+	}
+
+
+	private void initData() {
+		 info_tv.setText("Please Tuack me!");
+		
+		
+	}
+
+	private void bindView() {
+		context=this;
+		sun_tv=(TextView) findViewById(R.id.sun_tv);
+		button=(ToggleButton) findViewById(R.id.connect_tb);
+		info_tv=(TextView) findViewById(R.id.info_tv);
+		
+	}
+	
+	private void initEvent() {
+		button.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(isChecked) {
+					state=!state;
+					socket=new socketTask(context, info_tv);
+					socket.execute();
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					if(Constant.sunsocket!=null) {
+						while(state) {
+							connect=new connectTask(context, sun_tv);
+							connect.execute();
+						}
+					}
+					
+					
+					
+				}else {
+					state=!state;
+					if(socket!=null&&socket.getStatus()==AsyncTask.Status.RUNNING) {
+						socket.cancel(true);
+						try {
+							Constant.sunsocket.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					if(connect!=null&&connect.getStatus()==AsyncTask.Status.RUNNING) {
+						connect.cancel(true);
+					}
+				}
+			}
+		});
+	}
+	
+	
+//   private  boolean checkIPisPort(String ip,String port) {
+//	   boolean intip=false;
+//	   boolean intport=false;
+//	   if(ip==null||ip.length()<7||ip.length()>15||port==null||port.length()<4||port.length()>5
+//			   ) {
+//		   return false;
+//	   }
+//	   String format="([0-9]|[1-9]\\d|1\\d{2}|2[0-4][0-9]|25[0-5])(\\.(\\\\d|[1-9]\\\\d|1\\\\d{2}|2[0-4]\\\\d|25[0-5])){3}";
+//	   Pattern pattern=Pattern.compile(format);
+//	   Matcher matcher=pattern.matcher(ip);
+//	   intip=matcher.find();
+//	   int shi=Integer.parseInt(port);
+//	   if(shi>1024||shi<65535) {
+//		   intport=true;
+//	   }
+//	   return intip&&intport;
+//   }
+//	
+	
+	
+	
+	
+
+}

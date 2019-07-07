@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.wang.entity.studentMapper">
+
+
+	<!-- 注意后面没有 分号 resultType： 查询 返回结果 值的类型 parameterType ： 输入参数的类型 -->
+	<select id="queryStudentByStuno" resultType="org.wang.entity.Student"
+		parameterType="int">
+		select * from student where stuno = #{stuno}
+	</select>
+
+	<insert id="addStudent" parameterType="org.wang.entity.Student">
+		insert into student(stuno,stuname,stuage,graname)
+		values(#{stuNo},#{stuName},#{stuAge},#{graName})
+	</insert>
+
+	<delete id="deleteStudentByStuno" parameterType="int">
+		delete from student where stuno = #{id}
+	</delete>
+
+	<update id="updateStudentByStuno" parameterType="org.wang.entity.Student">
+		update student set stuname=#{stuName},stuage=#{stuAge},graname=#{graName}
+		where stuno=#{stuNo}
+	</update>
+
+
+
+	<select id="queryAllStudents" resultType="org.wang.entity.Student">
+	select * from student
+	</select>
+
+
+
+</mapper>

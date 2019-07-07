@@ -1,0 +1,16 @@
+package aloneExampleDemo;
+
+import java.net.URL;
+
+public class text {
+	public static void main(String[] args) {
+		DBImple shi = new DBImple();
+		URL url = new 
+		
+	}
+	
+  public  Login findByid(Dao dao,String userid){
+	    return dao.findByid(userid);
+  }
+	
+}
