@@ -1,0 +1,7 @@
+package org.shiwei.dao;
+
+public interface StudentMapper {
+	
+	
+
+}

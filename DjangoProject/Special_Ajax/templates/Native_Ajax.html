@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/static/lib/de_jQuery_3_3_1.js"></script>
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+<body>
+<h1 class="text-center text-info">Ajax 全套</h1>
+<div class="row">
+
+<div class="col-lg-2 col-lg-offset-2">
+    <p  class="btn btn-danger" onclick="NativeAjaxSubmit();">NativeAjax_GET_ClickMe</p>
+</div>
+<div class="col-lg-2 col-lg-offset-2">
+    <p  class="btn btn-danger" onclick="NativeAjaxSubmit02();">NativeAjax_POST_ClickMe</p>
+</div>
+</div>
+<script>
+
+      function GetXHR(){
+            var xhr = null;
+            if(XMLHttpRequest){
+                xhr = new XMLHttpRequest();
+            }else{
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return xhr;
+        }
+
+      function NativeAjaxSubmit() {           //原生的 Ajax GET  请求
+            var shi = GetXHR();
+            shi.open("GET","/native01.html",true);
+           shi.onreadystatechange= function(){ // 定义回调函数
+               //接收到全部响应数据，执行以下操作
+               if(shi.readyState == 4 ){
+               // 接收完毕服务器返回的数据
+                   console.log(shi.responseText);
+               }
+           };
+            shi.send(null);                   // 发送请求
+       };
+
+
+       function NativeAjaxSubmit02() {         //原生的 Ajax POST 请求
+            var shi = new  GetXHR();
+           shi.onreadystatechange= function(){ // 定义回调函数
+               if(shi.readyState == 4 ){
+                 console.log(shi.responseText);// 接收完毕服务器返回的数据
+               }
+           };
+            // 指定连接方式和地址----文件方式
+            shi.open("POST","/native02.html",true);
+           // 设置一个 请求头， 能够让 Django 解析我 发送的数据
+            shi.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset-UTF-8');
+            shi.send("P=123");                  // 发送请求
+       };
+
+
+</script>
+
+</body>
+</html>
+
+
+
+

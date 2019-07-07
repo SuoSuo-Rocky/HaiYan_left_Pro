@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/static/lib/de_jQuery_3_3_1.js"></script>
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<h1 class="text-center text-info">文件上传</h1>
+<div class="row ">
+        <input type="file" id="myfile" class="col-lg-offset-2 col-lg-2">
+        <a id="myclick" onclick="AjaxSubmit();" class="btn-lg btn-info btn-primary">上传</a>
+</div>
+<hr/>
+<div class="row ">
+        <input type="file" id="myfile02" class="col-lg-offset-2 col-lg-2">
+        <a id="myclick02" onclick="AjaxSubmit02();" class="btn-lg btn-info btn-primary">上传</a>
+</div>
+
+<iframe  frameborder="0" name="son" id="myiframe"></iframe>
+<form action="/iframe_form_file" target="son" id="forms" enctype="multipart/form-data" method="POST">
+    <input type="text" name="k1" value="v1">
+    <input type="text" name="k2" value="v2">
+    <input type="file" name="myfile" >
+    <a onclick="toiframe02();" id="ti">ClickSubmit</a>
+    <input type="submit" value="Form提交">
+</form>
+
+
+
+<script>
+    function AjaxSubmit() {
+     var data = new FormData();
+     data.append("k1","v1");
+     data.append('k2','v2');
+     $.ajax({
+         url:'/ajaxupload',
+         type:'GET',
+         data:data,
+         success:function (arg) {
+             console.log(arg);
+         },
+         // 下方的 参数 告诉 Jquery 你不要给我 做特殊处理， 直接给我发过去就 Ok 了 。
+         processData: false,  // tell jQuery not to process the data
+         contentType: false,  // tell jQuery not to set contentType
+     });
+    }
+
+    function AjaxSubmit02() {
+        var myfile = document.getElementById("myfile02");
+        var file_text = myfile.files[0];  //  代表获取 此文件对象中的 内容对象
+        var data = new FormData();
+        data.append('k1','v1');
+        data.append('k2','v2');
+        data.append('file_text',file_text);
+
+        var shi = new XMLHttpRequest();
+        shi.onreadystatechange = function () {
+            if(shi.readyState == 4 ){
+                console.log(shi.responseText);
+            }
+        };
+        shi.open("POST",'/ajaxupload');
+        shi.send(data);
+    }
+
+
+    function toiframe02() {
+            var ifra = document.getElementById("myiframe");
+            ifra.onload = reloadiframe02;
+
+            document.getElementById("forms").submit();
+        }
+    function reloadiframe02() {
+            // this 默认为 iframe 标签对象
+            {#console.log(this);#}
+            var neirong = this.contentWindow.document.body.innerHTML;
+            var obj = JSON.parse(neirong);
+            var name = obj.name;
+            console.log("name=",name);
+        }
+
+</script>
+
+</body>
+</html>

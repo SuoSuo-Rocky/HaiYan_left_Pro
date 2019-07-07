@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.shiwei.mapper.SelfMapper">
+
+    <!-- 获取我的书架上的所有书 -->
+	<!-- 注意后面没有 分号 resultType： 查询 返回结果 值的类型 parameterType ： 输入参数的类型 -->
+	<select id="queryAllSelf" resultType="org.shiwei.entity.Self" 
+	parameterType="int" >
+		select *  from self where  stuid=#{stuId} 
+	</select>
+	
+	<!--从我的书架上 删除某一个本 书  -->
+	<select id="deleteSelfByHost"  
+	parameterType="org.shiwei.entity.Self" >
+		delete  from self where  stuid=#{stuId} And boid=#{boId}
+	</select>
+	
+	
+	<!-- 查询某一本 书是否存在 -->
+	<select id="querySelfByHost"  resultType="org.shiwei.entity.Self"
+	parameterType="org.shiwei.entity.Self" >
+		select * from self where  stuid=#{stuId} And boid=#{boId}
+	</select>
+	
+	
+	<!-- 往我的 书架上 添加一本书 -->
+     <select id="addSelfBook" 
+	parameterType="org.shiwei.entity.Self" >
+		insert into self(stuid,boid) values (#{stuId},#{boId})
+	</select>
+	
+	
+	
+
+
+</mapper>

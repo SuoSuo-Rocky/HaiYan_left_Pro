@@ -1,0 +1,9 @@
+package org.shiwei.entity;
+
+public class Student {
+	private int stuNo;
+	private String  stuName;
+	private int stuAge;
+	
+
+}

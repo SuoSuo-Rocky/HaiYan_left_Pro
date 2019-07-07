@@ -1,0 +1,13 @@
+package org.shiwei.spring.jdbc.service.Impl;
+
+import org.shiwei.spring.jdbc.service.JdbcService;
+
+public class JdbcService_Impl implements JdbcService {
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

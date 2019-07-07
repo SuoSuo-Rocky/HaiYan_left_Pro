@@ -1,0 +1,5 @@
+package org.shiwei.dao.Impl;
+
+public class StudentDaoImpl {
+
+}

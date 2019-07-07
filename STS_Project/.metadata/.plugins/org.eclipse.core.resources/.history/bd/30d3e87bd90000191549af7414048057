@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 依赖注入 Service  -->
+	<bean id="studentService" class="org.shiwei.service.impl.StudentServiceImpl">
+	      <property name="studentMapper" ref="studentMapper"></property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 <!--数据源 ， mapper 文件  -->
+	 	<bean id="config"
+		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+          <property name="locations">
+                 <array>
+                        <value>classpath:db.properties</value>
+                 </array>
+          </property>
+	</bean>
+	
+	
+	<!-- 配置数据库信息 ( 替代 MyBatis 的配置文件 conf.xml) -->
+	<!-- 交给了 Spring ,BasicDataSource 自动帮助我们 提交事务， 不需要 session.commit()  -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- 若name  属性报错， 说明 这个class 类中没有这个 属性 ，此时 就需要 进去 看一看    -->
+		<property name="driverClassName" value="${driverClassName}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+	
+	<!--在 Spring 容器中创建  MyBatis 的 核心类  SqlSessionFactory   -->
+	<bean id="sqlSessionFact" class="org.mybatis.spring.SqlSessionFactoryBean">
+	     <!-- 加载数据库源   -->
+	     <property name="dataSource" ref="dataSource"></property>
+	     
+	     <!--加载 MyBatis    -->
+	    <!--  <property name="configLocation"  value="classpath:conf.xml"></property> -->
+	    
+	     <!-- 加载 映射文件   的路径-->
+	     <property name="mapperLocations" value="org/shiwei/mapper/studentMapper.xml"></property>
+	     
+	</bean>
+	
+	
+	<!--把 MyBatis 的东西 交给  Spring 整合包   -->
+	<bean id="mappers" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	   <property name="sqlSessionFactoryBeanName" value="sqlSessionFact"></property>
+	   <!-- 指定 批量 产生   那个包中的   mapper 对象 ， 有点像  批量 产生 别名的 方式  
+	   如果一次性 要扫描多个包 ， 包名和包名 之间 用 逗号 隔开。
+	    例如：value="org.shiwei.mapper,org.shiwei.mapper_2,org.shiwei.wangmapper"
+	   -->
+	   <property name="basePackage" value="org.shiwei.mapper"></property>
+	   
+	</bean>
+	
+
+
+</beans>

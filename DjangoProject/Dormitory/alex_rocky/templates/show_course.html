@@ -1,0 +1,29 @@
+{% extends "base_show.html" %}
+
+{% block title %}
+ <td align="center" class="biaoti" height="60" style="font-size: 30px">课程表</td>
+{% endblock %}
+
+{% block thead %}
+<td>ID</td>
+<td>Title</td>
+<td>Hours</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><a href="/add_course.html">添加课程</a></td>
+{% endblock %}
+
+
+{% block tbody %}
+        {% for stu in cou_list %}
+            <tr nid="{{ stu.id }}">
+                <td>{{ stu.id }} </td>
+                <td>{{ stu.title }} </td>
+                <td>{{ stu.hours}} </td>
+                <td><a href="/del_course.html?id={{ stu.id }}">删除</a></td>
+                <td><a href="javascript:void();" onclick="ajax_remove(this)">Ajax删除</a></td>
+                <td><a href="/edit_course.html?id={{ stu.id }}">编辑</a></td>
+            </tr>
+        {% endfor %}
+
+{% endblock %}

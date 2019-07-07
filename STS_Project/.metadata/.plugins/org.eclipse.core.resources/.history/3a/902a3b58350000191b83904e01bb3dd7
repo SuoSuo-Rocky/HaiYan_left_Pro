@@ -1,0 +1,97 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<a href="SpringMVC/welcome/shiwei"> first springMVC - welcome</a>
+	<!--   <form action="SpringMVC/welcome" method="post">
+ name:<input name="name"> 
+ age <input >
+       <input type="submit" value="Post提交">
+  </form> -->
+
+	<form action="SpringMVC/testRest/1243" method="post">
+		<input type="submit" value="增加">
+	</form>
+	
+	<form action="SpringMVC/testRest/1243" method="get">
+		<input type="submit" value="查询">
+	</form>
+
+
+
+	<form action="SpringMVC/testRest/666666" method="post">
+	 <input type="hidden" name="_method" value="DELETE" /> 
+		<input type="submit" value="删除">
+	</form>
+
+<!-- 	<form action="SpringMVC/testRest/1243" method="post">
+		<input type="hidden" name="_method" value="PUT" />
+		 <input  type="submit" value="改变">
+	</form> -->
+	------------------------<br/>
+	<form action="SpringMVC/testParam" method="get">
+		<input name="uname" type="text">
+		<!-- <input name="uage" type="text"> -->
+		<input type="submit" value="查值">
+	</form>
+	
+	
+	<form action="SpringMVC/testRequestHeader" method="get">
+		<input type="submit" value="获取头信息">
+	</form>
+	
+
+
+   	<form action="SpringMVC/testCookieValue" method="get">
+		<input type="submit" value="获取Cookie">
+	</form>
+	
+	
+	<!--在这里体现了 Spring MVC 的强大之处，自动将值对号入座存入对象的属性当中去  -->
+	<form action="SpringMVC/testObjectProperties" method="get">
+	     age:<input name="age" type="text"><br>
+	     name:<input name="name" type="text"><br>
+	     homeAddress:<input name="address.homeAddress" type="text"><br>
+	     schoolAddress:<input name="address.schoolAddress" type="text"><br>
+		<input type="submit" value="获取Cookie">
+	</form>
+	
+	
+	<form action="SpringMVC/testServletAPI" method="get">
+		<input name="uname" type="text">
+		<input type="submit" value="HttpServletRequest">
+	</form>
+
+ <a id="SpringMVC/testModelAndView" > ModelAndView</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

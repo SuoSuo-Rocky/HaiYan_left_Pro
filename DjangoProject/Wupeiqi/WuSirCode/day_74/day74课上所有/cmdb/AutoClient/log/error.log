@@ -1,0 +1,87 @@
+2017-02-21 16:51:28,612  - ERROR :  HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /asset (Caused by NewConnectionError('<requests.packages.urllib3.connection.HTTPConnection object at 0x101b6d6a0>: Failed to establish a new connection: [Errno 61] Connection refused',))
+2017-02-22 11:44:44,079  - ERROR :  HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /asset (Caused by NewConnectionError('<requests.packages.urllib3.connection.HTTPConnection object at 0x1023504a8>: Failed to establish a new connection: [Errno 61] Connection refused',))
+2017-02-22 17:29:14,336  - ERROR :  ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
+2017-02-22 18:10:43,275  - ERROR :  API授权失败
+2017-02-22 18:11:56,736  - ERROR :  API授权失败
+2017-02-22 18:12:40,274  - ERROR :  API授权失败
+2017-02-22 18:12:48,260  - ERROR :  API授权失败
+2017-02-22 18:13:55,698  - ERROR :  API授权失败
+2017-02-22 18:14:13,697  - ERROR :  API授权失败
+2017-02-22 19:02:36,583  - ERROR :  None
+2017-02-23 09:17:51,995  - ERROR :  资产不存在
+2017-02-23 09:20:58,971  - ERROR :  资产不存在
+2017-02-23 09:40:52,124  - ERROR :  资产更新异常
+2017-02-23 09:41:58,601  - ERROR :  资产更新异常
+2017-02-23 09:49:12,592  - ERROR :  资产更新异常
+2017-02-23 09:50:17,132  - ERROR :  资产更新异常
+2017-02-23 09:52:17,621  - ERROR :  资产更新异常
+2017-02-23 09:55:15,712  - ERROR :  资产更新异常
+2017-02-23 09:56:33,072  - ERROR :  资产更新异常
+2017-02-23 10:00:09,356  - ERROR :  资产更新异常
+2017-02-23 10:01:32,992  - ERROR :  资产更新异常
+2017-02-23 10:02:45,313  - ERROR :  资产更新异常
+2017-04-14 12:20:20,821  - ERROR :  失败
+2019-05-13 15:22:15,419  - ERROR :  None BasicPlugin Error:Traceback (most recent call last):
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\basic.py", line 47, in linux
+    'os_platform': self.os_platform(),
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\basic.py", line 17, in os_platform
+    output = self.exec_shell_cmd('uname')
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\base.py", line 47, in exec_shell_cmd
+    output = func(cmd)
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\base.py", line 28, in ssh
+    private_key = paramiko.RSAKey.from_private_key_file(settings.SSH_PRIVATE_KEY)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python37-32\lib\site-packages\paramiko\pkey.py", line 206, in from_private_key_file
+    key = cls(filename=filename, password=password)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python37-32\lib\site-packages\paramiko\rsakey.py", line 55, in __init__
+    self._from_private_key_file(filename, password)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python37-32\lib\site-packages\paramiko\rsakey.py", line 175, in _from_private_key_file
+    data = self._read_private_key_file("RSA", filename, password)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python37-32\lib\site-packages\paramiko\pkey.py", line 278, in _read_private_key_file
+    with open(filename, "r") as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/auto/.ssh/id_rsa'
+
+2019-05-13 15:46:59,629  - ERROR :  None linux cpu plugin error: Traceback (most recent call last):
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\cpu.py", line 20, in linux
+    response.data = self.parse(output)
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\cpu.py", line 42, in parse
+    key, value = row_line.split(':')
+ValueError: not enough values to unpack (expected 2, got 1)
+
+2019-05-13 15:46:59,676  - ERROR :  None linux memory plugin error: Traceback (most recent call last):
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\memory.py", line 22, in linux
+    response.data = self.parse(output)
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\memory.py", line 66, in parse
+    ram_dict[segment['slot']] = segment
+KeyError: 'slot'
+
+2019-05-13 15:47:00,754  - ERROR :  HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/asset (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x02EB0B10>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+2019-05-13 16:20:34,162  - ERROR :  None linux cpu plugin error: Traceback (most recent call last):
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\cpu.py", line 20, in linux
+    response.data = self.parse(output)
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\cpu.py", line 42, in parse
+    key, value = row_line.split(':')
+ValueError: not enough values to unpack (expected 2, got 1)
+
+2019-05-13 16:20:34,193  - ERROR :  None linux memory plugin error: Traceback (most recent call last):
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\memory.py", line 22, in linux
+    response.data = self.parse(output)
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\memory.py", line 66, in parse
+    ram_dict[segment['slot']] = segment
+KeyError: 'slot'
+
+2019-05-13 16:20:35,255  - ERROR :  HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/asset (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0333BB70>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+2019-05-13 16:23:11,900  - ERROR :  None linux cpu plugin error: Traceback (most recent call last):
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\cpu.py", line 20, in linux
+    response.data = self.parse(output)
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\cpu.py", line 42, in parse
+    key, value = row_line.split(':')
+ValueError: not enough values to unpack (expected 2, got 1)
+
+2019-05-13 16:23:11,931  - ERROR :  None linux memory plugin error: Traceback (most recent call last):
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\memory.py", line 22, in linux
+    response.data = self.parse(output)
+  File "E:\DjangoProject\Wupeiqi\WuSirCode\day_74\day74课上所有\cmdb\AutoClient\src\plugins\memory.py", line 66, in parse
+    ram_dict[segment['slot']] = segment
+KeyError: 'slot'
+
+2019-05-13 16:23:12,978  - ERROR :  HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/asset (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x02A6AB50>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))

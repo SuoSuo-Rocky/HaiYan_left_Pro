@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 20px;
+            padding: 0;
+        }
+        .first{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+{% if d.age > 20 %}
+  <h1>{{ d.name|upper}} 的年龄大于 20 岁</h1>
+             {% if d.age < 50  %}
+                 <h1>{{ d.name|upper}} 的年龄大于 20 岁, 小于 50 岁 </h1>
+             {% endif %}
+    {% elif d.age > 10 %}
+        <h1>{{ d.name|upper}} 的年龄大于 10 岁</h1>
+         {% else %}
+            <h1>{{ d.name|upper}} 的年龄小于 10 岁</h1>
+{% endif %}
+
+
+
+
+
+{#{% for i in td %}#}
+{# <h1>{{ forloop.counter0 }} : {{ i }}    ;    {{ forloop.revcounter }} : {{ i }}</h1>#}
+    {#  无 索引 ,通过 {{ forloop.counter }} ,从 1 开始 #}
+    {#   {{ forloop.counter0 }}  #}
+{##}
+{#{% endfor %}#}
+
+  {% for object in td %}
+      {% if forloop.first %}
+          <li class="first">
+      {% else %}
+          <li>{% endif %}
+         {{ object }}  </li>
+      {% empty %}
+      <h1>This is Empty!</h1>
+    {% endfor %}
+
+
+{#<form action="{% url 'logins' %}" method="post">#}
+{#    <p> 用户名: <input type="text" id="id_username"></p>#}
+{#    <p>密码:<input type="password" id="id_password"></p>#}
+{#    <p><input type="submit" value="提交"> <input type="reset" value="注销"></p>#}
+{#    {% csrf_token %}  {#  防治跨站攻击验证 为一个 input 标签 #}
+{#</form>#}
+
+{% load my_tags %}
+
+<h1> 乘积：{{ d.age|filter_multi:100 }}   </h1>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

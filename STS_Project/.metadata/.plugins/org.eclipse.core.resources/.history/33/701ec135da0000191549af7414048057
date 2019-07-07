@@ -1,0 +1,8 @@
+package org.shiwei.dao;
+
+public interface IStudentDao {
+	
+	String queryStudentById();
+	
+
+}

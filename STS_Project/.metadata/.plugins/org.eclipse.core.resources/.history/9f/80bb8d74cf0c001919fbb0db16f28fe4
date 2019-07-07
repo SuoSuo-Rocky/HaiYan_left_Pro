@@ -1,0 +1,11 @@
+package org.shiwei.exception;
+
+//此类自定义 异常  页面
+
+public class MyArrayIndexOutofBoundsException {
+	
+	
+	
+	
+
+}

@@ -1,0 +1,13 @@
+package org.shiwei.exception;
+
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+//此类自定义 异常  页面
+@ResponseStatus
+public class MyArrayIndexOutofBoundsException {
+	
+	
+	
+	
+
+}

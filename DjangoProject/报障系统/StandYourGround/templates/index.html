@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="/static/lib/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        .navbar .navbar-header .navbar-brand {
+            font-size: 35px;
+            margin: 0px 30px 0px 65px;
+        }
+
+        .collapse .nav li {
+            text-align: center;
+            font-size: 21px;
+        }
+        .collapse .nav li:nth-child(4):hover{
+            background-color:#e7e7e7 ;
+        }
+
+        .collapse .nav img {
+            height: 48px;
+            border-radius: 50%;
+        }
+
+        .blog-body {
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 60px;
+        }
+
+        .blog_title a {
+            text-decoration: none;
+        }
+
+        .img_user {
+            font-size: 22px;
+            text-decoration: none;
+        }
+
+        .media {
+            border-bottom: 1px dashed black;
+        }
+
+        .media span {
+            font-size: 18px;
+        }
+        .rightSidebar{
+            position: fixed;
+            float: right;
+            margin-left: 850px;
+        }
+        .zhuxiao{
+            {#display: none;#}
+            position: absolute;
+            width: 150px;
+            height: 100px;
+            padding-top: 20px;
+            right: -15px;
+            top: 50px;
+            background-color: white;
+        }
+        .zhuxiao a{
+            display: block;
+            height: 40px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 21px;
+            width: 100%;
+        }
+        #myimg:hover  .zhuxiao{
+            display: block;
+            z-index: 10;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<!-- 头部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">SuoSuo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+                {% for foo in main_class %}
+                    {% if foo.0 == kwargs.main_class %}
+                        <li class="active"><a href="{% url 'index' main_class=foo.0 %}">{{ foo.1 }}</a></li>
+                    {% else %}
+                        <li><a href="{% url 'index' main_class=foo.0 %}">{{ foo.1 }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                    {% if msg.status %}
+                        <li><a href="">{{ msg.user.username }}</a></li>
+                        <li><a href="/{{ msg.user.user_info.all.first.site }}.html">我的博客</a></li>
+                        <li><a href="#">管理</a></li>
+                        <li id="myimg"><img src="/static/img/user_img/1.webp" alt="" ></li>
+                        <div class="zhuxiao">
+                            <a href="#">我的信息</a>
+                            <a href="#">注销</a>
+                        </div>
+                    {% else %}
+                        <li><a href="/register.html"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                        <li><a href="/login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                    {% endif %}
+
+            </ul>
+
+{#            <form class="navbar-form navbar-right" role="search">#}
+{#                <div class="form-group">#}
+{#                    <input type="text" class="form-control" placeholder="Search">#}
+{#                </div>#}
+{#                <button type="submit" class="btn btn-default">提交</button>#}
+{#            </form>#}
+
+        </div>
+    </div>
+</nav>
+
+
+<!-- 博客主体 -->
+<div class="row blog-body">
+    <!--  左侧博客内容  -->
+    <div class="col-lg-8">
+
+        <!-- 右对齐 -->
+        {% for foo in blog_list %}
+            <div class="media">
+                <h3 class="blog_title"><a href="#">{{ foo.title }}</a></h3>
+                <div class="media-left">
+                    <img src="{{ '/' }}{{ foo.detail.blog_img }}" class="media-object" style="width:60px">
+                </div>
+                <div class="media-body">
+                    <p> {{ foo.detail.detail }} </p>
+                </div>
+                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                <a href="#" class="img_user">{{ foo.self_class.user.username }}</a>
+                <span>&nbsp;&nbsp;发布于&nbsp;{{ foo.ctime }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="fa fa-commenting fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;
+                <span>{{ foo.dis }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;
+                <span>{{ foo.support }}</span>
+            </div>
+        {% endfor %}
+
+
+    </div>
+    <!--  右侧边栏 -->
+    <div class="col-lg-4 rightSidebar">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">“Python太逆天！请救救Java！”今早9万程序员刷爆朋友圈……</h3>
+            </div>
+            <div class="panel-body">
+                没想到有生之年，笔者能观察到“霸主陨落”的过程，继PLPY4月榜单官宣，Python躺赢，
+                再度“夺”冠，实力甩下Java和C后，近期，Stack Overflow发布了2019开发者调查报告，
+                也证实了王者陨落这一事实。
+                那么，2019年大环境下，程序员群体正在发生哪些变化？收入究竟如何？这份报告邀请超147个国家、
+                9万名开发者参与调查，内容涉及开发者基本情况、技术、工作、社区、方法论多个维度。以下为和正在敲代码的你息息相关的结论。
+            </div>
+        </div>
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTwo">
+                            刷完500道BAT面试题，我能去面试大厂了吗？
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                       面经是别人的面试经验，所谓前车之鉴，后事之师。我们可以通过面筋对自己的不足查缺补漏，
+                        却不能把这些面试题等同于我们所要掌握的知识点。原因很简单，
+                        两篇面经可能会有很多的重复知识点，100篇面经也无法包含所有知识点，
+                        所以在只刷面经的问题就是：重复多、不全面。
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseThree">
+                           人工智能学会造假，我们该如何应对
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                       奥巴马会和特朗普说一样的话，信不信?有视频为证。在一个对比视频中，二人不仅话语一致，
+                        连话语节奏甚至面部肌肉的动作都是一致的，但谈吐风格却能保持各自特点。
+　　              “这是一种被称为GAN(生成对抗网络)的新兴技术。”日前，香山会议召开以“信息隐藏与人工智能”为主题的学术讨论会，
+                        北京电子技术应用研究所副研究员李鹏超介绍，GAN是一种生成模型，通过将两个神经网络的对抗作为训练准则，可以自动生成图像，
+                        包括自动篡改图像。实际上早在2015年，GAN就被用于制作教皇表演“抽桌布”戏法的假视频，由于过于逼真，很快就火遍网络。
+　                   　据统计，大量的合成信息占据了互联网，如合成声音、生成图像、AI合成不存在的人像等，
+                        约占网络信息的30%。“眼见为实”很可能已经靠不住了。
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(function () {
+        $('#collapseFour').collapse({
+            toggle: false
+        })
+    });
+    $(function () {
+        $('#collapseTwo').collapse('show');
+    });
+    $(function () {
+        $('#collapseThree').collapse('toggle')
+    });
+    $(function () {
+        $('#collapseOne').collapse('hide')
+    });
+    $("")[0].onb
+
+</script>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
+	<classpathentry kind="lib" path="src/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="src/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="src/spring-aop-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/spring-beans-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/spring-context-4.3.9.RELEASE.jar" sourcepath="F:/Jar  包 类库/Spring 类库/我最爱的 jar 包/Spring_SpringMVC_MyBatis_Web/Resource/spring-context-4.3.9.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="src/spring-core-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/spring-expression-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/spring-web-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/spring-webmvc-4.3.9.RELEASE.jar" sourcepath="F:/Jar  包 类库/Spring 类库/我最爱的 jar 包/Spring_SpringMVC_MyBatis_Web/Resource/spring-webmvc-4.3.9.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="src/standard-1.1.2.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

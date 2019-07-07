@@ -1,0 +1,15 @@
+package org.shiwei.dao.Impl;
+
+import org.shiwei.dao.IStudentDao;
+import org.shiwei.entity.Student;
+
+public class StudentDaoImpl  implements IStudentDao{
+
+	
+	@Override
+	public void addStudent(Student student) {
+		
+		
+		
+	}
+}

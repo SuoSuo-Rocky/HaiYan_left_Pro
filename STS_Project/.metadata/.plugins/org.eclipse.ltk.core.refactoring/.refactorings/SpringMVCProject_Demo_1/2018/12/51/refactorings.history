@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;SpringMVCProject_Demo_1/src/i18nproperties&apos; to &apos;i18n.properties&apos;" description="Rename resource &apos;i18nproperties&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/i18nproperties" name="i18n.properties" stamp="1544958784995" updateReferences="true"/>
+</session>

@@ -1,0 +1,62 @@
+{% extends "add_student.html" %}
+
+       {% block one %}
+            <tr style="font-size: 30px" >
+                <td colspan="2">修改_{{ student.name }}_学生数据</td>
+            </tr>
+        {% endblock %}
+
+        {% block username %}
+        <td><input type="text" name="username" placeholder="{{ student.name }}"></td>
+        {% endblock %}
+
+        {% block userage %}
+            <td><input type="text" name="userage" placeholder="{{ student.age }}"></td>
+        {% endblock %}
+
+        {% block usersex %}
+            {% if student.gender ==  False %}
+                 <td>男：<input type="radio" name="usersex" value="1">
+                     女：<input type="radio" name="usersex" value="0" checked>
+                 </td>
+                {% else %}
+                 <td>男：<input type="radio" name="usersex" value="1" checked>
+                     女：<input type="radio" name="usersex" value="0" >
+                 </td>
+            {% endif %}
+        {% endblock %}
+
+        {% block user_borndate %}
+                 <td><input type="text" name="born_date"  placeholder="{{ student.born_date }}"></td>
+        {% endblock %}
+
+
+        {% block forms %}
+            <form action="/submit_edit?nid={{ student.id }}" method="get">
+        {% endblock %}
+
+
+        {% block submit %}
+        <td colspan="2"><input type="submit" value="提交保存修改"></td>
+        {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

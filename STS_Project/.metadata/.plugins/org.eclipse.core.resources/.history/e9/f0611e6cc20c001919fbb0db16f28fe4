@@ -1,0 +1,34 @@
+package org.shiwei.handler;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("SecondMVC")
+public class SecondSpringMVCHandler {
+	
+	@RequestMapping("exception")
+	public  String testExceptionHandler() {
+		try {
+			System.out.println(1/0);  //ArithmeticException
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "success";
+		
+	}
+	
+	@ExceptionHandler({ArithmeticException.class})
+	public String handlerArithmeticException() {
+		
+		return "";
+	}
+	
+	
+	
+	
+	
+
+}

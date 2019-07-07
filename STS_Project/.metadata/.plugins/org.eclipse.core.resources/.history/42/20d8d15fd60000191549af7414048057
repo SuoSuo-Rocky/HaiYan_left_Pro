@@ -1,0 +1,6 @@
+package org.shiwei.service;
+
+public interface IStudentService {
+	
+	 Student queryStudentByNo();
+}

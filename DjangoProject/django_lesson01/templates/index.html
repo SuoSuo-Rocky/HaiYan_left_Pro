@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <title>index</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+<body>
+  <h1>Hello World! {{ time }} </h1>
+
+{#  <script src="/static/De_jQuery_3.3.1.js"></script>#}
+  {# 推荐的方式  #}
+<script src="{% static 'De_jQuery_3.3.1.js' %}"></script> {# 前端的地址也是 static 是 虚拟名 #}
+  <script>
+      $(function(){
+      {#alert("Hello World ! ")#}
+          $("h1").css("color","red")
+      });
+
+
+  </script>
+</body>
+</html>

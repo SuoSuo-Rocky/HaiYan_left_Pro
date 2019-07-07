@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 10px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+   <h1>hello  {{ t.10 }}</h1>
+      <h1>hello  {{ d.name|capfirst }}</h1>
+  <h1>hello{{ d.age|add:22}}</h1>
+   <h1>{{ wei|cut:" "}}</h1>
+   <h1>{{ date_time|date:"Y-m-d" }}</h1>
+   <h1>{{ no|default:"None" }}]</h1>
+   <h1>{{ none|default_if_none:"值为None" }}</h1>
+   <h1>{{ chao|safe }}</h1>   {#   设置为安全的 #}
+   {%  autoescape  off%}  {# 关闭安全 机制, 如果开着， 则认为 是一个字符串  #}
+   <h1>{{ chao|safe }}</h1>
+   {% endautoescape %}
+   <h1>{{ test_str|first }}</h1>
+      <h1>{{ test_str|length }}</h1>
+   <h1>{{ test_str|slice:":6" }}</h1>
+   <h1>{{ value8|urlencode }}</h1>
+
+
+
+
+{#<h1>hello  {{ c.name }}</h1>#}
+{#<h1>hello  {{ e.sex }}</h1>#}
+</body>
+</html>

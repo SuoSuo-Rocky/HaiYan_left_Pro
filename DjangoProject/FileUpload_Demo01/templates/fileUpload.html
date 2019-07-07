@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<form action="/fileUpload.html" method="post" id="fm" enctype="multipart/form-data">
+    {% csrf_token %}
+{#    <input type="text" value="user">#}
+{#    <div style="position: relative;">#}
+{#        <input type="file" name="img" style="opacity: 0;position: absolute; top: 0;left: 0">#}
+{#        <span style="float: left" >NB上传</span>#}
+{#    </div><br>#}
+    {{ obj }}
+    <input type="submit" value="提交">
+</form>
+
+</body>
+</html>

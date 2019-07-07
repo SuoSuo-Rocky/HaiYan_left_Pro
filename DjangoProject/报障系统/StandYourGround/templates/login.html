@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/lib/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        .mydiv {
+            margin-top: 100px;
+            font-size: 16px;
+
+        }
+
+        .form-group label {
+            width: 20%;
+            float: left;
+            display: inline;
+        }
+
+        .form-group div {
+            width: 80%;
+        }
+
+        button[type='reset'] {
+            margin-left: 100px;
+            font-size: 22px;
+        }
+
+        button[type='submit'] {
+            font-size: 22px;
+        }
+
+        .file-control {
+            padding: 0px;
+        }
+
+        .mytable {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mytable label {
+            width: 100%;
+        }
+
+        .mytable {
+            border-spacing: 20px;
+            border-collapse: separate;
+        }
+        input[name='validate']{
+            width: 50%!important;
+        }
+
+        {#collapse 	如果可能，边框会合并为一个单一的边框。会忽略 border-spacing 和 empty-cells 属性#}
+        {#separate 	默认值。边框会被分开。不会忽略 border-spacing 和 empty-cells 属性#}
+        {#inherit 	规定应该从父元素继承 border-collapse 属性的值#}
+        input[name='isfree'] {
+            width: 10%;
+        }
+        label{
+            display: none;
+        }
+        span{
+            padding-top: 15px;
+
+        }
+       strong{
+            font-size: 33px;
+            margin-bottom: 8px;
+            text-align: center;
+            display: block;
+        }
+        #callback{
+            position: absolute;
+            right: 20px;
+            top: 5px;
+        }
+        .errorlist{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<a href="/" class="btn btn-info btn-lg" id="callback">返回首页</a>
+<div class="row mydiv">
+    <div class="col-lg-4 col-lg-offset-4">
+
+
+        <div class="panel panel-info">
+            <div class="panel-body">
+
+                <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                    <table class="mytable">
+                        {% csrf_token %}
+                        <strong>用户登录</strong>
+                        {{ form.as_table }}
+                        <!--
+
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="one" class="col-sm-2 control-label">姓名</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="text" class="form-control" id="one" placeholder="请输入名字" name="username">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="two" class="col-sm-2 control-label">邮箱</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="email" class="form-control" id="two" placeholder="请输入邮箱" name="email">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="three" class="col-sm-2 control-label">密码</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="password" class="form-control" id="three" placeholder="请输入密码" name="pwd">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="four" class="col-sm-2 control-label">确认密码</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="password" class="form-control" id="four" placeholder="确认密码" name="r_pwd">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="four" class="col-sm-2 control-label">头像</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="file" class="form-control file-control" id="four"  name="img">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {##}
+                        {#                    <div class="form-group">#}
+                        {#                        <div class="col-sm-offset-2 col-sm-10">#}
+                        {#                            <div class="checkbox">#}
+                        {#                                <label>#}
+                        {#                                    <input type="checkbox">请记住我#}
+                        {#                                </label>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        -->
+                    </table>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">登录</button>
+                            <button type="reset" class="btn btn-default">重置</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    $('table label').attr('class', 'col-sm-2 control-label');
+    $('table input').attr('class', 'col-sm-10 form-control');
+    var vali = '<span><img src="/shiwei.html" alt="" onclick="change_img(this);"></span>';
+    $("[name='validate']").after(vali);
+    function change_img(ths) {
+        ths.src = ths.src + "?";
+    }
+
+    var free = "<span id='auto'>一个月内自动登录</span>  <span><a href=\"#\" style=\"font-size: 13px; float: right\">忘记密码？</a></span>";
+    $("[name='isfree']").after(free);
+    var msg = "<span>{{ form.errors.username }}</span>\n";
+    $("[name='username']").after(msg);
+</script>
+
+
+</body>
+</html>

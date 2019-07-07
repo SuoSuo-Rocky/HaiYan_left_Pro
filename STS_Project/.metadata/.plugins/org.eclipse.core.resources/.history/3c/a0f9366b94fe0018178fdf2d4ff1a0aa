@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--Ctrl + Shift + T: 打开Open Type查找类文件 -->
+	<!--加载 db.properties 文件 -->
+	<bean id="config"
+		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+          <property name="locations">
+                 <array>
+                        <value>classpath:db.properties</value>
+                 </array>
+          </property>
+	</bean>
+	
+	<bean  id="studentMapper" class="org.shiwei.dao.Impl.StudentDaoImpl">
+	<!-- 将 Spring 配置的 sqlSessionFactory 对象 交给 mapper (dao) -->
+	       <property name="sqlSessionFactory" ref=""></property>
+	</bean>
+	
+	
+	
+	<bean id="studentService" class="org.shiwei.service.impl.StudentServiceImpl">
+	    <property name="studentMapper" ref="studentMapper"></property>
+	</bean>
+	
+	
+	
+
+
+
+	<!-- 配置数据库信息 ( 替代 MyBatis 的配置文件 conf.xml) -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- 若name  属性报错， 说明 这个class 类中没有这个 属性 ，此时 就需要 进去 看一看    -->
+		<property name="driverClassName" value="${driverClassName}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="maxActive" value="${maxActive}"></property>
+		<property name="maxIdle" value="${maxIdle}"></property>
+	</bean>
+	
+	
+	<!--在 Spring 容器中创建  MyBatis 的 核心类  SqlSessionFactory   -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	     <property name="dataSource" ref="dataSource"></property>
+	     <!--加载 MyBatis    -->
+	     <property name="configLocation"  value="classpath:conf.xml"></property>
+	</bean>
+	
+
+
+
+</beans>

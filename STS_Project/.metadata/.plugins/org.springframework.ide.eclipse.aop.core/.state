@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="SSMProject"/>
+<aop-project name="SpringMVCProject_Demo_1"/>
+<aop-project name="SpringWebProject"/>
+<aop-project name="SMProject"/>
+<aop-project name="SSM_12-21-pm"/>
+<aop-project name="IAnnotation"/>
+<aop-project name="SpringDemo_1"/>
+</aop-reference-model>

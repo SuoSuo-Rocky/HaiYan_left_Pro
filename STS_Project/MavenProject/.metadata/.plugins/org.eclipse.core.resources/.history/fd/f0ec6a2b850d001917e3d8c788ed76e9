@@ -1,0 +1,12 @@
+package org.shiwei.HelloWorld.Controller;
+
+public class HelloWorldController {
+	   
+	public String helloWorld() {
+		
+		
+	}
+	
+	
+
+}

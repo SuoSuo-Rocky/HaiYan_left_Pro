@@ -1,0 +1,48 @@
+{% extends "base_form.html" %}
+
+   {% block forms %}
+        <form action=" /show_course.html" method="post" name="s1">
+            {% csrf_token %}
+   {% endblock %}
+
+
+{% block title %}
+            <td colspan="2">添加课程数据</td>
+{% endblock %}
+
+
+
+  {% block tbody %}
+        <tr>
+            <td>课程名</td>
+            {% block titles %}
+            <td><input type="text" name="title"></td>
+            {% endblock %}
+        </tr>
+        <tr>
+            <td>课程学时</td>
+            {% block hours %}
+            <td><input type="number" name="hours"></td>
+            {% endblock %}
+        </tr>
+        <tr>
+            <td>班级学生</td>
+            {% block stu_lists %}
+     <td>
+         <select name="stu_list"  multiple style="width: 60%;height: 70px;text-align: center">
+        {% for stu in stu_list %}
+           <option value="{{ stu.name }}" style="height: 25px; font-size: 22px"> {{ stu.name }}</option>
+        {% endfor %}
+        </select>
+     </td>
+            {% endblock %}
+        </tr>
+
+
+        <tr>
+            {% block submits %}
+            <td colspan="2"><input type="submit" value="提交保存"></td>
+            {% endblock %}
+
+        </tr>
+  {% endblock %}

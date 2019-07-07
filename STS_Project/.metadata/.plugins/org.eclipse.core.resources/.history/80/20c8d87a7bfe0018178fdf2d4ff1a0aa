@@ -1,0 +1,14 @@
+package org.shiwei.service.impl;
+
+import org.shiwei.entity.Student;
+import org.shiwei.service.IStudentService;
+
+public class StudentServiceImpl implements IStudentService {
+	@Override
+	public void addStudent(Student student) {
+		
+		
+		
+	}
+
+}

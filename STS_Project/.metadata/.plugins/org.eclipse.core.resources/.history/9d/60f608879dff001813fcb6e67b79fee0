@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<a href="SpringMVC/welcome/shiwei"> first springMVC - welcome</a>
+	<!--   <form action="SpringMVC/welcome" method="post">
+ name:<input name="name"> 
+ age <input >
+       <input type="submit" value="Post提交">
+  </form> -->
+
+	<form action="SpringMVC/testPost/1243" method="post">
+		<input type="submit" value="增加">
+	</form>
+	<form action="SpringMVC/testGet/1243" method="get">
+		<input type="submit" value="查询">
+	</form>
+
+
+
+	<form action="SpringMVC/testdDelete/1243" method="post">
+		<input type="hidden" name="_method" value="DELETE" /> 
+		<input type="submit" value="删除">
+	</form>
+
+	<form action="SpringMVC/testPut/1243" method="post">
+		<input type="hidden" name="_method" value="PUT" />
+		 <input	type="submit" value="改变">
+	</form>
+
+</body>
+</html>

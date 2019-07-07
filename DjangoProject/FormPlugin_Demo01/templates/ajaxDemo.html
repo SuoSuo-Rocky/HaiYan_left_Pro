@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<form action="/ajaxDemo.html" method="post" id="fm">
+    {% csrf_token %}
+    {{ obj.as_p }}
+    <input type="button" value="提交" id="btn">
+    <input type="text">
+</form>
+
+<script src="/static/jquery-1.10.2.min.js"></script>
+<script>
+    $(function () {
+        $("#btn").click(function () {
+        $.ajax({
+            url:"/ajaxDemo.html",
+            type:"POST",
+            data:$("#fm").serialize(),
+            dataType:JSON,
+            success:function (arg) {
+
+                console.log(arg);
+
+            }
+        });
+
+        });
+    })
+</script>
+</body>
+</html>

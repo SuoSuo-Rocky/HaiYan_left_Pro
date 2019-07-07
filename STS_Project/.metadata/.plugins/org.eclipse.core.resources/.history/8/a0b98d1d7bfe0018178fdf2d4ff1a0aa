@@ -1,0 +1,9 @@
+package org.shiwei.service;
+
+import org.shiwei.entity.Student;
+
+public class IStudentService {
+	void addStudent(Student student);
+	
+
+}

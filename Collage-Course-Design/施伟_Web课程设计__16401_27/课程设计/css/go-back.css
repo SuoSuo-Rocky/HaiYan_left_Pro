@@ -1,0 +1,19 @@
+            .page{
+				height: 50px;
+				width: 100px;
+			}
+			#back{
+				position: absolute;
+				background-color: red;
+				bottom: 10px;
+				left: 10px;
+				z-index: 10;
+
+			}
+			#go{
+				position: absolute;
+				background-color: green;
+				right: 10px;
+				bottom: 10px;
+				z-index: 10;
+			}

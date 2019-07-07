@@ -1,0 +1,8 @@
+app_code: os-reboot
+app_name: 系统关机重启
+author: canway
+!!python/unicode 'date': '2017-05-02 16:44:37'
+introduction: 系统关机重启APP是一款可以通过web界面执行关机/重启系统功能的产品，且提供定时关机/重启的功能
+is_use_celery: true
+!!python/unicode 'language': python
+version: 1.0.0

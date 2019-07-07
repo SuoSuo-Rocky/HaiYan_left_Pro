@@ -1,0 +1,52 @@
+{% extends "base_form.html" %}
+
+   {% block forms %}
+        <form action=" /show_teacher.html" method="post" name="s1">
+            {% csrf_token %}
+   {% endblock %}
+
+
+{% block title %}
+            <td colspan="2">添加老师数据</td>
+{% endblock %}
+
+
+
+  {% block tbody %}
+        <tr>
+            <td>姓名</td>
+            {% block username %}
+            <td><input type="text" name="username"></td>
+            {% endblock %}
+        </tr>
+        <tr>
+            <td>年龄</td>
+            {% block userage %}
+            <td><input type="number" name="userage"></td>
+            {% endblock %}
+        </tr>
+        <tr>
+            <td>毕业院校</td>
+            {% block user_graduate %}
+            <td><input type="text" name="user_graduate" ></td>
+            {% endblock %}
+        </tr>
+        <tr>
+            <td>教授课程</td>
+            {% block user_course %}
+            <td>
+                <select name="user_course" id="user_course" style="width: 60%;height: 35px; text-align:center ;">
+                    {% for course in course_list %}
+                           <option value="{{ course.title }}" >{{ course.title }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            {% endblock %}
+        </tr>
+        <tr>
+            {% block submits %}
+            <td colspan="2"><input type="submit" value="提交保存"></td>
+            {% endblock %}
+
+        </tr>
+  {% endblock %}

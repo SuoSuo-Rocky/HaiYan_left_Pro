@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=IAnnotation/src\/spring-beans-4.3.9.RELEASE.jar&lt;org.springframework.beans.factory.annotation(AutowiredAnnotationBeanPostProcessor.class[AutowiredAnnotationBeanPostProcessor" modifiers="33" timestamp="1544971596543"/>
+<typeInfo handle="=LuoHao_Demo1/E:\/STS Project\/LuoHao_Demo1\/WebContent\/WEB-INF\/lib\/spring-context-4.3.9.RELEASE.jar&lt;org.springframework.format.annotation(DateTimeFormat.class[DateTimeFormat" modifiers="9729" timestamp="1544660937933"/>
+<typeInfo handle="=SpringMVCProject_Demo_1/src\/spring-context-4.3.9.RELEASE.jar&lt;org.springframework.validation.beanvalidation(LocalValidatorFactoryBean.class[LocalValidatorFactoryBean" modifiers="33" timestamp="1544750330213"/>
+<typeInfo handle="=SpringMVCProject_Demo_1/src\/spring-web-4.3.9.RELEASE.jar&lt;org.springframework.web.multipart(MultipartResolver.class[MultipartResolver" modifiers="1537" timestamp="1544750330119"/>
+<typeInfo handle="=SpringMVCProject_Demo_1/src\/spring-web-4.3.9.RELEASE.jar&lt;org.springframework.web.multipart.commons(CommonsMultipartResolver.class[CommonsMultipartResolver" modifiers="33" timestamp="1544750330119"/>
+<typeInfo handle="=SpringMVCProject_Demo_1/src\/spring-webmvc-4.3.9.RELEASE.jar&lt;org.springframework.web.servlet(HandlerInterceptor.class[HandlerInterceptor" modifiers="1537" timestamp="1544750330134"/>
+<typeInfo handle="=SpringMVCProject_Demo_1/src\/spring-webmvc-4.3.9.RELEASE.jar&lt;org.springframework.web.servlet(HandlerExceptionResolver.class[HandlerExceptionResolver" modifiers="1537" timestamp="1544750330134"/>
+<typeInfo handle="=IAnnotation/C:\/Program Files\/Java\/jre1.8.0_144\/lib\/rt.jar&lt;java.lang(Throwable.class[Throwable" modifiers="33" timestamp="1536284171257"/>
+<typeInfo handle="=SpringMVCProject_Demo_1/src\/spring-webmvc-4.3.9.RELEASE.jar&lt;org.springframework.web.servlet.mvc.annotation(ResponseStatusExceptionResolver.class[ResponseStatusExceptionResolver" modifiers="33" timestamp="1544750330134"/>
+<typeInfo handle="=SpringMVCProject_Demo_1/src\/spring-webmvc-4.3.9.RELEASE.jar&lt;org.springframework.web.servlet.mvc.support(DefaultHandlerExceptionResolver.class[DefaultHandlerExceptionResolver" modifiers="33" timestamp="1544750330134"/>
+<typeInfo handle="=FileUpload/C:\/Program Files\/Java\/jre1.8.0_144\/lib\/rt.jar&lt;java.lang(ArithmeticException.class[ArithmeticException" modifiers="33" timestamp="1536284171257"/>
+<typeInfo handle="=SpringMVCProject_Demo_1/src\/spring-webmvc-4.3.9.RELEASE.jar&lt;org.springframework.web.servlet.handler(SimpleMappingExceptionResolver.class[SimpleMappingExceptionResolver" modifiers="33" timestamp="1544750330134"/>
+</typeInfoHistroy>

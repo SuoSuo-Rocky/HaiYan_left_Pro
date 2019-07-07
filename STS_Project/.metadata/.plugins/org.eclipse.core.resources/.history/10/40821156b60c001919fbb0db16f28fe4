@@ -1,0 +1,5 @@
+package org.shiwei.interceptor;
+
+public class MyInterceptor {
+
+}

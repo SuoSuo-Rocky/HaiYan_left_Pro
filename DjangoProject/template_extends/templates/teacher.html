@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {{ block.super }}
+        {% for student in teacher_list %}
+            <h2> 老师 {{ student }}</h2>
+        {% endfor %}
+         {% include "test.html" %}
+{% endblock %}

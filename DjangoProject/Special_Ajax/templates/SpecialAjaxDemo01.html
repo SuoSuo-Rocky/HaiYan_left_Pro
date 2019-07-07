@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/static/lib/de_jQuery_3_3_1.js"></script>
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+<body>
+<h1 class="text-center text-info">Ajax 全套</h1>
+<h3 class="text-center">GET请求</h3>
+<div class="row">
+<div class="col-lg-2 col-lg-offset-2">
+    <p class="btn btn-danger" onclick="AjaxSubmit();">JqueryAjaxClickMe</p>
+</div>
+<div class="col-lg-2 col-lg-offset-2">
+    <p  class="btn btn-danger" onclick="NativeAjaxSubmit();">NativeAjaxClickMe</p>
+</div>
+</div>
+
+<h3 class="text-center">POST请求</h3>
+<div class="row">
+<div class="col-lg-2 col-lg-offset-2">
+    <p class="btn btn-danger" onclick="AjaxSubmit02();">JqueryAjaxClickMe</p>
+</div>
+<div class="col-lg-2 col-lg-offset-2">
+    <p  class="btn btn-danger" onclick="NativeAjaxSubmit02();">NativeAjaxClickMe</p>
+</div>
+    </div>
+
+<h3 class="text-center">学习 iframe</h3>
+<div class="row">
+    <input type="text" id="url" class="col-lg-offset-2 col-lg-2">
+    <div class="btn btn-info" id="ifra" onclick="iframe();">链接</div>
+</div>
+<div class="row" style="height: 200px;width: 100%; display: none">
+    <iframe src="http://baidu.com" frameborder="0" id="iframe" style="width: 100%;height: 100%"></iframe>
+</div>
+<h1 class="text-center"> iframe 配合  form 页面无刷新(上传文件好，兼容性最好的方式)</h1>
+{#<iframe  frameborder="0" name="son" onload="reloadiframe(this);"></iframe>#}
+{#<form action="/iframe_form" target="son" id="forms">#}
+{#    <a onclick="toiframe();" id="ti">ClickSubmit</a>#}
+{#    <input type="submit" value="Form提交">#}
+{#</form>#}
+<iframe  frameborder="0" name="son" id="myiframe"></iframe>
+<form action="/iframe_form" target="son" id="forms">
+    <a onclick="toiframe02();" id="ti">ClickSubmit</a>
+    <input type="submit" value="Form提交">
+</form>
+
+<script>
+
+        function AjaxSubmit() {
+           $.ajax({
+               url:"/ajaxDemo01.html",
+               type:"GET",
+               data:{"name":"shiwei"} ,
+               success: function(arg) {
+                    console.log(arg);
+               }
+           });
+       };
+
+        function NativeAjaxSubmit() {
+            var shi = new XMLHttpRequest();
+            shi.open("GET","/native01.html");
+           shi.onreadystatechange= function(){
+               if(shi.readyState == 4 ){
+                   // 接收完毕服务器返回的数据
+                   shi.responseText
+               }
+           };
+            shi.send(null);
+       };
+
+  {#     post 请求 注意 要 注释 CSRF #}
+        function AjaxSubmit02() {
+           $.ajax({
+               url:"/ajaxDemo02.html",
+               type:"POST",
+               data:{"name":"shiwei"} ,
+               success: function(arg) {
+                    console.log(arg);
+               }
+           });
+       };
+
+        function NativeAjaxSubmit02() {
+            var shi = new XMLHttpRequest();
+           shi.onreadystatechange= function(){
+               if(shi.readyState == 4 ){
+                   // 接收完毕服务器返回的数据
+                   console.log(shi.responseText);
+               }
+           };
+            shi.open("POST","/native02.html");
+            {# 设置一个 请求头， 能够让 Django 解析我 发送的数据 #}
+            shi.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset-UTF-8');
+            shi.send("P=123");
+       };
+
+        function iframe() {
+           var  url = $("#url").val()
+           $("#iframe").attr("src",url);
+       }
+
+        function toiframe() {
+            document.getElementById("forms").submit();
+        }
+        function reloadiframe(th) {
+            //console.log(th);
+            console.log(th.contentWindow);
+            //console.log(th.contentWindow.document.body);
+            console.log(th.contentWindow.document.body.innerHTML);
+            var arg = console.log($(th).contents().find('body').html());
+
+            var arg = th.contentWindow.document.body.innerHTML;
+            msg = JSON.parse(arg).name;
+            console.log("name=",msg);
+            alert(msg);
+        }
+
+        function toiframe02() {
+            var ifra = document.getElementById("myiframe");
+            ifra.onload = reloadiframe02;
+
+            document.getElementById("forms").submit();
+        }
+        function reloadiframe02() {
+            // this 默认为 iframe 标签对象
+            {#console.log(this);#}
+            var neirong = this.contentWindow.document.body.innerHTML;
+            var obj = JSON.parse(neirong);
+            var name = obj.name;
+            console.log("name=",name);
+        }
+
+
+</script>
+
+</body>
+</html>

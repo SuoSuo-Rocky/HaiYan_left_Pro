@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show_student</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+            color: sienna;
+        }
+        table,tr{
+            width: 80%;
+            border:1px solid black;
+            text-align: center;
+            margin: 0 auto;
+            background-color: bisque;
+        }
+    </style>
+    <script src="/static/De_jQuery_3.3.1.js"></script>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td align="center" class="biaoti" height="60" style="font-size: 30px">学生表</td>
+  </tr>
+  <tr>
+    <td align="right" height="25">2017-01-02---2017-05-02</td>
+  </tr>
+</table>
+
+
+<table  class="tables" style=""  cellpadding="2" cellspacing="1" align="center">
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>age</td>
+            <td>gender</td>
+            <td>born_date</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><a href="/add_student.html">添加学生</a></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stu in stu_list %}
+            <tr nid="{{ stu.id }}">
+                <td>{{ stu.id }} </td>
+                <td>{{ stu.name }} </td>
+                <td>{{ stu.age}} </td>
+                <td>
+               {% if stu.gender %}
+                男   {% else %}
+                   女
+                {% endif %}
+                 </td>
+
+                <td>{{ stu.born_date }} </td>
+                <td><a href="/del_student.html?id={{ stu.id }}">删除</a></td>
+                <td><a href="javascript:void();" onclick="ajax_remove(this)" >Ajax删除</a></td>
+                <td><a href="/edit_student.html?id={{ stu.id }}">编辑</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+<script>
+    function ajax_remove(shi){
+        var nid = $(shi).parent().parent().attr("nid");
+        $.ajax({
+            url:"/ajax_delstudent",
+            type:"GET",
+            data:{nid:nid},
+            success:function(arg){
+            var nid = $(shi).parent().parent().remove();
+            }
+        })
+    }
+
+</script>
+
+
+
+</body>
+</html>

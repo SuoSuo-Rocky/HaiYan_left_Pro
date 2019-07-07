@@ -1,0 +1,6 @@
+driverClassName=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/sm_person
+username=root
+password=666666
+maxActive=500
+maxIdle=1000

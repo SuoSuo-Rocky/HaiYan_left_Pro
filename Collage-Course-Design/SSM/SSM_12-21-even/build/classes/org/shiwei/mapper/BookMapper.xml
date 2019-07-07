@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.shiwei.mapper.BookMapper">
+
+
+	<!-- 注意后面没有 分号 resultType： 查询 返回结果 值的类型 parameterType ： 输入参数的类型 -->
+	<select id="queryAllbook" resultType="org.shiwei.entity.Book">
+		select * from book
+	</select>
+	
+	<select id="querybookMessage" resultType="org.shiwei.entity.Book"
+	 parameterType="int">
+		select * from book where boid=#{boId}
+	</select>
+	
+	
+	<!--从书库中 删除一本书  -->
+	<select id="deletebookByboId" 
+	 parameterType="int">
+		delete from book where boid=#{boId}
+	</select>
+	
+	<!-- 根据 ID 从书库中 查询一本书 -->
+	<select id="querybookByboId" resultType="org.shiwei.entity.Book"
+	 parameterType="int">
+		select * from book where boid=#{boId}
+	</select>
+	
+	<!-- 根据 图书名 从书库中 查询一本书 -->
+	<select id="searchbookByboName" resultType="org.shiwei.entity.Book"
+	 parameterType="String">
+		select * from book where boname=#{boName}
+	</select>
+	
+	
+	<!--将 书库中的 一本书 更新 -->
+	<select id="updatebookById" 
+	 parameterType="org.shiwei.entity.Book">
+		update book set boname=#{boName},borank=#{boRank},boimg=#{boImg}
+		 where boid=#{boId}
+	</select>
+	
+	<!--添加 一本书 到 书库  -->
+     <select id="addBookImg" 
+	 parameterType="org.shiwei.entity.Book">
+		insert into book(boid,boname,borank,boimg) values (#{boId},
+		#{boName},#{boRank},#{boImg})
+	</select>
+	
+	
+
+
+</mapper>

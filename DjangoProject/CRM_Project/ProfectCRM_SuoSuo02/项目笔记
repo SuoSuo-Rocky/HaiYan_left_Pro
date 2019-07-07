@@ -1,0 +1,57 @@
+一对一: 反向直接小写表名：
+               {{ request.user.userprofile.role.all }}
+              <!-- 上下 完全 一样  -->
+              {{ request.user.userprofile.role.select_related }}
+ FK : 反向 为： 小写表明 + "_set"
+
+ 动态 获取 项目 settings 配置
+ from django import conf
+ print(conf.settings)
+
+ # python 优化
+在 Django 的 Django容器中 模块 只 实例化一次，
+    同一模块 第二次 以及 后续 的 导入，会去找第一次 导入的对象
+
+
+# 打开 Django 的 shell 工具
+在 Command lines 中: python3.7  manage.py shell
+
+# 打开 Django 的 内置 Sqlite 当前 项目 生成的 DB;
+在 Command lines 中: python3.7  manage.py dbshell
+
+# 在 Django 的 Shell 工具中:
+dir(models.表名._meta)  # 打印 此 表类 对象 的 全部属性
+其中: models.表名._meta.app_label : 当前 表对象 所在的  app  名 ,         str 型
+      models.表名._meta.model_name:当前 表对象 在 models.py 中的表名，   str 型
+      models.表名._meta.fields : 获取 model 所有 字段对象
+      models.表名._meta.get_fields('status') # 获取一个 字段对象
+
+
+a = models.CustomerInfo.objects.last() #  取 一条记录
+a.getattr(a,'字段名') # 获得 值
+# 对于 字段 为 choices 选项类型 的 字段.
+        例：status_choices = (
+                (0, '未报名'),
+                (1, '已报名'),
+                (2, '已退学'),
+            )
+a.status : 为 选项所代表的 数字
+a.get_status_display()  : 为 选项所代表的 具体的值
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

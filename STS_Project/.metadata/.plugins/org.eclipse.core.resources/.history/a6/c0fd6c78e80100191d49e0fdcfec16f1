@@ -1,0 +1,13 @@
+package entity;
+
+public class Student {
+	private int stuId;
+	private String stuName;
+	private int stuGender;
+	private int stuAge;
+	private int stuRank;
+	private String stuDepartment;
+	
+	
+
+}

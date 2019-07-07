@@ -1,0 +1,33 @@
+复制代码
+
+class UnsignedIntegerField(models.IntegerField):
+    def db_type(self, connection):
+        return 'integer UNSIGNED'
+
+PS: 返回值为字段在数据库中的属性，Django字段默认的值为：
+    'AutoField': 'integer AUTO_INCREMENT',
+    'BigAutoField': 'bigint AUTO_INCREMENT',
+    'BinaryField': 'longblob',
+    'BooleanField': 'bool',
+    'CharField': 'varchar(%(max_length)s)',
+    'CommaSeparatedIntegerField': 'varchar(%(max_length)s)',
+    'DateField': 'date',
+    'DateTimeField': 'datetime',
+    'DecimalField': 'numeric(%(max_digits)s, %(decimal_places)s)',
+    'DurationField': 'bigint',
+    'FileField': 'varchar(%(max_length)s)',
+    'FilePathField': 'varchar(%(max_length)s)',
+    'FloatField': 'double precision',
+    'IntegerField': 'integer',
+    'BigIntegerField': 'bigint',
+    'IPAddressField': 'char(15)',
+    'GenericIPAddressField': 'char(39)',
+    'NullBooleanField': 'bool',
+    'OneToOneField': 'integer',
+    'PositiveIntegerField': 'integer UNSIGNED',
+    'PositiveSmallIntegerField': 'smallint UNSIGNED',
+    'SlugField': 'varchar(%(max_length)s)',
+    'SmallIntegerField': 'smallint',
+    'TextField': 'longtext',
+    'TimeField': 'time',
+    'UUIDField': 'char(32)',

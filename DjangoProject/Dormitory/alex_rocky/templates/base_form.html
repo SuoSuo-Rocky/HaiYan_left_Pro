@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add_student</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        table{
+            border: 1px solid black;
+            margin: 100px auto;
+            text-align: center;
+            font-size: 25px;
+        }
+        tr{
+            height: 60px;
+        }
+        input{
+            height: 100%;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+                {% block forms %}
+                <form action=" /show_student.html?con=0" method="post" name="s1">
+                    {% csrf_token %}
+                {% endblock %}
+
+    <table style=""  width="50%" align="center"  >
+        <thead>
+
+            <tr style="font-size: 30px" >
+                {% block title %}
+                        <td colspan="2">添加学生数据</td>
+                {% endblock %}
+            </tr>
+        </thead>
+        <tbody>
+
+
+                {% block tbody %}
+                        <tr>
+                            <td>姓名</td>
+
+                            <td><input type="text" name="username"></td>
+
+                        </tr>
+                        <tr>
+                            <td>年龄</td>
+
+                            <td><input type="number" name="userage"></td>
+
+                        </tr>
+                        <tr>
+                            <td>性别</td>
+
+                            <td>男：<input type="radio" name="usersex" value="1">
+                                女：<input type="radio" name="usersex" value="0">
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>出生日期</td>
+
+                            <td><input type="date" name="born_date"></td>
+
+                        </tr>
+                        <tr>
+
+                            <td colspan="2"><input type="submit" value="提交保存"></td>
+
+
+                        </tr>
+                     {% endblock %}
+
+
+        </tbody>
+    </table>
+ </form>
+
+
+</body>
+</html>

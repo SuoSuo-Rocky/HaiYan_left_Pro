@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Tue Jan 01 12:47:22 CST 2019
+org.eclipse.jst.jee.server\:/binary\:E\:\\STS\ Project\\SpringMVCProject_Demo_1\\WebContent\\WEB-INF\\lib\\spring-web-4.3.9.RELEASE.jar=WEB-INF/lib/spring-web-4.3.9.RELEASE.jar
+org.eclipse.jst.jee.server\:/binary\:E\:\\STS\ Project\\SpringMVCProject_Demo_1\\src\\spring-web-4.3.9.RELEASE.jar=WEB-INF/classes/spring-web-4.3.9.RELEASE.jar

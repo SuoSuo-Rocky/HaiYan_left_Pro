@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!--添加扫描有注解的包 ，  -->
+	<context:component-scan base-package="org.shiwei.handler,org.shiwei.exception"></context:component-scan>
+	
+	<!-- 配置视图解析器  (InternalResourceViewResolver) -->
+	<bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	      <!-- 前缀 -->
+	     <property name="prefix" value="/view/"></property>
+	       <!-- 后缀  -->
+	     <property name="suffix" value=".jsp"></property>
+	</bean>
+	
+   
+		 
+	<!-- 配置  JSp  到  jsp  跳转 的 方式。
+	  注意： 单独此 注解 会 默认 屏蔽掉  @ RequestMapping 注解。
+	  就是不添加  <mvc:annotation......>注解 -->
+	<!-- <mvc:view-controller path="SpringMVC/direct" view-name="success"/>   -->
+	
+	
+	<!-- 此配置是 SpringMVC的 基础配置， 很多功能都需要 通过 该  注解  来进行 协调。
+	此注解 现在 的 功能之一 是  让  @RequestMapping 注解  和  <mvc:view-controller...>注解 共存
+	 -->
+	<!--  <mvc:annotation-driven></mvc:annotation-driven>  -->
+	
+	<!-- 该注解 会让 SpringMVC  对于接收到 的 所有请求， 将其中 没有对应 @RequestMapping注解的请求
+	     交给 Tomcat 服务器 默认的  Servlet 去处理。 就是 直接访问。
+	     注意：中间 不可以有空格。   -->
+  <mvc:default-servlet-handler></mvc:default-servlet-handler>   
+    <mvc:annotation-driven></mvc:annotation-driven> 
+	
+<!--配置类型转换器的 三大 步骤 ：  -->	
+    <!--1..  将自定义 类型转换器 纳入 SpringMVC 容器 -->	
+	<bean id="myConverter" class="org.shiwei.converter.MyConverter"></bean>
+	
+	<!-- 2.. 将 myConverter 再 纳入 SpringMVC 提供的 转换器 Bean 中
+	       也就是  SpringMVC  说了， 要求 所有的 类型转换器 必须 在 此  Bean 中注册  -->
+   <!--  <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+          <property name="converters" >
+               <set>
+                    <ref bean="myConverter"/>
+               </set>
+          </property> 
+    </bean> -->
+     <!--3...  将  conversionService   注册到 annotation-driven  中去 -->
+     <!-- 此配置  是 SpringMVC 的基础配置 ， 很多的功能  都需要  此注解 来进行 协调 处理  -->
+	<!-- <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven> 
+	
+	
+	配置 数据 格式化 注解 所  依赖的 bean 
+	      该 bean  既可以 实现 格式化 ， 又  可以实现 类型转换
+	
+     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	       <property name="converters" >
+               <set>
+                    <ref bean="myConverter"/>
+               </set>
+          </property> 
+    </bean> -->
+	
+   
+	
+<!-- 
+	<dependency> 
+	<groupId>org.hibernate</groupId> 
+	<artifactId>hibernate-validator</artifactId> 
+	<version>5.2.4.Final</version> </dependency> 
+	https://mvnrepository.com/artifact/javax.validation/validation-api 
+	<dependency>
+	 <groupId>javax.validation</groupId> 
+	 <artifactId>validation-api</artifactId> 
+	 <version>1.1.0.Final</version>
+	  </dependency>
+ -->
+	
+	
+	<!-- 用于 实现文件的 上传  
+	     加入 SpringIOC  容器， id 值 是固定的 。
+	      原因为： SpringIOC 容器在初始化的 时候， 会自动寻找 一个  id="multipartResolver" 的 Bean，  并将其加入 IOC 容器。-->
+	<bean id="multipartResolver" 
+	     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	      <property name="defaultEncoding" value="utf-8"></property>
+	      <!-- 上传单个 文件   的 最大值 ， 单位 是  Byte  -->
+	      <property name="maxUploadSize" value="10240000000000"></property>
+	      <!-- 文件上传的 内存 的 一次 可 存储的 最大值  ，如果 -1 ，表示无限制 -->
+	      <property name="maxInMemorySize" value="102400"></property>
+	</bean>
+	
+	
+   <!--配置自定义拦截器  ；
+          	默认拦截 所有请求 -->
+	<mvc:interceptors >
+	       <!-- 此 Bean 若放 在 <mvc:interceptor......>标签 外面 表示 拦截  所有 请求 ，
+ 								       拦截具体的 路径的话      放到 里面  -->
+	      <!-- <bean id="myInterceptor"
+	       class="org.shiwei.interceptor.MyInterceptor"></bean> -->
+	      <!-- 配置 具体的拦截 请求 ， 结果为 下方 配置的  拦截的 和 不拦截的  交集  -->
+	      <mvc:interceptor>
+	            <!--  指定 拦截 的 路径     ,基于 ant  风格， ** 表示所有 -->
+	            <mvc:mapping path="/**"/>
+	            <!-- 指定  不进行 拦截  的 路径 -->
+	            <mvc:exclude-mapping path="/SpringMVC/testMultipartResolver"/>
+	            <bean id="myInterceptor" 
+	            class="org.shiwei.interceptor.MyInterceptor"></bean>
+	      </mvc:interceptor>
+	</mvc:interceptors> 
+	
+	
+	<!--配置自定义拦截器  链中的 第二个 拦截器；
+                                 默认拦截 所有请求 -->
+	<mvc:interceptors >
+	       <!-- 此 Bean 若放 在 <mvc:interceptor......>标签 外面 表示 拦截  所有 请求 ，
+ 								       拦截具体的 路径的话      放到 里面  -->
+	      <!-- <bean id="myInterceptor"
+	       class="org.shiwei.interceptor.MyInterceptor"></bean> -->
+	      <!-- 配置 具体的拦截 请求 ， 结果为 下方 配置的  拦截的 和 不拦截的  交集  -->
+	      <mvc:interceptor>
+	            <!--  指定 拦截 的 路径     ,基于 ant  风格， ** 表示所有 -->
+	            <mvc:mapping path="/**"/>
+	            <!-- 指定  不进行 拦截  的 路径 -->
+	            <mvc:exclude-mapping path="/SpringMVC/testMultipartResolver"/>
+	            <bean id="MySecondInterceptor" 
+	            class="org.shiwei.interceptor.MySecondInterceptor"></bean>
+	      </mvc:interceptor>
+	</mvc:interceptors> 
+	
+	<!-- 配置异常 ： SimpleMappingExceptionResolver -->
+	<bean id="SimpleMappingException" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	        <!--如果发生异常， 异常对象 会被保存在 exceptionAttribute 的 value 值中，并且 会放入 request 域中。
+	              
+	       <property name="exceptionAttribute" value="e"></property>
+	        如果不写上面这句话， 有一个  默认值 为 exception , 相当于写了 
+	   <property name="exceptionAttribute" value="exception"></property>    -->
+	      <property name="exceptionMappings" >
+	            <props>
+	                 <!-- 相当于   Catch(ArithmeticException  e){跳转到 ： error } -->
+	                <prop key="java.lang.ArithmeticException">
+	                     error
+	                </prop>
+	            </props>
+	      </property>
+	
+	</bean>
+	
+	
+	
+	
+</beans>

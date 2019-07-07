@@ -1,0 +1,17 @@
+package org.shiwei.handler;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+
+//不再 是控制器， 仅仅是  用于 处理异常 的类  
+@ControllerAdvice
+@RequestMapping("ExceptionHandler")
+public class MyExceptionHandler {    
+	
+	
+	
+	
+
+}

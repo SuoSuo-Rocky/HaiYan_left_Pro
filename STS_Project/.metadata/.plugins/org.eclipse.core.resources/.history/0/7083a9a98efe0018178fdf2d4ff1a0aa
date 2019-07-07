@@ -1,0 +1,16 @@
+package org.shiwei.dao.Impl;
+
+import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.shiwei.dao.IStudentDao;
+import org.shiwei.entity.Student;
+
+public class StudentDaoImpl  extends SqlSessionDaoSupport implements IStudentDao{
+
+	
+	@Override
+	public void addStudent(Student student) {
+		super.getSqlSession();
+		
+		
+	}
+}

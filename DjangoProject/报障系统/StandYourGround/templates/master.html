@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% for foo in blog_list %}
+        <div class="myblog">
+            <h3><a href="/">{{ foo.title }}</a></h3>
+            <span class="blog_content">{{ foo.summary }}</span>
+            <div class="blog_bottom">
+                <span>{{ obj.user.username }}</span>
+                <span>{{ foo.ctime | date:"Y-m-d" }}</span>
+                <i class="fa fa-commenting fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;
+                <span>{{ foo.up_count }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;
+                <span>{{ foo.down_count }}</span>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block css %}
+    .blog_content{
+        font-size:15px;
+    }
+    .blog_bottom span{
+        font-size:17px;
+    }
+    .myblog a{
+        text-decoration:none;
+    }
+{% endblock %}

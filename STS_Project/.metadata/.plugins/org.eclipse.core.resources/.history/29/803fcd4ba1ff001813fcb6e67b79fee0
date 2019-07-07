@@ -1,0 +1,62 @@
+package org.shiwei.handler;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+// 接口/ 类/ 注解   配置
+@Controller
+@RequestMapping(value="SpringMVC")  // 映射
+public class SpringMVCHandler {
+	// 当有一个请求是 welcome 时， 就被我拦截了 
+	// 则 调用地址  为 SpringMVC/welcome,先找类的，再找 方法的
+  /*
+   * @RequestMapping("welcome/abc") , 则调用 地址为：" SpringMVC/welcome/abc"
+   * 当中的参数：  	method, 设置 请求方式，
+   *            params: 设置参数，表示有这个属性， 可以用大括号写多个。
+   *       若当中的参数 赋值了， 则表示请求中有这个参数， 且值输入还必须是这个 ， 要求更加严格。
+   *       当中的 age!=23 表示 age请求当中的 age 属性 值 ， 不能是 23，也可以没有
+   *       ！age , 表示不能有 age 这个属性。
+   *       headers : 设置响应头 
+   */     
+	
+	//@RequestMapping(value="welcome",method=RequestMethod.POST,params= {"name=shi","age!=23"})
+	@RequestMapping("welcome/{name}")
+	public String welcome(@PathVariable("name") String name){
+		System.out.println(name);
+//		 会增加 解析器中  perfix 和 suffix ---->/view/success.j
+  // 默认 使用了 请求转发 的跳转 方式。
+		return "success";  
+	}
+	
+	@RequestMapping("testRest/{name}")
+	public String testPost(@PathVariable("name") Integer name){
+		System.out.println(name+"post: 增");
+		// Service 层实现 真正的增
+		return "success";  
+	}
+	
+	@RequestMapping("testRest/{name}")
+	public String testGet(@PathVariable("name") Integer name){
+		System.out.println(name+"get: 查询");
+		// Service 层实现 真正的增
+		return "success";  
+	}
+	
+	@RequestMapping("testRest/{name}")
+	public String testDelete(@PathVariable("name") Integer name){
+		System.out.println(name+"delete: 删除");
+		// Service 层实现 真正的增
+		return "success";  
+	}
+	
+	
+	@RequestMapping("testRest/{name}")
+	public String testPut(@PathVariable("name") Integer name){
+		System.out.println(name+"put: 改变");
+		// Service 层实现 真正的增
+		return "success";  
+	}
+	
+
+}

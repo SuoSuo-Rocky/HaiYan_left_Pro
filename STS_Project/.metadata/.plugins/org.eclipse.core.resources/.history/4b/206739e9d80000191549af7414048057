@@ -1,0 +1,23 @@
+package org.shiwei.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping("controller")
+@Controller
+public class StudentController{
+	
+	@RequestMapping("queryStudentByNo/{id}")
+	public  String queryStudentByNo(@PathVariable("id") Integer id) {
+
+		
+		return "success";
+	}
+	
+	
+}
+		
+
+
+

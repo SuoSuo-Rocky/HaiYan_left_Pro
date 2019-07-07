@@ -1,0 +1,10 @@
+<classpath>
+  <container id="SSM_12-21-even!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/STS Project/STS_Project-2/SSM_12-21-even/WebContent/WEB-INF/lib/commons-dbcp-1.4.jar">
+      <source-attachment-path>F:/Spring 类库/我最爱的 jar 包/Spring_SpringMVC_MyBatis_Web/Resource/commons-dbcp-1.4-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="E:/STS Project/STS_Project-2/SSM_12-21-even/WebContent/WEB-INF/lib/mybatis-spring-1.3.1.jar">
+      <source-attachment-path>F:/Spring 类库/我最爱的 jar 包/Spring_SpringMVC_MyBatis_Web/Resource/mybatis-spring-1.3.1-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

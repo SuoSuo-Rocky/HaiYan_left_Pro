@@ -1,0 +1,54 @@
+博客：
+数据库设计： 
+	用户表: uid, username, pwd,email,img
+	博客表：bid, suffix, theme, title,summary,user_id(唯一), OneToOne(用户表)
+	互粉表：id, 明星ID(用户表)，粉丝ID (用户表)
+
+
+报障 系统：
+	报障单： UUID, title, detail, user_id(用户表),  processor(用户表null ) , status(待处理，处理中，已处理，), 创建时间， 处理时间
+	出图的话， 有插件 highcharts 
+	
+	分类表: caption ,FK（博客表 bid ）
+	
+	标签表:  caption ,FK（博客表 bid ）
+
+	文章: id, title, summary, ctime, Fk(个人分类表)，主站分类(choices) ManyToMany（标签表）
+	文章详细表： detail OneToOne(文章)
+	
+	文章和标签的关系： ID， 文章id, 标签id , 
+
+	赞，踩 文章关系； 文章ID, 用户ID, 赞或踩(True 或  False ),unique_together(文章id , 用户id)
+
+	评论表: id，content, FK（user）, FK（文章 ）ctime , parent_content_id
+ 
+程序目录结构: 
+	app_ Web : 主站 和个人的管理，
+	app_backend : 后台管理
+	app_repository : 只来创建数据库	（module.py ）
+	utile ： 工具包， (公共模块)
+
+
+工作安排： 
+1.需求分析
+2. 数据库设计思路
+3. 实现数据库设计
+4. 主站：分类查看，+  分页
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

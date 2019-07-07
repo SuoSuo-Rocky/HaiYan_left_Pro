@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  welcome  to SpringMVC
+ 编号：${requestScope.student.stuNo }-
+ 姓名：${requestScope.student.stuName }-
+ 年龄：${requestScope.student.stuAge }-
+</body>
+</html>

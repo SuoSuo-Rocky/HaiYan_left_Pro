@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+{% for page in page_list %}
+     {{ page }} </br>
+{% endfor %}
+
+<a href="/index?action=previous">上一页</a>
+<a href="/index?action=next">下一页</a>
+
+
+</body>
+</html>

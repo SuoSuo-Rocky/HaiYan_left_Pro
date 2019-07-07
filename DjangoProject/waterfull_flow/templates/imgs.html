@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .row1{
+            width: 1200px;
+            margin: 0 auto;
+
+        }
+        .tr1{
+            width: 25%;
+            float: left;
+        }
+        img{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div>姑娘们</div>
+<div class="row1">
+    {% for foo in img_list %}
+        <div class="tr1">
+            <img src="{{ foo.src }}" alt="">
+            <div>{{ foo.title }}</div>
+             <div>{{ foo.summary }}</div>
+        </div>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>

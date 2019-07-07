@@ -1,0 +1,26 @@
+<classpath>
+  <container id="SSMProject!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/STS Project/SSMProject/WebContent/WEB-INF/lib/spring-webmvc-4.3.9.RELEASE.jar">
+      <source-attachment-path>F:/Spring 类库/我最爱的 jar 包/Spring_SpringMVC_MyBatis_Web/Resource/spring-webmvc-4.3.9.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="LuoHao_Demo1!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/STS Project/LuoHao_Demo1/WebContent/WEB-INF/lib/spring-context-4.3.9.RELEASE.jar">
+      <source-attachment-path>F:/Spring 类库/我最爱的 jar 包/Spring_SpringMVC_MyBatis_Web/Resource/spring-context-4.3.9.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="SpringMVCProject_Demo_1!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="E:/STS Project/SpringMVCProject_Demo_1/WebContent/WEB-INF/lib/spring-web-4.3.9.RELEASE.jar">
+      <source-attachment-path>F:/Jar  包 类库/Spring 类库/我最爱的 jar 包/Spring_SpringMVC_MyBatis_Web/Resource/spring-web-4.3.9.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="E:/STS Project/SpringMVCProject_Demo_1/WebContent/WEB-INF/lib/spring-context-4.3.9.RELEASE.jar">
+      <source-attachment-path>F:/Spring 类库/spring-framework-4.3.9.RELEASE/libs/spring-context-4.3.9.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="E:/STS Project/SpringMVCProject_Demo_1/WebContent/WEB-INF/lib/spring-webmvc-4.3.9.RELEASE.jar">
+      <source-attachment-path>F:/Jar  包 类库/Spring 类库/我最爱的 jar 包/Spring_SpringMVC_MyBatis_Web/Resource/spring-webmvc-4.3.9.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="E:/STS Project/SpringMVCProject_Demo_1/WebContent/WEB-INF/lib/spring-core-4.3.9.RELEASE.jar">
+      <source-attachment-path>F:/Spring 类库/我最爱的 jar 包/Spring_SpringMVC_MyBatis_Web/Resource/spring-core-4.3.9.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

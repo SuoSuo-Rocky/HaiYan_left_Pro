@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/lib/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        .mydiv {
+            margin-top: 100px;
+            font-size: 16px;
+        }
+        .form-group label {
+            width: 20%;
+            float: left;
+            display: inline;
+        }
+
+        .form-group div {
+            width: 80%;
+        }
+
+        button[type='reset'] {
+            margin-left: 150px;
+            font-size: 22px;
+        }
+
+        button[type='submit'] {
+            font-size: 22px;
+        }
+
+        .file-control {
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="row mydiv">
+    <div class="col-lg-4 col-lg-offset-4">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrfmiddlewaretoken"
+                           value="HUIKGFlPjDFISXy4dbwWyGQ6iybj0FlLUcf49OCzFzYDaDDivPsE4faCh0NwQfUp">
+                    <label for="id_username">Username:</label>
+                        <input type="text" name="username" maxlength="16"   minlength="6" required="" id="id_username">
+                    <label for="id_email">Email:</label>
+                        <input type="email" name="email" maxlength="64" minlength="10"  required="" id="id_email">
+                    <label for="id_pwd">Pwd:</label>
+                        <input type="text" name="pwd" maxlength="18" minlength="6"    required="" id="id_pwd">
+                    <label for="id_r_pwd">R pwd:</label>
+                        <input type="text" name="r_pwd" maxlength="18" minlength="6"   required="" id="id_r_pwd">
+                    <label for="id_img">Img:</label>
+                        <input type="file" name="img" accept="image/*" required=""   id="id_img">
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">注册</button>
+                            <button type="reset" class="btn btn-default">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

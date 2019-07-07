@@ -1,0 +1,8 @@
+package org.shiwei.exception;
+
+public class MyArrayIndexOutofBoundsException {
+	
+	
+	
+
+}

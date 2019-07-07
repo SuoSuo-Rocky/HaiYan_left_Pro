@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .head{
+            line-height: 80px;
+            background: green;
+            width: 100%;
+        }
+        .content{
+            width: 100%;
+            height: 800px;
+
+        }
+        .neirong{
+            text-align: center;
+            font-size: 35px;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+
+    <div class="head">标题</div>
+    <div class="content">
+        <div>
+            <p class="neirong"><a href="/addbook/">添加书籍</a></p>
+            <p class="neirong"><a href="/selectAll/">查询所有书籍</a></p>
+
+        </div>
+        <div>
+            {% for foo in book_list %}
+                <p class="neirong">{{ foo.id }};{{ foo.name }};{{ foo.price }};{{ foo.author }};{{ foo.pub_date }}</p>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+</div>
+</body>
+</html>

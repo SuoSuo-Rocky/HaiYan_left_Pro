@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此文件为 数据库 表的 映射 文件 -->
+<!-- 下方写 映射文件的路径 namespace : 该 mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="org.shiwei.mapper.StudentMapper">
+
+
+	<!-- 注意后面没有 分号 resultType： 查询 返回结果 值的类型 parameterType ： 输入参数的类型 -->
+	<select id="queryStudentByStuno" resultType="org.shiwei.entity.Student"
+		parameterType="int">
+		select * from student where stuno=#{stuNo}
+	</select>
+	
+	<insert id="addStudent" parameterType="org.shiwei.entity.Student">
+	     insert into student(stuno, stuname, stuage) values (#{stuNo},#{stuName},#{stuAge})
+	</insert>
+
+
+</mapper>

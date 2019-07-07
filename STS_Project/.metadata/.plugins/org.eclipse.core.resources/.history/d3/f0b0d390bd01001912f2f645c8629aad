@@ -1,0 +1,5 @@
+package org.shiwei.spring.jdbc.action;
+
+public class JdbcAction {
+
+}

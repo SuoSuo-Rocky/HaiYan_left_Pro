@@ -1,0 +1,8 @@
+package org.shiwei.entity;
+
+public class Address {
+	private String homeAddress;
+	private String schoolAddress;
+	
+
+}

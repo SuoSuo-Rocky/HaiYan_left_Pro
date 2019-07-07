@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/lib/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        .mydiv {
+            margin-top: 100px;
+            font-size: 16px;
+
+        }
+
+        .form-group label {
+            width: 20%;
+            float: left;
+            display: inline;
+        }
+
+        .form-group div {
+            width: 80%;
+        }
+
+        button[type='reset'] {
+            margin-left: 150px;
+            font-size: 22px;
+        }
+
+        button[type='submit'] {
+            font-size: 22px;
+        }
+
+        .file-control {
+            padding: 0px;
+        }
+
+        .mytable {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mytable label {
+            width: 100%;
+        }
+
+        .mytable {
+            border-spacing: 20px;
+            border-collapse: separate;
+        }
+
+        {#collapse 	如果可能，边框会合并为一个单一的边框。会忽略 border-spacing 和 empty-cells 属性#}
+        {#separate 	默认值。边框会被分开。不会忽略 border-spacing 和 empty-cells 属性#}
+        {#inherit 	规定应该从父元素继承 border-collapse 属性的值#}
+        input[name='img'] {
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="row mydiv">
+    <div class="col-lg-4 col-lg-offset-4">
+
+
+        <div class="panel panel-info">
+            <div class="panel-body">
+
+                <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                    <table class="mytable">
+                        {% csrf_token %}
+                        {{ form.as_table }}
+                        <!--
+
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="one" class="col-sm-2 control-label">姓名</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="text" class="form-control" id="one" placeholder="请输入名字" name="username">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="two" class="col-sm-2 control-label">邮箱</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="email" class="form-control" id="two" placeholder="请输入邮箱" name="email">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="three" class="col-sm-2 control-label">密码</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="password" class="form-control" id="three" placeholder="请输入密码" name="pwd">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="four" class="col-sm-2 control-label">确认密码</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="password" class="form-control" id="four" placeholder="确认密码" name="r_pwd">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {#                    <div class="form-group">#}
+                        {#                        <label for="four" class="col-sm-2 control-label">头像</label>#}
+                        {#                        <div class="col-sm-10">#}
+                        {#                            <input type="file" class="form-control file-control" id="four"  name="img">#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        {##}
+                        {#                    <div class="form-group">#}
+                        {#                        <div class="col-sm-offset-2 col-sm-10">#}
+                        {#                            <div class="checkbox">#}
+                        {#                                <label>#}
+                        {#                                    <input type="checkbox">请记住我#}
+                        {#                                </label>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                        {#                    </div>#}
+                        -->
+                    </table>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">注册</button>
+                            <button type="reset" class="btn btn-default">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('table label').attr('class', 'col-sm-2 control-label');
+    $('table input').attr('class', 'col-sm-10 form-control');
+    $('table')
+
+</script>
+
+
+</body>
+</html>
+
+
+{# 结果为；#}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/lib/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/static/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        .mydiv {
+            margin-top: 100px;
+            font-size: 16px;
+
+        }
+
+        .form-group label {
+            width: 20%;
+            float: left;
+            display: inline;
+        }
+
+        .form-group div {
+            width: 80%;
+        }
+
+        button[type='reset'] {
+            margin-left: 150px;
+            font-size: 22px;
+        }
+
+        button[type='submit'] {
+            font-size: 22px;
+        }
+
+        .file-control {
+            padding: 0px;
+        }
+
+        .mytable {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mytable label {
+            width: 100%;
+        }
+
+        .mytable {
+            border-spacing: 20px;
+            border-collapse: separate;
+        }
+
+
+        input[name='img'] {
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="row mydiv">
+    <div class="col-lg-4 col-lg-offset-4">
+        <div class="panel panel-info">
+            <div class="panel-body">
+
+                <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                    <table class="mytable">
+                        <input type="hidden" name="csrfmiddlewaretoken"
+                               value="DJc7crrXirZRMcrZHyAu4jcGliV7BrQFkJ61JalQTao98JICZmlmPK188XAM6Zxi"
+                               class="col-sm-10 form-control">
+                        <tbody>
+                        <tr>
+                            <th><label for="id_username" class="col-sm-2 control-label">Username:</label></th>
+                            <td><input type="text" name="username" maxlength="16" minlength="6" required=""
+                                       id="id_username" class="col-sm-10 form-control"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="id_email" class="col-sm-2 control-label">Email:</label></th>
+                            <td><input type="email" name="email" maxlength="64" minlength="10" required="" id="id_email"
+                                       class="col-sm-10 form-control"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="id_pwd" class="col-sm-2 control-label">Pwd:</label></th>
+                            <td><input type="text" name="pwd" maxlength="18" minlength="6" required="" id="id_pwd"
+                                       class="col-sm-10 form-control"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="id_r_pwd" class="col-sm-2 control-label">R pwd:</label></th>
+                            <td><input type="text" name="r_pwd" maxlength="18" minlength="6" required="" id="id_r_pwd"
+                                       class="col-sm-10 form-control"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="id_img" class="col-sm-2 control-label">Img:</label></th>
+                            <td><input type="file" name="img" accept="image/*" required="" id="id_img"
+                                       class="col-sm-10 form-control"></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">注册</button>
+                            <button type="reset" class="btn btn-default">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('table label').attr('class', 'col-sm-2 control-label');
+    $('table input').attr('class', 'col-sm-10 form-control');
+    $('table')
+</script>
+</body>
+</html>

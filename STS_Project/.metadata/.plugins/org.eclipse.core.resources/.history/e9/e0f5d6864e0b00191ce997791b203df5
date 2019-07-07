@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!--添加扫描有注解的包 ，  -->
+	<context:component-scan base-package="org.shiwei.handler"></context:component-scan>
+	
+	<!-- 配置视图解析器  (InternalResourceViewResolver) -->
+	<bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	      <!-- 前缀 -->
+	     <property name="prefix" value="/view/"></property>
+	       <!-- 后缀  -->
+	     <property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 配置  JSp  到  jsp  跳转 的 方式。
+	  注意： 单独此 注解 会 默认 屏蔽掉  @ RequestMapping 注解。 -->
+	<mvc:view-controller path="SpringMVC/direct" view-name="success"/>
+	
+	
+	<!-- 此配置是 SpringMVC的 基础配置， 很多功能都需要 通过 该  注解  来进行 协调。
+	此注解 现在 的 功能之一 是  让  @RequestMapping 注解  和  <mvc:view-controller...>注解 共存
+	 -->
+<!-- 	<mvc:annotation-driven></mvc:annotation-driven> -->
+	
+	<!-- 该注解 会让 SpringMVC  对于接收到 的 所有请求， 将其中 没有对应 @RequestMapping注解的请求
+	     交给 Tomcat 服务器 默认的  Servlet 去处理。 就是 直接访问。
+	     注意：中间 不可以有空格。   -->
+ <mvc:default-servlet-handler></mvc:default-servlet-handler> 
+	
+	
+    
+    
+	
+</beans>

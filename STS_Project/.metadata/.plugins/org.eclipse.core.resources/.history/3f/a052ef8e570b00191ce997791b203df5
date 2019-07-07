@@ -1,0 +1,45 @@
+package org.shiwei.entity;
+
+public class Student {
+	private int age;
+	private String name;
+	private Address address;
+	
+	//新加的 
+	private int id;
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+	
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	@Override
+	public String toString() {
+		return "编号为："+ this.id + "\t名字为：" + this.name + "\t年龄为：" + this.age + this.address;
+	}
+	
+
+}

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	default-autowire="byName"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- 配置扫描器 -->
+	<!-- 扫描多个包， 包之间用 逗号 隔开 -->
+	<context:component-scan
+		base-package="org.wang.entity">
+	</context:component-scan>
+	
+	<!-- 
+	配置数据库相关- 事务
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.Oracle"></property>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521；ORCL"></property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
+		<property name="maxActive" value="10"></property>
+		<property name="maxIdle" value="6"></property>
+	</bean>
+
+
+	配置事务管理器 txManager
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+
+	增加对事务的支持 (是核心)
+	<tx:annotation-driven
+		transaction-manager="txManager" />
+
+ -->
+
+
+	<!--该文件中所产生的对象， 被spring 放入了 一个被称只为 spring IOC 容器 的地方。 -->
+	<bean id="Student" class="org.wang.entity.Student">
+		<property name="stuNo" value="2"></property>
+		<property name="stuAge" value="100"></property>
+		<property name="stuName" value="shiwei"></property>
+	</bean>
+
+	<!--new JavaCourse() -->
+	<bean id="javaCourse" class="org.wang.newinstance.JavaCourse">
+	</bean>
+
+	<bean id="htmlCourse" class="org.wang.newinstance.HtmlCourse">
+	</bean>
+
+	<bean id="teacher" class="org.wang.entity.Teacher" p:age="25"
+		p:name="wang777">
+		<!-- 通过set赋值 <property name="name" value="shiwei"></property> <property 
+			name="age" value="100"></property> -->
+
+		<!-- 通过构造方法赋值 -->
+		<!-- <constructor-arg value="shiwei"></constructor-arg> <constructor-arg 
+			value="100"></constructor-arg> -->
+	</bean>
+	
+	
+	<!--属性autowire="byname 实现 将自动寻找 其他 bean 的id 值 = 该bean 的属性值， -->
+	<bean id="course" class="org.wang.entity.Course"
+		autowire="constructor">
+		<property name="courseName" value="shi6666"></property>
+		<property name="courseHour" value="1666"></property>
+	</bean>
+
+	<bean id="studentDao" class="org.wang.dao.impl.StudentDaoImpl"></bean>
+
+	<!-- <bean id="IStudentDao" class="org.wang.dao.IStudentDao"></bean> -->
+
+<!-- 
+
+
+
+	对前置通知的配置
+
+
+       addStudent() 所在方法 
+	<bean id="StudentService"
+		class="org.wang.service.StudentServiceImpl">
+		<property name="studentDao" ref="studentDao"></property>
+	</bean>
+
+
+   "前置通知" 类 
+    <bean id="logBefore" class="org.wang.aop.logBefore" >
+    </bean>
+
+
+
+    将addStudent() 方法 所在类 与  “ 通知” 类进行    关联
+   <aop:config>   前置通知
+       配置切入点， （在哪里执行通知）(连接线的一端) 
+        一个通知类 可以 给 多个 方法 设置  , 以下配置通知两个 方法 ， 用  or  隔开  
+       <aop:pointcut  id="pointcut"  expression="execution( public void  org.wang.service.StudentServiceImpl.deleteStudentByNO(int)
+                   or  execution( public void  org.wang.service.StudentServiceImpl.addStudent(org.wang.entity.Student))" />
+                   
+       advisor : 相当于连接 切入点 和切面的  “线”   就是在 谁  之前  执行   谁     
+       <aop:advisor advice-ref="logBefore" pointcut-ref="pointcut"/>
+       
+       
+   
+   </aop:config> 
+   
+    <aop:config> 后置通知 
+        切入点
+       <aop:pointcut id="pointcut" expression="execution( public void  org.wang.service.StudentServiceImpl.deleteStudentByNO(int)
+                   or  execution( public *  org.wang.service.StudentServiceImpl.addStudent(..))"/>
+       
+    
+    
+    
+    </aop:config>
+   
+   
+     -->
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+	<!-- property 标签 就相当于 setXXXXX();方法一样 -->
+	<!-- <bean id="course" class="org.wang.entity.Course" p:courseName="C ++" 
+		p:courseHour="600" p:teacher-ref="teacher"> 
+		通过set 赋值
+		 <property name="courseName"  value="java">
+		 </property> <property name="courseHour" value="200"></property> 
+		将 Teacher对象 注入到 Course 对象当中
+		 <property name="teacher" ref="teacher"></property> 
+		通过构造方法 赋值 注意: 在没有指定索引的情况下，标签赋值顺序 要与 类中的构造方法中 形参 顺序要一致，否则报错 1. 要是不一致可以给标签添加 
+		index 属性。 2. 也可以给标签添加 name 属性， 3. 也可以给标签添加 type 属性， 但要注意同类型多参数的问题， 总之， 加上默认的 
+		四种 方法 灵活 应用 
+		<constructor-arg value="java" index=""></constructor-arg>
+		 <constructor-arg  value="300"></constructor-arg> 
+		 <constructor-arg ref="teacher"></constructor-arg> 
+		</bean> -->
+
+
+	<bean id="collectionDemo"
+		class="org.wang.entity.AllCollectionType">
+
+		<property name="list">
+			<list>
+				<value>篮球</value>
+				<value>网球</value>
+				<value>排球</value>
+				<value>气球</value>
+			</list>
+		</property>
+
+		<property name="set">
+			<set>
+				<value>se89</value>
+				<value>se56</value>
+				<value>se23</value>
+				<value>se28</value>
+			</set>
+		</property>
+
+
+		<property name="map">
+			<map>
+				<entry>
+					<key>
+						<value>foot</value>
+					</key>
+					<value>足球</value>
+				</entry>
+				<entry>
+					<key>
+						<value>basketball</value>
+					</key>
+					<value>篮球</value>
+				</entry>
+				<entry>
+					<key>
+						<value>volleayball</value>
+					</key>
+					<value>排球</value>
+				</entry>
+				<entry>
+					<key>
+						<value>pig</value>
+					</key>
+					<value>小猪</value>
+				</entry>
+			</map>
+		</property>
+
+
+		<property name="props">
+			<props>
+				<prop key="foots">足球1</prop>
+				<prop key="foot3">足球3</prop>
+				<prop key="foot4">足球4</prop>
+			</props>
+
+		</property>
+
+
+		<property name="array">
+			<array>
+				<value>s12</value>
+				<value>s45</value>
+				<value>s78</value>
+			</array>
+		</property>
+
+
+	</bean>
+
+</beans>

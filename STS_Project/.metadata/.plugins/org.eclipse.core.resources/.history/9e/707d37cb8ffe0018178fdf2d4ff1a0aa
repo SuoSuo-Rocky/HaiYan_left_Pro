@@ -1,0 +1,9 @@
+package org.shiwei.dao;
+
+import org.shiwei.entity.Student;
+
+public interface IStudentMapper {
+	 void addStudent(Student student);
+	
+
+}

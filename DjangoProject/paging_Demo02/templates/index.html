@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+{% for  obj in pages.object_list %}
+  {{ obj }}<br>
+{% endfor %}
+
+{% if pages.has_previous %}
+    <a href="/index.html?p={{ pages.previous_page_number }}">上一页</a>
+    {% else %}
+        <a href="#">上一页</a>
+{% endif %}
+
+{% for num in pages.paginator.num_list %}
+    {% if pages.number == num %}
+       <a style="font-size: 30px" href="/index.html?p={{ num }}">{{ num }}</a>
+        {% else %}
+ <a href="/index.html?p={{ num }}">{{ num }}</a>
+    {% endif %}
+{% endfor %}
+
+
+{% if pages.has_next %}
+    <a href="/index.html?p={{ pages.next_page_number }}">下一页</a>
+    {% else %}
+        <a href="#">下一页</a>
+{% endif %}
+{{ pages.number }}/{{ pages.paginator.num_pages }}
+
+
+
+
+</body>
+</html>

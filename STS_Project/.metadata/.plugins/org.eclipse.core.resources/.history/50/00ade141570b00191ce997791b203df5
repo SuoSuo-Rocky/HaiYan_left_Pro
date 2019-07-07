@@ -1,0 +1,5 @@
+package org.shiwei.converter;
+
+public class MyConverter {
+
+}

@@ -1,0 +1,13 @@
+1545623375405	Delete element
+1545623561676	Delete element
+1545633122182	Delete element
+1545633531714	Rename resource 'index.jsp'
+1545633829703	Rename type 'Student'
+1545633848651	Rename resource 'StudentMapper.xml'
+1545633858088	Rename type 'StudentMapper'
+1545634375510	Rename type 'StudentController'
+1545634508844	Rename type 'IStudentDao'
+1545634523384	Rename type 'StudentDaoImpl'
+1545634680030	Rename type 'IStudentService'
+1545634707359	Rename compilation unit 'StudentServiceImpl.java'
+1545648121207	Rename type 'Allbook'

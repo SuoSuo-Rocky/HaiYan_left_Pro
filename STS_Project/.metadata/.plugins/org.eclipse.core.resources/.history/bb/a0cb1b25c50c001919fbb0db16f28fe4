@@ -1,0 +1,44 @@
+package org.shiwei.handler;
+
+
+
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+
+
+@Controller
+@RequestMapping("SecondMVC")
+public class SecondSpringMVCHandler {
+	
+	@RequestMapping("One")
+	public  String testExceptionHandler() {
+//		try {
+			System.out.println(1/0);  //ArithmeticException： 算数异常
+	/*	} catch (Exception e) {
+			// TODO: handle exception
+		}*/
+		
+		return "success";
+		
+	}
+	
+	
+	// 该方法 可以捕获 本类中 抛出的  ArithmeticException 异常
+	@ExceptionHandler({ArithmeticException.class})
+	public String handlerArithmeticException(ArithmeticException e,Map<String,Object> map) {
+		System.out.println("我捕获了=" + e);
+		/*map.put("e", e);*/
+		return "error";
+	}
+	
+	
+	
+	
+	
+
+}

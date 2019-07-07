@@ -1,0 +1,15 @@
+package org.shiwei.handler;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@ControllerAdvice
+@RequestMapping("ExceptionHandler")
+public class MyExceptionHandler {    // 不再 是控制器， 
+	
+	
+	
+	
+
+}

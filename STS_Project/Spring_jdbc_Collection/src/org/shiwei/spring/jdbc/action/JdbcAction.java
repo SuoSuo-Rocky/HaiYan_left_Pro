@@ -1,0 +1,14 @@
+package org.shiwei.spring.jdbc.action;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class JdbcAction {
+	public static void main(String[] args) {
+		ApplicationContext context = new  ClassPathXmlApplicationContext("applicationContext-jdbc.xml");
+		
+		
+	}
+	
+
+}

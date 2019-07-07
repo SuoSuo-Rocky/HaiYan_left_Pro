@@ -1,0 +1,5 @@
+package org.shiwei.dao;
+
+public interface IStudentDao {
+
+}

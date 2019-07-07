@@ -1,0 +1,39 @@
+{% extends 'kingadmin/index.html' %}
+<!-- # 从 配置文件中 读取路径  -->
+{% block css %}
+
+{% endblock %}
+
+{% block right-content-container %}
+    <h2 class="page-header">KingAdmin</h2>
+    {% for app_name, tables in enabled_admins.items %}
+        <table class="table table-striped">
+          <thead>
+                <tr>
+                  <th>{{ app_name }}</th>
+                  <th>&nbsp;</th>
+                  <th>&nbsp;</th>
+                </tr>
+          </thead>
+          <tbody>
+          {% for model_name in tables %}
+                <tr>
+                  <th scope="row">
+                      <a href="{% url 'table_obj_list' app_name model_name%}">{{ model_name }}</a></th>
+                  <th scope="row">ADD</th>
+                  <th scope="row">Edit</th>
+                </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    {% endfor %}
+    
+
+{% endblock %}
+
+
+
+{% block js %}
+
+
+{% endblock %}

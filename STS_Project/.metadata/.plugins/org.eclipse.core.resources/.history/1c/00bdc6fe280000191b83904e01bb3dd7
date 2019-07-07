@@ -1,0 +1,5 @@
+package org.shiwei.entity;
+
+public class Student {
+
+}

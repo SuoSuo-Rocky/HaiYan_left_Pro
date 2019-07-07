@@ -1,0 +1,24 @@
+package org.shiwei.test;
+
+import org.shiwei.dao.Impl.StudentDaoImpl;
+import org.shiwei.entity.Student;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class test {
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		
+		
+		 Student student = new Student();
+		 student.setStuAge(100);
+		 student.setStuName("shiwei666");
+		 student.setStuNo(100);
+		 new StudentDaoImpl().addStudent(student);
+		
+		
+	}
+	
+
+}

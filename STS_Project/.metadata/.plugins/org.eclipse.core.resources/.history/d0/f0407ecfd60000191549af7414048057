@@ -1,0 +1,24 @@
+package org.shiwei.service.impl;
+
+import org.shiwei.dao.IStudentDao;
+import org.shiwei.entity.Student;
+import org.shiwei.service.IStudentService;
+
+public class StudentServiceImpl implements IStudentService {
+	IStudentDao studentDao;
+
+	public IStudentDao getStudentDao() {
+		return studentDao;
+	}
+
+	public void setStudentDao(IStudentDao studentDao) {
+		this.studentDao = studentDao;
+	}
+
+	@Override
+	public Student queryStudentByNo(int id) {
+
+		return null;
+	}
+
+}

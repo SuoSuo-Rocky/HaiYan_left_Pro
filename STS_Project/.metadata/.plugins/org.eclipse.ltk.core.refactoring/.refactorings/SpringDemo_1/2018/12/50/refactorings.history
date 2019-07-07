@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy source folder &apos;commons-logging-1.1.1.jar&apos; to &apos;lib&apos;&#x0D;&#x0A;- Original project: &apos;SpringDemo_1&apos;&#x0D;&#x0A;- Destination element: &apos;lib&apos;&#x0D;&#x0A;- Original element: &apos;SpringDemo_1/src/commons-logging-1.1.1.jar&apos;" description="Copy source folder" element1="/src\/commons-logging-1.1.1.jar" flags="6" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyRoots" roots="1" stamp="1544761007421" target="/SpringMVCProject_Demo_1/WebContent/WEB-INF/lib" version="1.0"/>
+</session>

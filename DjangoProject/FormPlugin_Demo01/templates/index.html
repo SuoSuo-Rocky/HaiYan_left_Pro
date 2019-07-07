@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<form action="/index.html" method="post" id="objform">
+{#    <p>姓名<input type="text" name="username"></p>{{ obj.errors.username }}#}
+{#    <p>密码<input type="password" name="password"></p>{{ obj.errors.password }}#}
+{#    <p>年龄<input type="number" name="userage"></p>{{ obj.errors.userage }}#}
+{#    <p>Email<input type="email" name="useremail"></p>{{ obj.errors.useremail }}#}
+
+
+{#    <p>{{ obj.username }}{{ obj.errors.username.0 }}</p>#}
+{#    <p>{{ obj.password }}</p>#}
+{#    <p>{{ obj.userage }}</p>#}
+{#    <p>{{ obj.useremail }}</p>#}
+    <table>
+    {{ obj.as_table }}
+    </table>
+    <input type="submit" value="提交">
+    <input type="reset" value="重置">
+     <p><button onclick="ajaxSubmit();" type="button" >Ajax提交</button></p>
+</form>
+
+<script src="/static/jquery-1.10.2.min.js"></script>
+<script>
+    function ajaxSubmit() {
+        $.ajax({
+            url:"/f1.html",
+            type:"post",
+            data:$("#objform").serialize(),
+            success:function (arg) {
+                console.log(arg);
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
